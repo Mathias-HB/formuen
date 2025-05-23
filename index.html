@@ -1,8 +1,8 @@
 <!DOCTYPE html> 
 <html lang="da">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FormueGuiden</title>
   <style>
     * {
@@ -139,7 +139,7 @@
 
     section.fremskriver input[type=range] {
       width: 100%;
-      accent-color: #0b1e3d; /* slider farve til samme som tema */
+      accent-color: #0b1e3d;
     }
 
     #output {
@@ -212,17 +212,17 @@
   <section class="fremskriver">
     <h2>Fremskriv din formue</h2>
     <div>
-      <label for="kapitalSlider">Startkapital: <span id="kapitalVal"></span> DKK</label>
+      <label for="kapitalSlider">Startkapital: <span id="kapitalVal"></span></label>
       <input type="range" id="kapitalSlider" min="0" max="1000000" step="1000" value="100000" />
     </div>
 
     <div>
-      <label for="indskudSlider">Månedligt indskud: <span id="indskudVal"></span> DKK</label>
+      <label for="indskudSlider">Månedligt indskud: <span id="indskudVal"></span></label>
       <input type="range" id="indskudSlider" min="0" max="20000" step="500" value="1000" />
     </div>
 
     <div>
-      <label for="afkastSlider">Årligt afkast (%): <span id="afkastVal"></span> %</label>
+      <label for="afkastSlider">Årligt afkast (%): <span id="afkastVal"></span></label>
       <input type="range" id="afkastSlider" min="0" max="20" step="0.1" value="7" />
     </div>
 
@@ -231,11 +231,9 @@
       <input type="range" id="aarSlider" min="1" max="50" step="1" value="20" />
     </div>
 
-    <div id="output" aria-live="polite" role="region" style="margin-top: 1.5rem; font-weight: 700; color: #0077cc; font-size: 1.3rem; text-align: center;">
-      Forventet fremtidsværdi: Beregnes...
-    </div>
+    <div id="output" aria-live="polite" role="region" style="margin-top: 1.5rem;"></div>
 
-    <canvas id="fremskriverGraf" style="margin-top:2rem; max-width:100%; height:300px;"></canvas>
+    <canvas id="fremskriverGraf" style="margin-top: 2rem; max-width: 100%; height: 300px;"></canvas>
   </section>
 
   <footer>
@@ -244,6 +242,17 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
+    const kapitalSlider = document.getElementById('kapitalSlider');
+    const indskudSlider = document.getElementById('indskudSlider');
+    const afkastSlider = document.getElementById('afkastSlider');
+    const aarSlider = document.getElementById('aarSlider');
+
+    const kapitalVal = document.getElementById('kapitalVal');
+    const indskudVal = document.getElementById('indskudVal');
+    const afkastVal = document.getElementById('afkastVal');
+    const aarVal = document.getElementById('aarVal');
+    const output = document.getElementById('output');
+
     const ctx = document.getElementById('fremskriverGraf').getContext('2d');
 
     let chart = new Chart(ctx, {
@@ -294,15 +303,44 @@
       }
     });
 
+    function formatDKK(value) {
+      return value.toLocaleString('da-DK') + ' kr';
+    }
+
     function beregnFremskrivning() {
-      const kapital = parseInt(document.getElementById('kapitalSlider').value);
-      const indskud = parseInt(document.getElementById('indskudSlider').value);
-      const afkast = parseFloat(document.getElementById('afkastSlider').value);
-      const aar = parseInt(document.getElementById('aarSlider').value);
+      const kapital = parseInt(kapitalSlider.value);
+      const indskud = parseInt(indskudSlider.value);
+      const afkast = parseFloat(afkastSlider.value);
+      const aar = parseInt(aarSlider.value);
 
-      const r = afkast / 100 / 12;
-      const n = aar * 12;
+      kapitalVal.textContent = formatDKK(kapital);
+      indskudVal.textContent = formatDKK(indskud);
+      afkastVal.textContent = afkast.toFixed(1);
+      aarVal.textContent = aar;
 
-      let fremtidsvaerdi;
-      if (r === 0) {
-        fremtidsvaerdi = kapital +
+      const r = afkast / 100;
+      let saldo = kapital;
+      const labels = [];
+      const data = [];
+
+      for (let år = 1; år <= aar; år++) {
+        saldo = saldo * (1 + r) + indskud * 12;
+        labels.push(år);
+        data.push(Math.round(saldo));
+      }
+
+      output.textContent = 'Forventet fremtidsværdi: ' + formatDKK(Math.round(saldo));
+
+      chart.data.labels = labels;
+      chart.data.datasets[0].data = data;
+      chart.update();
+    }
+
+    [kapitalSlider, indskudSlider, afkastSlider, aarSlider].forEach(slider =>
+      slider.addEventListener('input', beregnFremskrivning)
+    );
+
+    beregnFremskrivning();
+  </script>
+</body>
+</html>
