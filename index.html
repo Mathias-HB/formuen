@@ -5,18 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FormueGuiden</title>
   <style>
+    /* Samme CSS som tidligere, bare logo 20% mindre */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f7f9fc;
       color: #333;
     }
-
     header {
       background-color: #0b1e3d;
       padding: 1rem 2rem;
@@ -27,32 +26,26 @@
       position: relative;
       z-index: 1000;
     }
-
     .logo {
       display: flex;
       align-items: center;
     }
-
     .logo-img {
       height: 88px; /* 20% mindre end 110px */
       width: auto;
       display: block;
     }
-
     nav {
       position: relative;
     }
-
     ul.menu {
       list-style: none;
       display: flex;
       gap: 2rem;
     }
-
     ul.menu > li {
       position: relative;
     }
-
     ul.menu > li > a {
       color: white;
       text-decoration: none;
@@ -60,13 +53,10 @@
       padding: 0.5rem;
       display: block;
       transition: color 0.2s ease;
-      cursor: pointer;
     }
-
     ul.menu > li:hover > a {
       color: #00ccff;
     }
-
     .dropdown {
       position: absolute;
       top: 100%;
@@ -80,41 +70,32 @@
       min-width: 200px;
       z-index: 999;
     }
-
     .dropdown a {
       color: #0b1e3d;
       text-decoration: none;
       padding: 0.4rem 0;
-      white-space: nowrap;
     }
-
     .dropdown a:hover {
       color: #0077cc;
     }
-
     ul.menu > li:hover .dropdown {
       display: flex;
     }
-
     .hero {
       padding: 4rem 2rem;
       text-align: center;
       background: linear-gradient(to right, #0b1e3d, #153c5d);
       color: white;
     }
-
     .hero h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
-
     .hero p {
       font-size: 1.1rem;
       max-width: 600px;
       margin: auto;
     }
-
-    /* Formuefremskriver styling */
     section.fremskriver {
       max-width: 700px;
       margin: 2rem auto;
@@ -125,38 +106,31 @@
       font-family: 'Segoe UI', sans-serif;
       color: #153c5d;
     }
-
     section.fremskriver h2 {
       text-align: center;
       margin-bottom: 1.5rem;
       color: #0b1e3d;
     }
-
     section.fremskriver > div {
       margin-bottom: 2rem;
     }
-
     .slider-label {
       font-weight: 600;
       font-size: 1rem;
       color: #0b1e3d;
-      margin-top: 0.25rem;
+      margin-bottom: 0.3rem;
       text-align: left;
       white-space: nowrap;
-      display: block;
     }
-
     .slider-value {
       font-weight: 700;
-      margin-left: 0.3rem;
+      margin-left: 0.5rem;
     }
-
     section.fremskriver input[type=range] {
       width: 100%;
-      accent-color: #0b1e3d; /* slider farve */
-      margin-top: 0.25rem;
+      accent-color: #0b1e3d;
+      margin-bottom: 0.25rem;
     }
-
     #output {
       margin-top: 1.5rem;
       text-align: center;
@@ -164,7 +138,6 @@
       font-weight: 700;
       color: #0b1e3d;
     }
-
     footer {
       text-align: center;
       padding: 1.5rem;
@@ -173,7 +146,6 @@
       font-size: 0.9rem;
       margin-top: 4rem;
     }
-
     @media(max-width: 768px) {
       ul.menu {
         flex-direction: column;
@@ -225,7 +197,6 @@
     <p>Opnå kontrol, overblik og bliv komfortabel med dine investeringer</p>
   </section>
   
-  <!-- Formuefremskriver med grafik -->
   <section class="fremskriver">
     <h2>Fremskriv din formue</h2>
 
@@ -339,7 +310,7 @@
 
       for (let i = 1; i <= n; i++) {
         saldo = saldo * (1 + r) + indskud;
-        if (i % 12 === 0) { // hvert år
+        if (i % 12 === 0) {
           saldoArray.push(Math.round(saldo));
           labelsArray.push(i / 12);
         }
@@ -358,7 +329,6 @@
     afkastSlider.addEventListener('input', beregnFremskrivning);
     aarSlider.addEventListener('input', beregnFremskrivning);
 
-    // Initial beregning ved sideindlæsning
     beregnFremskrivning();
   </script>
 </body>
