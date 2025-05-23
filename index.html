@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Formueguiden – Form din formue med din viden</title>
+<meta name="description" content="Formueguiden hjælper dig med at investere smartere i Danmark med lave omkostninger og klare guider." />
+
 <style>
   /* Reset */
   *, *::before, *::after {
@@ -26,22 +28,85 @@
     outline: none;
   }
 
+  /* HEADER justeret for logo og menu */
   header {
     background: #2563eb;
     color: white;
-    padding: 2rem 1rem;
-    text-align: center;
+    padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     box-shadow: 0 3px 8px rgba(37, 99, 235, 0.4);
+    flex-wrap: wrap;
   }
-  header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.3rem;
+  header .logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  header .logo img {
+    height: 50px;
+    width: auto;
+  }
+  header .logo h1 {
+    font-size: 2rem;
+    margin: 0;
   }
   header p {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
-    opacity: 0.85;
+    display: none; /* Vi fjerner den gamle underoverskrift for at gøre plads */
+  }
+
+  /* NAVIGATION MED DROPDOWN */
+  nav {
+    position: relative;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+  }
+  nav ul li {
+    position: relative;
+  }
+  nav ul li a {
+    padding: 0.5rem 0.75rem;
+    display: block;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  nav ul li:hover > a,
+  nav ul li:focus-within > a {
+    background-color: #1e40af;
+    border-radius: 6px;
+  }
+
+  /* Dropdown */
+  nav ul li ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #2563eb;
+    border-radius: 0 0 8px 8px;
+    min-width: 180px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 8px 24px rgb(37 99 235 / 0.4);
+    z-index: 1000;
+  }
+  nav ul li:hover > ul,
+  nav ul li:focus-within > ul {
+    display: flex;
+  }
+  nav ul li ul li a {
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  nav ul li ul li a:hover,
+  nav ul li ul li a:focus {
+    background-color: #1e40af;
   }
 
   main {
@@ -127,12 +192,39 @@
     margin-top: 4rem;
   }
 
-  @media (max-width: 600px) {
-    header h1 {
-      font-size: 2rem;
+  /* Responsive tilpasning */
+  @media (max-width: 900px) {
+    nav ul {
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
-    .intro h2 {
+  }
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    header .logo h1 {
       font-size: 1.5rem;
+    }
+    nav ul {
+      flex-direction: column;
+      width: 100%;
+    }
+    nav ul li ul {
+      position: static;
+      box-shadow: none;
+      background: transparent;
+      border-radius: 0;
+      display: none;
+    }
+    nav ul li:hover > ul,
+    nav ul li:focus-within > ul {
+      display: flex;
+      flex-direction: column;
+    }
+    nav ul li a {
+      padding: 0.5rem 0;
     }
   }
 </style>
@@ -140,15 +232,33 @@
 <body>
 
 <header>
-  <h1>Formueguiden</h1>
-  <p>Form din formue med din viden.</p>
+  <div class="logo">
+    <img src="formueguiden_logo.png" alt="Formueguiden logo - stigende aktiegraf" />
+    <h1>Formueguiden</h1>
+  </div>
+  <nav aria-label="Hovednavigation">
+    <ul>
+      <li>
+        <a href="#" aria-haspopup="true" aria-expanded="false">Investeringplatforme ▼</a>
+        <ul>
+          <li><a href="platforme.html">Platforme i Danmark</a></li>
+          <li><a href="smartinvest.html">SmartInvest</a></li>
+          <li><a href="aktiepartner.html">AktiePartner</a></li>
+          <li><a href="lavomkostning.html">LavOmkostning Invest</a></li>
+        </ul>
+      </li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="debatforum.html">Debatforum</a></li>
+      <li><a href="analyserum.html">Analyserum</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main>
   <section class="intro" aria-label="Introduktion">
-    <h2>Hvordan kommer du i gang med at investere </h2>
+    <h2>Hvordan kommer du i gang med at investere</h2>
     <p>
-      Vi hjælper dig med at forstå dine muligheder for investering i Danmark — fra platforme med lave gebyrer til simple strategier, der sikerer, at du investerer med kontinuerlighed og får ro i maven.  
+      Vi hjælper dig med at forstå dine muligheder for investering i Danmark — fra platforme med lave gebyrer til simple strategier, der sikrer, at du investerer kontinuerligt og får ro i maven.  
     </p>
   </section>
 
@@ -158,35 +268,29 @@
       <p class="guide-desc">
         SmartInvest tilbyder lave omkostninger og et brugervenligt interface, perfekt til både begyndere og erfarne investorer.
       </p>
-      <a href="smartinvest.html" target="_blank" rel="noopener noreferrer" class="btn-visit">
-        Besøg SmartInvest
-      </a>
+      <a href="https://smartinvest.dk" target="_blank" rel="noopener noreferrer nofollow" class="btn-visit">Besøg SmartInvest</a>
     </article>
 
     <article class="guide-card" tabindex="0">
       <h3 class="guide-title">AktiePartner</h3>
       <p class="guide-desc">
-        AktiePartner giver adgang til et bredt udvalg af aktier og fonde med lave kurtager og stærk kundesupport.
+        AktiePartner giver adgang til et bredt udvalg af aktier og fonde med lave gebyrer.
       </p>
-      <a href="https://affiliate-link-aktiepartner.dk" target="_blank" rel="noopener noreferrer" class="btn-visit">
-        Besøg AktiePartner
-      </a>
+      <a href="https://aktiepartner.dk" target="_blank" rel="noopener noreferrer nofollow" class="btn-visit">Besøg AktiePartner</a>
     </article>
 
     <article class="guide-card" tabindex="0">
       <h3 class="guide-title">LavOmkostning Invest</h3>
       <p class="guide-desc">
-        Fokus på lave gebyrer og passiv investering via indeksfonde – en sikker vej til langsigtet vækst.
+        Fokuserer på at holde omkostningerne nede med smarte investeringsmuligheder for alle.
       </p>
-      <a href="https://affiliate-link-lavomkostning.dk" target="_blank" rel="noopener noreferrer" class="btn-visit">
-        Besøg LavOmkostning Invest
-      </a>
+      <a href="https://lavomkostning.dk" target="_blank" rel="noopener noreferrer nofollow" class="btn-visit">Besøg LavOmkostning Invest</a>
     </article>
   </section>
 </main>
 
 <footer>
-  &copy; 2025 Investering i Danmark &nbsp;|&nbsp; Informerede valg for alle
+  <p>© 2025 Formueguiden. Alle rettigheder forbeholdes.</p>
 </footer>
 
 </body>
