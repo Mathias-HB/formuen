@@ -170,5 +170,35 @@
     &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
   </footer>
 
+<script>
+    function beregnFremskrivning() {
+      const kapital = parseInt(document.getElementById('kapitalSlider').value);
+      const indskud = parseInt(document.getElementById('indskudSlider').value);
+      const afkast = parseFloat(document.getElementById('afkastSlider').value);
+      const aar = parseInt(document.getElementById('aarSlider').value);
+
+      const r = afkast / 100 / 12;
+      const n = aar * 12;
+
+      const fremtidsvaerdi = kapital * Math.pow(1 + r, n) + (indskud * (Math.pow(1 + r, n) - 1)) / r;
+
+      document.getElementById('output').innerText = fremtidsvaerdi.toLocaleString('da-DK', {
+        style: 'currency',
+        currency: 'DKK'
+      });
+
+      document.getElementById('kapitalVal').innerText = kapital;
+      document.getElementById('indskudVal').innerText = indskud;
+      document.getElementById('afkastVal').innerText = afkast;
+      document.getElementById('aarVal').innerText = aar;
+    }
+
+    ['kapitalSlider', 'indskudSlider', 'afkastSlider', 'aarSlider'].forEach(id => {
+      document.getElementById(id).addEventListener('input', beregnFremskrivning);
+    });
+
+    beregnFremskrivning(); // initial visning
+  </script>
+
 </body>
 </html>
