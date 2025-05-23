@@ -4,8 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Formueguiden – Form din formue med din viden</title>
-<meta name="description" content="Formueguiden hjælper dig med at investere smartere i Danmark med lave omkostninger og klare guider." />
-
 <style>
   /* Reset */
   *, *::before, *::after {
@@ -28,85 +26,82 @@
     outline: none;
   }
 
-  /* HEADER justeret for logo og menu */
   header {
     background: #2563eb;
     color: white;
-    padding: 1rem 1rem;
+    padding: 1rem 2rem;
+    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.4);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.4);
-    flex-wrap: wrap;
+  }
+  header h1 {
+    font-size: 1.8rem;
+    margin: 0 0 0 0.5rem;
   }
   header .logo {
     display: flex;
     align-items: center;
-    gap: 1rem;
   }
   header .logo img {
-    height: 50px;
-    width: auto;
-  }
-  header .logo h1 {
-    font-size: 2rem;
-    margin: 0;
-  }
-  header p {
-    display: none; /* Vi fjerner den gamle underoverskrift for at gøre plads */
+    height: 40px;
+    width: 40px;
   }
 
-  /* NAVIGATION MED DROPDOWN */
-  nav {
-    position: relative;
+  /* Navigation lige under header */
+  nav#top-nav {
+    background: white;
+    padding: 0 2rem;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
   }
-  nav ul {
+  nav#top-nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
   }
-  nav ul li {
+  nav#top-nav li {
     position: relative;
   }
-  nav ul li a {
-    padding: 0.5rem 0.75rem;
-    display: block;
+  nav#top-nav > ul > li > a {
     font-weight: 600;
+    padding: 1rem 0.75rem;
+    display: inline-block;
     cursor: pointer;
+    color: #1f2937;
   }
-  nav ul li:hover > a,
-  nav ul li:focus-within > a {
-    background-color: #1e40af;
-    border-radius: 6px;
+  nav#top-nav li a:hover,
+  nav#top-nav li a:focus {
+    color: #2563eb;
   }
 
-  /* Dropdown */
-  nav ul li ul {
+  /* Dropdown styles */
+  nav#top-nav li ul {
     position: absolute;
     top: 100%;
     left: 0;
-    background: #2563eb;
-    border-radius: 0 0 8px 8px;
-    min-width: 180px;
+    background: white;
+    color: #1f2937;
+    border-radius: 6px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    padding: 0.5rem 0;
+    min-width: 220px;
     display: none;
-    flex-direction: column;
-    box-shadow: 0 8px 24px rgb(37 99 235 / 0.4);
-    z-index: 1000;
+    z-index: 100;
   }
-  nav ul li:hover > ul,
-  nav ul li:focus-within > ul {
-    display: flex;
+  nav#top-nav li:hover > ul,
+  nav#top-nav li:focus-within > ul {
+    display: block;
   }
-  nav ul li ul li a {
-    padding: 0.75rem 1rem;
-    font-weight: 500;
-    white-space: nowrap;
+  nav#top-nav li ul li a {
+    padding: 0.5rem 1rem;
+    display: block;
+    color: #374151;
   }
-  nav ul li ul li a:hover,
-  nav ul li ul li a:focus {
-    background-color: #1e40af;
+  nav#top-nav li ul li a:hover,
+  nav#top-nav li ul li a:focus {
+    background: #e0e7ff;
+    color: #1e40af;
   }
 
   main {
@@ -192,106 +187,91 @@
     margin-top: 4rem;
   }
 
-  /* Responsive tilpasning */
-  @media (max-width: 900px) {
-    nav ul {
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+  /* Specifik styling for dropdown indhold */
+
+  /* Blog dropdown */
+  #blog-dropdown {
+    max-height: 300px;
+    overflow-y: auto;
   }
-  @media (max-width: 600px) {
-    header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    header .logo h1 {
-      font-size: 1.5rem;
-    }
-    nav ul {
-      flex-direction: column;
-      width: 100%;
-    }
-    nav ul li ul {
-      position: static;
-      box-shadow: none;
-      background: transparent;
-      border-radius: 0;
-      display: none;
-    }
-    nav ul li:hover > ul,
-    nav ul li:focus-within > ul {
-      display: flex;
-      flex-direction: column;
-    }
-    nav ul li a {
-      padding: 0.5rem 0;
-    }
+  #blog-dropdown article {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
   }
-</style>
-</head>
-<body>
+  #blog-dropdown article:last-child {
+    border-bottom: none;
+  }
+  #blog-dropdown h4 {
+    margin: 0 0 0.3rem 0;
+    font-size: 1.1rem;
+    color: #2563eb;
+  }
+  #blog-dropdown p {
+    margin: 0 0 0.8rem 0;
+    font-size: 0.95rem;
+    color: #374151;
+  }
 
-<header>
-  <div class="logo">
-    <img src="formueguiden_logo.png" alt="Formueguiden logo - stigende aktiegraf" />
-    <h1>Formueguiden</h1>
-  </div>
-  <nav aria-label="Hovednavigation">
-    <ul>
-      <li>
-        <a href="#" aria-haspopup="true" aria-expanded="false">Investeringplatforme ▼</a>
-        <ul>
-          <li><a href="platforme.html">Platforme i Danmark</a></li>
-          <li><a href="smartinvest.html">SmartInvest</a></li>
-          <li><a href="aktiepartner.html">AktiePartner</a></li>
-          <li><a href="lavomkostning.html">LavOmkostning Invest</a></li>
-        </ul>
-      </li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="debatforum.html">Debatforum</a></li>
-      <li><a href="analyserum.html">Analyserum</a></li>
-    </ul>
-  </nav>
-</header>
+  /* Analyser dropdown */
+  #analyser-dropdown {
+    padding: 1rem;
+  }
+  #analyser-dropdown ul {
+    list-style: disc inside;
+    margin: 0;
+    padding: 0;
+  }
+  #analyser-dropdown ul li {
+    margin-bottom: 0.5rem;
+  }
 
-<main>
-  <section class="intro" aria-label="Introduktion">
-    <h2>Hvordan kommer du i gang med at investere</h2>
-    <p>
-      Vi hjælper dig med at forstå dine muligheder for investering i Danmark — fra platforme med lave gebyrer til simple strategier, der sikrer, at du investerer kontinuerligt og får ro i maven.  
-    </p>
-  </section>
+  /* Debatforum dropdown */
+  #debat-dropdown {
+    padding: 1rem;
+    max-width: 320px;
+  }
+  #debat-dropdown textarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    padding: 0.5rem;
+    resize: vertical;
+  }
+  #debat-dropdown button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  #debat-dropdown button:hover {
+    background: #1e40af;
+  }
+  #debat-messages {
+    margin-top: 1rem;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    border-radius: 6px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    color: #374151;
+  }
+  #debat-messages p {
+    margin: 0.3rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.3rem;
+  }
 
-  <section class="guides-grid" aria-label="Investering platforme">
-    <article class="guide-card" tabindex="0">
-      <h3 class="guide-title">SmartInvest</h3>
-      <p class="guide-desc">
-        SmartInvest tilbyder lave omkostninger og et brugervenligt interface, perfekt til både begyndere og erfarne investorer.
-      </p>
-      <a href="https://smartinvest.dk" target="_blank" rel="noopener noreferrer nofollow" class="btn-visit">Besøg SmartInvest</a>
-    </article>
-
-    <article class="guide-card" tabindex="0">
-      <h3 class="guide-title">AktiePartner</h3>
-      <p class="guide-desc">
-        AktiePartner giver adgang til et bredt udvalg af aktier og fonde med lave gebyrer.
-      </p>
-      <a href="https://aktiepartner.dk" target="_blank" rel="noopener noreferrer nofollow" class="btn-visit">Besøg AktiePartner</a>
-    </article>
-
-    <article class="guide-card" tabindex="0">
-      <h3 class="guide-title">LavOmkostning Invest</h3>
-      <p class="guide-desc">
-        Fokuserer på at holde omkostningerne nede med smarte investeringsmuligheder for alle.
-      </p>
-      <a href="https://lavomkostning.dk" target="_blank" rel="noopener noreferrer nofollow" class="btn-visit">Besøg LavOmkostning Invest</a>
-    </article>
-  </section>
-</main>
-
-<footer>
-  <p>© 2025 Formueguiden. Alle rettigheder forbeholdes.</p>
-</footer>
-
-</body>
-</html>
+  /* Investeringsplatforme dropdown */
+  #platforme-dropdown {
+    padding: 1rem;
+    max-width: 400px;
+  }
