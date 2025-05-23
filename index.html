@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FormueGuiden</title>
+  <title>FormueGuiden - Samlet Dokument</title>
   <style>
+    /* --- Reset og generelle styles --- */
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
     }
-
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f7f9fc;
       color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-
     header {
       background-color: #0b1e3d;
       padding: 1rem 2rem;
@@ -27,45 +27,41 @@
       position: relative;
       z-index: 1000;
     }
-
     .logo {
       display: flex;
       align-items: center;
     }
-
     .logo-img {
-      height: 110px;
+      height: 88px; /* 20% mindre end 110px */
       width: auto;
       display: block;
     }
-
     nav {
       position: relative;
     }
-
     ul.menu {
       list-style: none;
       display: flex;
       gap: 2rem;
     }
-
     ul.menu > li {
       position: relative;
+      cursor: pointer;
     }
-
-    ul.menu > li > a {
+    ul.menu > li > a,
+    ul.menu > li > span {
       color: white;
       text-decoration: none;
       font-weight: 500;
       padding: 0.5rem;
       display: block;
       transition: color 0.2s ease;
+      user-select: none;
     }
-
-    ul.menu > li:hover > a {
+    ul.menu > li:hover > a,
+    ul.menu > li:hover > span {
       color: #00ccff;
     }
-
     .dropdown {
       position: absolute;
       top: 100%;
@@ -73,248 +69,341 @@
       background: white;
       padding: 1rem;
       border-radius: 6px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       display: none;
       flex-direction: column;
-      min-width: 200px;
+      min-width: 180px;
       z-index: 999;
     }
-
     .dropdown a {
       color: #0b1e3d;
       text-decoration: none;
       padding: 0.4rem 0;
+      font-weight: 500;
     }
-
     .dropdown a:hover {
       color: #0077cc;
     }
-
     ul.menu > li:hover .dropdown {
       display: flex;
     }
-
-    .hero {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: linear-gradient(to right, #0b1e3d, #153c5d);
-      color: white;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: auto;
-    }
-
-    section.fremskriver {
-      max-width: 700px;
-      margin: 2rem auto;
-      background: #fff;
+    main {
+      flex-grow: 1;
       padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      color: #153c5d;
     }
-
-    section.fremskriver h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
+    h1, h2 {
       color: #0b1e3d;
+      margin-bottom: 1rem;
     }
-
-    .fremskriver label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: 600;
-      color: #0b1e3d;
+    p {
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
     }
-
-    .slider-label span {
-      margin-left: 0.3rem;
-    }
-
-    input[type=range] {
-      width: 100%;
-      accent-color: #0b1e3d;
-      margin-top: 0.25rem;
-    }
-
-    #output {
-      margin-top: 1.5rem;
-      text-align: center;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #0b1e3d;
-    }
-
     footer {
       text-align: center;
       padding: 1.5rem;
       background-color: #0b1e3d;
       color: white;
       font-size: 0.9rem;
-      margin-top: 4rem;
+      margin-top: 2rem;
+    }
+    /* Formuefremskriver styling */
+    section.fremskriver {
+      margin-top: 1rem;
+    }
+    .slider-label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #0b1e3d;
+      margin-bottom: 0.3rem;
+      white-space: nowrap;
+      display: inline-block;
+      width: 200px;
+    }
+    .slider-value {
+      font-weight: 700;
+      margin-left: 0.5rem;
+    }
+    input[type=range] {
+      width: 100%;
+      accent-color: #0b1e3d;
+      margin-bottom: 0.5rem;
+    }
+    #output {
+      margin-top: 1.5rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #0b1e3d;
+    }
+    @media (max-width: 768px) {
+      ul.menu {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .dropdown {
+        position: static;
+        box-shadow: none;
+        background: none;
+        padding: 0;
+      }
+      .dropdown a {
+        padding-left: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">
-      <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
-    </div>
-    <nav>
-      <ul class="menu">
-        <li>
-          <a href="#">Blog</a>
-          <div class="dropdown">
-            <a href="begynderguide.html">Begynderguide</a>
-            <a href="formuehistorier.html">Formuehistorier</a>
-            <a href="portefolje.html">Vores Portefølje</a>
-          </div>
-        </li>
-        <li>
-          <a href="#">Om os</a>
-          <div class="dropdown">
-            <a href="team.html">Teamet</a>
-            <a href="vision.html">Vores vision</a>
-          </div>
-        </li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="login.html">Log ind</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <div class="logo">
+    <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
+  </div>
+  <nav>
+    <ul class="menu" role="menubar">
+      <li role="none">
+        <span role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">Blog ▾</span>
+        <div class="dropdown" role="menu" aria-label="Blog undermenu">
+          <a href="#" role="menuitem" data-page="begynderguide">Begynderguide</a>
+          <a href="#" role="menuitem" data-page="formuehistorier">Formuehistorier</a>
+          <a href="#" role="menuitem" data-page="portefolje">Vores Portefølje</a>
+        </div>
+      </li>
+      <li role="none">
+        <span role="menuitem" aria-haspopup="true" aria-expanded="false" tabindex="0">Om os ▾</span>
+        <div class="dropdown" role="menu" aria-label="Om os undermenu">
+          <a href="#" role="menuitem" data-page="team">Teamet</a>
+          <a href="#" role="menuitem" data-page="vision">Vores vision</a>
+        </div>
+      </li>
+      <li role="none"><a href="#" role="menuitem" data-page="kontakt">Kontakt</a></li>
+      <li role="none"><a href="#" role="menuitem" data-page="login">Log ind</a></li>
+    </ul>
+  </nav>
+</header>
 
+<main id="main-content" tabindex="-1">
+  <!-- Her indsættes dynamisk indhold -->
   <section class="hero">
     <h1>Få indblik i din vej til formuevækst</h1>
     <p>Opnå kontrol, overblik og bliv komfortabel med dine investeringer</p>
   </section>
 
-  <section class="fremskriver">
+  <!-- Formuefremskriver med grafik -->
+  <section class="fremskriver" aria-label="Formuefremskriver">
     <h2>Fremskriv din formue</h2>
 
-    <label class="slider-label">Startkapital: <span id="kapitalVal"></span> DKK</label>
-    <input type="range" id="kapitalSlider" min="0" max="1000000" step="1000" value="100000" />
+    <div>
+      <label for="kapitalSlider" class="slider-label">Startkapital:</label>
+      <input type="range" id="kapitalSlider" min="0" max="1000000" step="1000" value="100000" />
+      <span id="kapitalVal" class="slider-value"></span> DKK
+    </div>
 
-    <label class="slider-label">Månedligt indskud: <span id="indskudVal"></span> DKK</label>
-    <input type="range" id="indskudSlider" min="0" max="20000" step="500" value="1000" />
+    <div>
+      <label for="indskudSlider" class="slider-label">Månedligt indskud:</label>
+      <input type="range" id="indskudSlider" min="0" max="20000" step="500" value="1000" />
+      <span id="indskudVal" class="slider-value"></span> DKK
+    </div>
 
-    <label class="slider-label">Årligt afkast: <span id="afkastVal"></span> %</label>
-    <input type="range" id="afkastSlider" min="0" max="20" step="0.1" value="7" />
+    <div>
+      <label for="afkastSlider" class="slider-label">Årligt afkast:</label>
+      <input type="range" id="afkastSlider" min="0" max="20" step="0.1" value="7" />
+      <span id="afkastVal" class="slider-value"></span> %
+    </div>
 
-    <label class="slider-label">Antal år: <span id="aarVal"></span></label>
-    <input type="range" id="aarSlider" min="1" max="50" step="1" value="20" />
+    <div>
+      <label for="aarSlider" class="slider-label">Antal år:</label>
+      <input type="range" id="aarSlider" min="1" max="50" step="1" value="20" />
+      <span id="aarVal" class="slider-value"></span>
+    </div>
 
-    <div id="output">Fremtidige formue: Beregnes...</div>
+    <div id="output" aria-live="polite" role="region" aria-atomic="true">
+      Fremtidige formue: Beregnes...
+    </div>
 
     <canvas id="fremskriverGraf" style="margin-top: 2rem; max-width: 100%; height: 300px;"></canvas>
   </section>
+</main>
 
-  <footer>
-    &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
-  </footer>
+<footer>
+  &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+</footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const kapitalSlider = document.getElementById('kapitalSlider');
-    const indskudSlider = document.getElementById('indskudSlider');
-    const afkastSlider = document.getElementById('afkastSlider');
-    const aarSlider = document.getElementById('aarSlider');
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Formuefremskriver funktionalitet
+  const kapitalSlider = document.getElementById('kapitalSlider');
+  const indskudSlider = document.getElementById('indskudSlider');
+  const afkastSlider = document.getElementById('afkastSlider');
+  const aarSlider = document.getElementById('aarSlider');
 
-    const kapitalVal = document.getElementById('kapitalVal');
-    const indskudVal = document.getElementById('indskudVal');
-    const afkastVal = document.getElementById('afkastVal');
-    const aarVal = document.getElementById('aarVal');
-    const output = document.getElementById('output');
+  const kapitalVal = document.getElementById('kapitalVal');
+  const indskudVal = document.getElementById('indskudVal');
+  const afkastVal = document.getElementById('afkastVal');
+  const aarVal = document.getElementById('aarVal');
+  const output = document.getElementById('output');
 
-    const ctx = document.getElementById('fremskriverGraf').getContext('2d');
+  const ctx = document.getElementById('fremskriverGraf').getContext('2d');
 
-    let chart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: [],
-        datasets: [{
-          data: [],
-          borderColor: '#0b1e3d',
-          backgroundColor: 'rgba(11, 30, 61, 0.2)',
-          fill: true,
-          tension: 0.3,
-          pointRadius: 3,
-          pointHoverRadius: 6,
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              callback: value => value.toLocaleString('da-DK') + ' kr',
-              precision: 0
-            }
-          },
-          x: {
-            title: { display: true, text: 'År' },
-            ticks: { precision: 0 }
+  let chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [{
+        data: [],
+        borderColor: '#0b1e3d',
+        backgroundColor: 'rgba(11, 30, 61, 0.2)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 3,
+        pointHoverRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: value => value.toLocaleString('da-DK') + ' kr',
+            precision: 0
           }
         },
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              label: ctx => ctx.parsed.y.toLocaleString('da-DK') + ' kr'
-            }
+        x: {
+          title: { display: true, text: 'År' },
+          ticks: { precision: 0 }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.parsed.y.toLocaleString('da-DK') + ' kr'
           }
         }
       }
-    });
+    }
+  });
 
-    function beregnFremskrivning() {
-      const kapital = parseInt(kapitalSlider.value);
-      const indskud = parseInt(indskudSlider.value);
-      const afkast = parseFloat(afkastSlider.value);
-      const aar = parseInt(aarSlider.value);
+  function beregnFremskrivning() {
+    const kapital = parseInt(kapitalSlider.value);
+    const indskud = parseInt(indskudSlider.value);
+    const afkast = parseFloat(afkastSlider.value);
+    const aar = parseInt(aarSlider.value);
 
-      kapitalVal.textContent = kapital.toLocaleString('da-DK');
-      indskudVal.textContent = indskud.toLocaleString('da-DK');
-      afkastVal.textContent = afkast.toFixed(1);
-      aarVal.textContent = aar;
+    kapitalVal.textContent = kapital.toLocaleString('da-DK');
+    indskudVal.textContent = indskud.toLocaleString('da-DK');
+    afkastVal.textContent = afkast.toFixed(1);
+    aarVal.textContent = aar;
 
-      const r = afkast / 100 / 12;
-      const n = aar * 12;
-      let saldo = kapital;
-      let saldoArray = [saldo];
-      let labelsArray = [0];
+    const r = afkast / 100 / 12; // månedlig rente
+    const n = aar * 12; // antal måneder
 
-      for (let i = 1; i <= n; i++) {
-        saldo = saldo * (1 + r) + indskud;
-        if (i % 12 === 0) {
-          saldoArray.push(Math.round(saldo));
-          labelsArray.push(i / 12);
-        }
+    let saldo = kapital;
+    let saldoArray = [saldo];
+    let labelsArray = [0];
+
+    for (let i = 1; i <= n; i++) {
+      saldo = saldo * (1 + r) + indskud;
+      if (i % 12 === 0) {
+        saldoArray.push(Math.round(saldo));
+        labelsArray.push(i / 12);
       }
-
-      chart.data.labels = labelsArray;
-      chart.data.datasets[0].data = saldoArray;
-      chart.update();
-
-      const fremtidsvaerdi = saldoArray[saldoArray.length - 1];
-      output.textContent = `Fremtidige formue: ${fremtidsvaerdi.toLocaleString('da-DK')} kr`;
     }
 
-    kapitalSlider.addEventListener('input', beregnFremskrivning);
-    indskudSlider.addEventListener('input', beregnFremskrivning);
-    afkastSlider.addEventListener('input', beregnFremskrivning);
-    aarSlider.addEventListener('input', beregnFremskrivning);
+    chart.data.labels = labelsArray;
+    chart.data.datasets[0].data = saldoArray;
+    chart.update();
 
-    beregnFremskrivning();
-  </script>
+    const fremtidsvaerdi = saldoArray[saldoArray.length - 1];
+    output.textContent = `Fremtidige formue: ${fremtidsvaerdi.toLocaleString('da-DK')} kr`;
+  }
+
+  kapitalSlider.addEventListener('input', beregnFremskrivning);
+  indskudSlider.addEventListener('input', beregnFremskrivning);
+  afkastSlider.addEventListener('input', beregnFremskrivning);
+  aarSlider.addEventListener('input', beregnFremskrivning);
+  beregnFremskrivning();
+
+  // --- Dynamisk sideindhold baseret på menu-klik ---
+  const mainContent = document.getElementById('main-content');
+  const menuLinks = document.querySelectorAll('nav ul.menu a[data-page]');
+  const blogDropdownItems = document.querySelectorAll('nav ul.menu li:nth-child(1) .dropdown a');
+  const omOsDropdownItems = document.querySelectorAll('nav ul.menu li:nth-child(2) .dropdown a');
+
+  const sider = {
+    begynderguide: `
+      <section class="hero">
+        <h1>Begynderguide</h1>
+        <p>Velkommen til vores begynderguide, hvor du kan lære det grundlæggende om investering og formueopbygning.</p>
+      </section>
+    `,
+    formuehistorier: `
+      <section class="hero">
+        <h1>Formuehistorier</h1>
+        <p>Læs inspirerende historier om, hvordan andre har opbygget deres formuer gennem kloge valg og investeringer.</p>
+      </section>
+    `,
+    portefolje: `
+      <section class="hero">
+        <h1>Vores Portefølje</h1>
+        <p>Få et indblik i vores investeringsportefølje og strategier, som vi benytter for at skabe vækst.</p>
+      </section>
+    `,
+    team: `
+      <section class="hero">
+        <h1>Teamet</h1>
+        <p>Mød de engagerede mennesker bag FormueGuiden, som står klar til at hjælpe dig.</p>
+      </section>
+    `,
+    vision: `
+      <section class="hero">
+        <h1>Vores vision</h1>
+        <p>Læs om vores mål og værdier, der driver os til at hjælpe dig med at opnå økonomisk frihed.</p>
+      </section>
+    `,
+    kontakt: `
+      <section class="hero">
+        <h1>Kontakt</h1>
+        <p>Har du spørgsmål? Kontakt os, og vi vender hurtigt tilbage.</p>
+      </section>
+    `,
+    login: `
+      <section class="hero">
+        <h1>Log ind</h1>
+        <p>Log ind på din konto for at få adgang til dine personlige investeringer og værktøjer.</p>
+      </section>
+    `
+  };
+
+  // Funktion til at skifte indhold
+  function skiftSide(side) {
+    if(sider[side]) {
+      mainContent.innerHTML = sider[side];
+      mainContent.focus();
+    }
+  }
+
+  menuLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      skiftSide(e.target.dataset.page);
+    });
+  });
+
+  // For dropdown links også
+  [...blogDropdownItems, ...omOsDropdownItems].forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      skiftSide(e.target.dataset.page);
+    });
+  });
+</script>
+
 </body>
 </html>
