@@ -1,12 +1,194 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Min Investering</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Investering i Danmark – Oplyste valg & lave omkostninger</title>
+<style>
+  /* Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+    color: #1f2937;
+    line-height: 1.6;
+  }
+  a {
+    color: #2563eb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover, a:focus {
+    color: #1e40af;
+    outline: none;
+  }
+
+  header {
+    background: #2563eb;
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.4);
+  }
+  header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.3rem;
+  }
+  header p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.85;
+  }
+
+  main {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+  }
+
+  .intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .intro h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #111827;
+  }
+  .intro p {
+    font-size: 1.15rem;
+    color: #374151;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .guides-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .guide-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgb(0 0 0 / 0.08);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .guide-card:hover,
+  .guide-card:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgb(0 0 0 / 0.12);
+  }
+  .guide-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #111827;
+  }
+  .guide-desc {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #4b5563;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+  }
+  .btn-visit {
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgb(37 99 235 / 0.4);
+    user-select: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn-visit:hover,
+  .btn-visit:focus {
+    background: #1e40af;
+    box-shadow: 0 8px 22px rgb(30 64 175 / 0.6);
+    outline: none;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 4rem;
+  }
+
+  @media (max-width: 600px) {
+    header h1 {
+      font-size: 2rem;
+    }
+    .intro h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
 </head>
 <body>
-  <h1>Velkommen til Min Investering</h1>
-  <p>Her kan du læse om smarte måder at investere på i Danmark.</p>
+
+<header>
+  <h1>Investering i Danmark</h1>
+  <p>Bliv oplyst. Invester smartere. Spar på omkostningerne. Din guide til danske investeringsplatforme.</p>
+</header>
+
+<main>
+  <section class="intro" aria-label="Introduktion">
+    <h2>Velkommen til din investeringsguide</h2>
+    <p>
+      Vi hjælper dig med at forstå dine muligheder for investering i Danmark — fra platforme med lave gebyrer til strategier, der virker.  
+      Start med at udforske vores anbefalede investeringsplatforme nedenfor.
+    </p>
+  </section>
+
+  <section class="guides-grid" aria-label="Investering platforme">
+    <article class="guide-card" tabindex="0">
+      <h3 class="guide-title">SmartInvest</h3>
+      <p class="guide-desc">
+        SmartInvest tilbyder lave omkostninger og et brugervenligt interface, perfekt til både begyndere og erfarne investorer.
+      </p>
+      <a href="https://affiliate-link-smartinvest.dk" target="_blank" rel="noopener noreferrer" class="btn-visit">
+        Besøg SmartInvest
+      </a>
+    </article>
+
+    <article class="guide-card" tabindex="0">
+      <h3 class="guide-title">AktiePartner</h3>
+      <p class="guide-desc">
+        AktiePartner giver adgang til et bredt udvalg af aktier og fonde med lave kurtager og stærk kundesupport.
+      </p>
+      <a href="https://affiliate-link-aktiepartner.dk" target="_blank" rel="noopener noreferrer" class="btn-visit">
+        Besøg AktiePartner
+      </a>
+    </article>
+
+    <article class="guide-card" tabindex="0">
+      <h3 class="guide-title">LavOmkostning Invest</h3>
+      <p class="guide-desc">
+        Fokus på lave gebyrer og passiv investering via indeksfonde – en sikker vej til langsigtet vækst.
+      </p>
+      <a href="https://affiliate-link-lavomkostning.dk" target="_blank" rel="noopener noreferrer" class="btn-visit">
+        Besøg LavOmkostning Invest
+      </a>
+    </article>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Investering i Danmark &nbsp;|&nbsp; Informerede valg for alle
+</footer>
+
 </body>
 </html>
