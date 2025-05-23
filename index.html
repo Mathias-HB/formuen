@@ -193,7 +193,7 @@
       document.getElementById('aarVal').innerText = aar;
     }
 
-    ['kapitalSlider', 'indskudSlider', 'afkastSlider', 'aarSlider'].forEach(id => {
+    ['nuværendekapital', 'månedligtindskud', 'forventetafkast', 'år'].forEach(id => {
       document.getElementById(id).addEventListener('input', beregnFremskrivning);
     });
 
