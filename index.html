@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FormueGuiden – Din investeringsplatform</title>
+  <title>FormueGuiden</title>
   <style>
     * {
       margin: 0;
@@ -107,6 +107,49 @@
       margin: auto;
     }
 
+    /* Formuefremskriver styling */
+    section.fremskriver {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      font-family: 'Segoe UI', sans-serif;
+      color: #153c5d;
+    }
+
+    section.fremskriver h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #0b1e3d;
+    }
+
+    section.fremskriver > div {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    section.fremskriver label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    section.fremskriver input[type=range] {
+      width: 100%;
+      accent-color: #00ccff;
+    }
+
+    #output {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0077cc;
+    }
+
     footer {
       text-align: center;
       padding: 1.5rem;
@@ -162,16 +205,13 @@
   </header>
 
   <section class="hero">
-    <h1>Invester med tillid og overblik</h1>
-    <p>Professionel platform til aktier, ETF'er og obligationer – for både private og virksomheder.</p>
+    <h1>Opnå indblik i din vej til formuevækst</h1>
+    <p>Få overblikket - og bliv komfortabel med dine investeringer</p>
   </section>
   
-
-
-<body>
-  <div class="container">
-    <div id="output"></div>
-
+  <!-- Formuefremskriver med grafik -->
+  <section class="fremskriver">
+    <h2>Formuefremskriver</h2>
     <div>
       <label for="kapitalSlider">Startkapital: <span id="kapitalVal"></span> DKK</label>
       <input type="range" id="kapitalSlider" min="0" max="1000000" step="1000" value="100000" />
@@ -192,9 +232,58 @@
       <input type="range" id="aarSlider" min="1" max="50" step="1" value="20" />
     </div>
 
- 
+    <div id="output">Forventet fremtidsværdi: Beregnes...</div>
 
+    <canvas id="fremskriverGraf" style="margin-top:2rem; max-width:100%; height:300px;"></canvas>
+  </section>
+
+  <footer>
+    &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
+    const ctx = document.getElementById('fremskriverGraf').getContext('2d');
+
+    let chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [], // år
+        datasets: [{
+          label: 'Kapitalens udvikling (DKK)',
+          data: [],
+          borderColor: '#0077cc',
+          backgroundColor: 'rgba(0, 119, 204, 0.2)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 3,
+          pointHoverRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) { return value.toLocaleString('da-DK') + ' kr'; }
+            }
+          },
+          x: {
+            title: { display: true, text: 'År' }
+          }
+        },
+        plugins: {
+          legend: { labels: { color: '#153c5d', font: { size: 14, weight: 'bold' } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y.toLocaleString('da-DK') + ' kr'
+            }
+          }
+        }
+      }
+    });
+
     function beregnFremskrivning() {
       const kapital = parseInt(document.getElementById('kapitalSlider').value);
       const indskud = parseInt(document.getElementById('indskudSlider').value);
@@ -206,27 +295,37 @@
 
       const fremtidsvaerdi = kapital * Math.pow(1 + r, n) + (indskud * (Math.pow(1 + r, n) - 1)) / r;
 
-      document.getElementById('output').innerText = fremtidsvaerdi.toLocaleString('da-DK', {
+      document.getElementById('output').innerText = "Forventet fremtidsværdi: " + fremtidsvaerdi.toLocaleString('da-DK', {
         style: 'currency',
         currency: 'DKK'
       });
 
-      document.getElementById('kapitalVal').innerText = kapital;
-      document.getElementById('indskudVal').innerText = indskud;
-      document.getElementById('afkastVal').innerText = afkast;
+      document.getElementById('kapitalVal').innerText = kapital.toLocaleString('da-DK');
+      document.getElementById('indskudVal').innerText = indskud.toLocaleString('da-DK');
+      document.getElementById('afkastVal').innerText = afkast.toFixed(1);
       document.getElementById('aarVal').innerText = aar;
+
+      // Beregn kapitalens udvikling år for år (kun slutningen af hvert år)
+      let labels = [];
+      let data = [];
+      for(let i = 0; i <= aar; i++) {
+        const months = i * 12;
+        const value = kapital * Math.pow(1 + r, months) + (indskud * (Math.pow(1 + r, months) - 1)) / r;
+        labels.push(i);
+        data.push(value.toFixed(2));
+      }
+
+      chart.data.labels = labels;
+      chart.data.datasets[0].data = data;
+      chart.update();
     }
 
- ['kapitalSlider', 'indskudSlider', 'afkastSlider', 'aarSlider'].forEach(id => {
-  document.getElementById(id).addEventListener('input', beregnFremskrivning);
-});
+    ['kapitalSlider', 'indskudSlider', 'afkastSlider', 'aarSlider'].forEach(id => {
+      document.getElementById(id).addEventListener('input', beregnFremskrivning);
+    });
 
     beregnFremskrivning(); // initial visning
   </script>
-  
-  <footer>
-    &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
-  </footer>
 
 </body>
 </html>
