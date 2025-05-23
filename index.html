@@ -166,26 +166,6 @@
     <p>Professionel platform til aktier, ETF'er og obligationer – for både private og virksomheder.</p>
   </section>
   
-<section class="fremskriver">
-  <h2>Formuefremskriver</h2>
-  <div>
-    <label>Nuværende kapital: <span id="kapitalVal">100000</span> kr</label>
-    <input type="range" min="0" max="1000000" step="1000" value="100000" id="kapitalSlider">
-
-    <label>Månedligt indskud: <span id="indskudVal">2000</span> kr</label>
-    <input type="range" min="0" max="20000" step="100" value="2000" id="indskudSlider">
-
-    <label>Forventet afkast (årligt): <span id="afkastVal">5</span>%</label>
-    <input type="range" min="0" max="15" step="0.1" value="5" id="afkastSlider">
-
-    <label>Antal år: <span id="aarVal">10</span></label>
-    <input type="range" min="1" max="50" step="1" value="10" id="aarSlider">
-
-    <div class="resultat">
-      Forventet fremtidsværdi: <span id="output">Beregnes...</span>
-    </div>
-  </div>
-</section>
 
 
 <body>
@@ -212,10 +192,7 @@
       <input type="range" id="aarSlider" min="1" max="50" step="1" value="20" />
     </div>
 
-    <footer>
-      &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
-    </footer>
-  </div>
+ 
 
   <script>
     function beregnFremskrivning() {
