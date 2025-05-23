@@ -1,46 +1,184 @@
-import React, { useState } from "react";
-import { Slider } from "@/components/ui/slider";
-import { Card, CardContent } from "@/components/ui/card";
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FormueGuiden – Din investeringsplatform</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-export default function Kapitalfremskriver() {
-  const [kapital, setKapital] = useState(100000);
-  const [maanedlig, setMaanedlig] = useState(2000);
-  const [afkast, setAfkast] = useState(5);
-  const [aar, setAar] = useState(10);
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+    }
 
-  const r = afkast / 100 / 12;
-  const n = aar * 12;
+    header {
+      background-color: #0b1e3d;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
 
-  const fremtidsvaerdi =
-    kapital * Math.pow(1 + r, n) +
-    (maanedlig * (Math.pow(1 + r, n) - 1)) / r;
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
 
-  return (
-    <div className="max-w-xl mx-auto p-6 space-y-6">
-      <h1 className="text-2xl font-bold text-center">Kapitalfremskriver</h1>
-      <Card>
-        <CardContent className="space-y-4 pt-4">
-          <div>
-            <label className="font-medium">Nuværende kapital: {kapital} kr</label>
-            <Slider min={0} max={1000000} step={1000} value={[kapital]} onValueChange={([v]) => setKapital(v)} />
-          </div>
-          <div>
-            <label className="font-medium">Månedlig indskud: {maanedlig} kr</label>
-            <Slider min={0} max={20000} step={100} value={[maanedlig]} onValueChange={([v]) => setMaanedlig(v)} />
-          </div>
-          <div>
-            <label className="font-medium">Forventet årligt afkast: {afkast} %</label>
-            <Slider min={0} max={15} step={0.1} value={[afkast]} onValueChange={([v]) => setAfkast(v)} />
-          </div>
-          <div>
-            <label className="font-medium">Antal år: {aar}</label>
-            <Slider min={1} max={50} step={1} value={[aar]} onValueChange={([v]) => setAar(v)} />
-          </div>
-          <div className="text-lg font-semibold pt-4">
-            Forventet fremtidsværdi: {fremtidsvaerdi.toLocaleString("da-DK", { style: "currency", currency: "DKK" })}
-          </div>
-        </CardContent>
-      </Card>
+    nav ul.menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul.menu li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem;
+    }
+
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(to right, #0b1e3d, #153c5d);
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #0b1e3d;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+    }
+
+    /* Formuefremskriver stil */
+    .fremskriver {
+      background: #fff;
+      padding: 3rem 2rem;
+      max-width: 700px;
+      margin: 3rem auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .fremskriver h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+    }
+
+    .fremskriver label {
+      display: block;
+      margin-top: 1.5rem;
+      font-weight: 500;
+    }
+
+    .fremskriver input[type=range] {
+      width: 100%;
+    }
+
+    .resultat {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #0b1e3d;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">FormueGuiden</div>
+    <nav>
+      <ul class="menu">
+        <li><a href="#">Produkter</a></li>
+        <li><a href="#">Om os</a></li>
+        <li><a href="#">Kontakt</a></li>
+        <li><a href="#">Log ind</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Invester med tillid og overblik</h1>
+    <p>Professionel platform til aktier, ETF'er og obligationer – for både private og virksomheder.</p>
+  </section>
+
+  <!-- Formuefremskriver -->
+  <section class="fremskriver">
+    <h2>Formuefremskriver</h2>
+    <div>
+      <label>Nuværende kapital: <span id="kapitalVal">100000</span> kr</label>
+      <input type="range" min="0" max="1000000" step="1000" value="100000" id="kapitalSlider">
+
+      <label>Månedligt indskud: <span id="indskudVal">2000</span> kr</label>
+      <input type="range" min="0" max="20000" step="100" value="2000" id="indskudSlider">
+
+      <label>Forventet afkast (årligt): <span id="afkastVal">5</span>%</label>
+      <input type="range" min="0" max="15" step="0.1" value="5" id="afkastSlider">
+
+      <label>Antal år: <span id="aarVal">10</span></label>
+      <input type="range" min="1" max="50" step="1" value="10" id="aarSlider">
+
+      <div class="resultat">
+        Forventet fremtidsværdi: <span id="output">Beregnes...</span>
+      </div>
     </div>
-  );
-}
+  </section>
+
+  <footer>
+    &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+  </footer>
+
+  <script>
+    function beregnFremskrivning() {
+      const kapital = parseInt(document.getElementById('kapitalSlider').value);
+      const indskud = parseInt(document.getElementById('indskudSlider').value);
+      const afkast = parseFloat(document.getElementById('afkastSlider').value);
+      const aar = parseInt(document.getElementById('aarSlider').value);
+
+      const r = afkast / 100 / 12;
+      const n = aar * 12;
+
+      const fremtidsvaerdi = kapital * Math.pow(1 + r, n) + (indskud * (Math.pow(1 + r, n) - 1)) / r;
+
+      document.getElementById('output').innerText = fremtidsvaerdi.toLocaleString('da-DK', {
+        style: 'currency',
+        currency: 'DKK'
+      });
+
+      document.getElementById('kapitalVal').innerText = kapital;
+      document.getElementById('indskudVal').innerText = indskud;
+      document.getElementById('afkastVal').innerText = afkast;
+      document.getElementById('aarVal').innerText = aar;
+    }
+
+    ['kapitalSlider', 'indskudSlider', 'afkastSlider', 'aarSlider'].forEach(id => {
+      document.getElementById(id).addEventListener('input', beregnFremskrivning);
+    });
+
+    beregnFremskrivning(); // initial visning
+  </script>
+
+</body>
+</html>
