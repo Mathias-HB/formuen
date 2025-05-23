@@ -187,6 +187,87 @@
   </div>
 </section>
 
+  <!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fremtidsværdi Beregner</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #142541;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* lodret centrering */
+      align-items: center;     /* vandret centrering */
+      height: 100vh;           /* fylder hele højden af vinduet */
+      text-align: center;
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    #output {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #142541;
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input[type="range"] {
+      width: 300px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="output"></div>
+
+    <div>
+      <label for="kapitalSlider">Startkapital: <span id="kapitalVal"></span> DKK</label>
+      <input type="range" id="kapitalSlider" min="0" max="1000000" step="1000" value="100000" />
+    </div>
+
+    <div>
+      <label for="indskudSlider">Månedligt indskud: <span id="indskudVal"></span> DKK</label>
+      <input type="range" id="indskudSlider" min="0" max="20000" step="500" value="1000" />
+    </div>
+
+    <div>
+      <label for="afkastSlider">Årligt afkast (%): <span id="afkastVal"></span> %</label>
+      <input type="range" id="afkastSlider" min="0" max="20" step="0.1" value="7" />
+    </div>
+
+    <div>
+      <label for="aarSlider">Antal år: <span id="aarVal"></span></label>
+      <input type="range" id="aarSlider" min="1" max="50" step="1" value="20" />
+    </div>
+
+    <footer>
+      &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+    </footer>
+  </div>
+
   <script>
     function beregnFremskrivning() {
       const kapital = parseInt(document.getElementById('kapitalSlider').value);
