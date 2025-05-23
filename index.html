@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="da">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FormueGuiden – Din investeringsplatform</title>
   <style>
-    /* Reset og font */
     * {
       margin: 0;
       padding: 0;
@@ -25,6 +24,8 @@
       justify-content: space-between;
       align-items: center;
       color: white;
+      position: relative;
+      z-index: 1000;
     }
 
     .logo {
@@ -33,7 +34,7 @@
     }
 
     nav {
-  position: relative;
+      position: relative;
     }
 
     ul.menu {
@@ -51,6 +52,7 @@
       text-decoration: none;
       font-weight: 500;
       padding: 0.5rem;
+      display: block;
       transition: color 0.2s ease;
     }
 
@@ -60,7 +62,7 @@
 
     .dropdown {
       position: absolute;
-      top: 2.5rem;
+      top: 100%;
       left: 0;
       background: white;
       padding: 1rem;
@@ -69,7 +71,7 @@
       display: none;
       flex-direction: column;
       min-width: 200px;
-      z-index: 10;
+      z-index: 999;
     }
 
     .dropdown a {
@@ -82,6 +84,7 @@
       color: #0077cc;
     }
 
+    /* Her er den vigtige linje: Dropdown forsvinder IKKE */
     ul.menu > li:hover .dropdown {
       display: flex;
     }
