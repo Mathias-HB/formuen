@@ -3,113 +3,203 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sammenligning af investeringsplatforme</title>
+  <title>Kontakt – FormueGuiden</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background: #f9f9f9;
-      color: #222;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .card {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      width: 45%;
-      min-width: 280px;
-      padding: 20px;
+    /* Genbrug styles fra resten af sitet + ekstra til formular */
+    * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
-    .card img {
-      max-width: 120px;
-      display: block;
-      margin-bottom: 15px;
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+      line-height: 1.6;
     }
-    .card h2 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 1.4em;
-      color: #00539C;
+    header {
+      background-color: #0b1e3d;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
     }
-    ul {
-      padding-left: 20px;
-      margin-top: 0;
+    .logo-img {
+      height: 88px;
+      cursor: pointer;
     }
-    @media (max-width: 700px) {
-      .card {
-        width: 100%;
-      }
+    nav ul.menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul.menu > li {
+      position: relative;
+    }
+    nav ul.menu > li > a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+      z-index: 999;
+    }
+    .dropdown a {
+      color: #0b1e3d;
+      text-decoration: none;
+      padding: 0.4rem 0;
+    }
+    nav ul.menu > li:hover .dropdown {
+      display: flex;
+    }
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(to right, #0b1e3d, #153c5d);
+      color: white;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    main {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: #0b1e3d;
+    }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      padding: 0.8rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
+    }
+    textarea {
+      min-height: 120px;
+    }
+    button {
+      background-color: #0b1e3d;
+      color: white;
+      border: none;
+      padding: 1rem;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #153c5d;
+    }
+    .contact-info {
+      margin-top: 3rem;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 2rem;
+      color: #555;
+    }
+    .contact-info p {
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+    }
+    .contact-info strong {
+      color: #0b1e3d;
     }
   </style>
 </head>
 <body>
-  <h1>Sammenligning af investeringsplatforme</h1>
-  
-  <div class="card-container">
-    <!-- Saxo Bank -->
-    <div class="card">
-      <img src="saxo-bank.png" alt="Saxo Bank logo" />
-      <h2>Saxo Bank</h2>
-      <ul>
-        <li>Kurtage fra 0,03%</li>
-        <li>Valutaveksling 0,25%</li>
-        <li>Månedsopsparing</li>
+  <header>
+    <a href="index.html"><img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" /></a>
+    <nav>
+      <ul class="menu">
+        <li>
+          <a href="#">Blog</a>
+          <div class="dropdown">
+            <a href="begynderguide.html">Begynderguide</a>
+            <a href="formuehistorier.html">Formuehistorier</a>
+            <a href="portefolje.html">Vores Portefølje</a>
+          </div>
+        </li>
+        <li>
+          <a href="#">Om os</a>
+          <div class="dropdown">
+            <a href="team.html">Teamet</a>
+            <a href="vision.html">Vores vision</a>
+          </div>
+        </li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="login.html">Log ind</a></li>
       </ul>
-    </div>
+    </nav>
+  </header>
 
-    <!-- Nordnet -->
-    <div class="card">
-      <img src="nordnet.png" alt="Nordnet logo" />
-      <h2>Nordnet</h2>
-      <ul>
-        <li>Valutaveksling 0,25%</li>
-        <li>Månedsopsparing</li>
-      </ul>
-    </div>
-  </div>
+  <section class="hero">
+    <h1>Kontakt os</h1>
+    <p>Har du spørgsmål, forslag eller ønsker du samarbejde? Vi glæder os til at høre fra dig.</p>
+  </section>
 
-  <div class="card-container" style="margin-top: 30px;">
-    <!-- Endavu -->
-    <div class="card">
-      <img src="endavu.png" alt="Endavu logo" />
-      <h2>Endavu</h2>
-      <ul>
-        <li>Månedsopsparing</li>
-      </ul>
-    </div>
+  <main>
+    <form action="#" method="post" novalidate>
+      <label for="name">Navn *</label>
+      <input type="text" id="name" name="name" placeholder="Dit navn" required />
 
-    <!-- Pluto -->
-    <div class="card">
-      <img src="pluto.png" alt="Pluto logo" />
-      <h2>Pluto</h2>
-      <ul>
-        <li>Valutaveksling 0,15%</li>
-        <li>Månedsopsparing</li>
-        <li>Fraktioner af aktier</li>
-      </ul>
-    </div>
-  </div>
+      <label for="email">Email *</label>
+      <input type="email" id="email" name="email" placeholder="din@email.dk" required />
 
-  <div class="card-container" style="margin-top: 30px;">
-    <!-- Etoro -->
-    <div class="card" style="width: 45%;">
-      <img src="etoro.png" alt="Etoro logo" />
-      <h2>Etoro</h2>
-      <ul>
-        <li>Copytrading</li>
-      </ul>
-    </div>
-  </div>
+      <label for="subject">Emne</label>
+      <select id="subject" name="subject">
+        <option value="general">Generelle spørgsmål</option>
+        <option value="partnership">Forretningssamarbejde</option>
+        <option value="press">Pressehenvendelser</option>
+        <option value="other">Andet</option>
+      </select>
 
+      <label for="message">Besked *</label>
+      <textarea id="message" name="message" placeholder="Skriv din besked her..." required></textarea>
+
+      <button type="submit">Send besked</button>
+    </form>
+
+    <section class="contact-info">
+      <p><strong>Adresse:</strong> FormueGuiden ApS, Eksempelvej 12, 8000 Aarhus C</p>
+      <p><strong>Telefon:</strong> +45 12 34 56 78</p>
+      <p><strong>Email:</strong> kontakt@formueguiden.dk</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+  </footer>
 </body>
 </html>
