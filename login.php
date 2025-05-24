@@ -98,4 +98,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <h1>Log ind | FormueGuiden</h1>
 
-<?php
+<?php if ($errors): ?>
+  <div class="message error">
+    <?php foreach ($errors as $error): ?>
+      <div><?php echo htmlspecialchars($error); ?></div>
+    <?php endforeach; ?>
+  </div>
+<?php endif; ?>
+
+<form method="post" novalidate>
+  <label for="email_login">Email</label>
+  <input type="email" id="email_login" name="email_login" placeholder="din@email.dk" required />
+
+  <label for="password_login">Adgangskode</label>
+  <input type="password" id="password_login" name="password_login" placeholder="Adgangskode" required />
+
+  <button type="submit">Log ind</button>
+</form>
+
+</body>
+</html>
