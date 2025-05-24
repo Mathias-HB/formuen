@@ -42,14 +42,39 @@
       gap: 2rem;
     }
 
+    nav ul.menu li {
+      position: relative;
+    }
+
     nav ul.menu li a {
       color: white;
       text-decoration: none;
       font-weight: 500;
+      padding: 0.5rem;
+      display: block;
     }
 
     nav ul.menu li a:hover {
       color: #00ccff;
+    }
+
+    nav ul.menu li ul.dropdown {
+      display: none;
+      position: absolute;
+      background-color: #153c5d;
+      top: 100%;
+      left: 0;
+      list-style: none;
+      min-width: 180px;
+      z-index: 10;
+    }
+
+    nav ul.menu li:hover ul.dropdown {
+      display: block;
+    }
+
+    nav ul.menu li ul.dropdown li a {
+      padding: 0.5rem 1rem;
     }
 
     .hero {
@@ -160,6 +185,7 @@
       text-align: center;
       padding: 1.5rem 1rem;
       font-size: 0.9rem;
+      margin-top: auto;
     }
   </style>
 </head>
@@ -172,6 +198,15 @@
   <nav>
     <ul class="menu">
       <li><a href="index.html">Hjem</a></li>
+      <li>
+        <a href="#">Investeringstyper</a>
+        <ul class="dropdown">
+          <li><a href="aktier.html">Aktier</a></li>
+          <li><a href="obligationer.html">Obligationer</a></li>
+          <li><a href="fonde.html">Fonde</a></li>
+          <li><a href="ejendomme.html">Ejendomme</a></li>
+        </ul>
+      </li>
       <li><a href="begynderguide.html">Begynderguide</a></li>
       <li><a href="formuehistorier.html">Formuehistorier</a></li>
       <li><a href="kontakt.html">Kontakt</a></li>
