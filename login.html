@@ -11,10 +11,16 @@
       box-sizing: border-box;
     }
 
+    html, body {
+      height: 100%;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f7f9fc;
       color: #153c5d;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
@@ -64,10 +70,18 @@
       margin: auto;
     }
 
+    .form-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 3rem 1rem;
+    }
+
     .form-container {
       max-width: 400px;
+      width: 100%;
       background: white;
-      margin: 3rem auto;
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -136,17 +150,16 @@
       color: #007acc;
     }
 
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      background-color: #0b1e3d;
-      color: white;
-      font-size: 0.9rem;
-      margin-top: 4rem;
-    }
-
     .hidden {
       display: none;
+    }
+
+    footer {
+      background-color: #0b1e3d;
+      color: white;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -171,44 +184,46 @@
   <p>Opret dig som bruger og få adgang til mere indhold samt vores nyhedsbrev</p>
 </section>
 
-<div class="form-container">
-  <!-- Login form -->
-  <form id="loginForm">
-    <label for="email_login">Email</label>
-    <input type="email" id="email_login" name="email_login" placeholder="din@email.dk" required />
+<div class="form-wrapper">
+  <div class="form-container">
+    <!-- Login form -->
+    <form id="loginForm">
+      <label for="email_login">Email</label>
+      <input type="email" id="email_login" name="email_login" placeholder="din@email.dk" required />
 
-    <label for="password_login">Adgangskode</label>
-    <input type="password" id="password_login" name="password_login" placeholder="Adgangskode" required />
+      <label for="password_login">Adgangskode</label>
+      <input type="password" id="password_login" name="password_login" placeholder="Adgangskode" required />
 
-    <button type="submit">Log ind</button>
+      <button type="submit">Log ind</button>
 
-    <div class="form-toggle">
-      <button type="button" id="toggleForm">Har du ikke en profil? Opret en her</button>
-    </div>
-  </form>
+      <div class="form-toggle">
+        <button type="button" id="toggleForm">Har du ikke en profil? Opret en her</button>
+      </div>
+    </form>
 
-  <!-- Register form -->
-  <form id="registerForm" class="hidden">
-    <label for="name_register">Fulde navn</label>
-    <input type="text" id="name_register" name="name_register" placeholder="Dit fulde navn" required />
+    <!-- Register form -->
+    <form id="registerForm" class="hidden">
+      <label for="name_register">Fulde navn</label>
+      <input type="text" id="name_register" name="name_register" placeholder="Dit fulde navn" required />
 
-    <label for="email_register">Email</label>
-    <input type="email" id="email_register" name="email_register" placeholder="din@email.dk" required />
+      <label for="email_register">Email</label>
+      <input type="email" id="email_register" name="email_register" placeholder="din@email.dk" required />
 
-    <label for="password_register">Adgangskode</label>
-    <input type="password" id="password_register" name="password_register" placeholder="Vælg en adgangskode" required />
+      <label for="password_register">Adgangskode</label>
+      <input type="password" id="password_register" name="password_register" placeholder="Vælg en adgangskode" required />
 
-    <div class="checkbox-group">
-      <input type="checkbox" id="newsletter" name="newsletter" />
-      <label for="newsletter">Tilmeld mig nyhedsbrevet</label>
-    </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="newsletter" name="newsletter" />
+        <label for="newsletter">Tilmeld mig nyhedsbrevet</label>
+      </div>
 
-    <button type="submit">Opret profil</button>
+      <button type="submit">Opret profil</button>
 
-    <div class="form-toggle">
-      <button type="button" id="toggleFormBack">Har du allerede en profil? Log ind her</button>
-    </div>
-  </form>
+      <div class="form-toggle">
+        <button type="button" id="toggleFormBack">Har du allerede en profil? Log ind her</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <footer>
