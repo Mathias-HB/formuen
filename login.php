@@ -1,42 +1,37 @@
 <?php
-require 'dbconfig.php';  // inkluder databaseforbindelsen
-
-// Resten af din kode følger...
-// --- DATABASE KONFIGURATION ---
-$dbHost = 'localhost';
-$dbName = 'formueguiden';
-$dbUser = 'db_bruger';
-$dbPass = 'db_password';
-
-try {
-    $pdo = new PDO("mysql:host=$dbHost;dbname=$dbName;charset=utf8", $dbUser, $dbPass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $e) {
-    die("Databaseforbindelse fejlede: " . $e->getMessage());
-}
-
 session_start();
+require 'dbconfig.php'; // din databasekonfigurationsfil
 
 $errors = [];
 $success = '';
 
 // REGISTRERING
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'register') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'register') {
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
     $passwordConfirm = $_POST['passwordConfirm'] ?? '';
     $subscription = $_POST['subscription'] ?? '';
     $newsletter = isset($_POST['newsletter']) ? 1 : 0;
 
-    if (!$email) $errors[] = 'Email er påkrævet.';
-    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Indtast en gyldig email.';
+    // Validering
+    if (!$email) {
+        $errors[] = 'Email er påkrævet.';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = 'Indtast en gyldig email.';
+    }
 
-    if (!$password) $errors[] = 'Adgangskode er påkrævet.';
-    elseif ($password !== $passwordConfirm) $errors[] = 'Adgangskoderne matcher ikke.';
+    if (!$password) {
+        $errors[] = 'Adgangskode er påkrævet.';
+    } elseif ($password !== $passwordConfirm) {
+        $errors[] = 'Adgangskoderne matcher ikke.';
+    }
 
-    if (!$subscription) $errors[] = 'Vælg venligst et abonnement.';
+    if (!$subscription) {
+        $errors[] = 'Vælg venligst et abonnement.';
+    }
 
     if (empty($errors)) {
+        // Tjek om email findes
         $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->execute([$email]);
         if ($stmt->fetch()) {
@@ -51,12 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 }
 
 // LOGIN
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'login') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'login') {
     $email = trim($_POST['email_login'] ?? '');
     $password = $_POST['password_login'] ?? '';
 
-    if (!$email) $errors[] = 'Email er påkrævet.';
-    if (!$password) $errors[] = 'Adgangskode er påkrævet.';
+    if (!$email) {
+        $errors[] = 'Email er påkrævet.';
+    }
+    if (!$password) {
+        $errors[] = 'Adgangskode er påkrævet.';
+    }
 
     if (empty($errors)) {
         $stmt = $pdo->prepare("SELECT id, password_hash FROM users WHERE email = ?");
@@ -66,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         if ($user && password_verify($password, $user['password_hash'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['email'] = $email;
-            header('Location: medlem.php'); // Skift til bruger-side
+            header('Location: medlem.php');
             exit;
         } else {
             $errors[] = 'Forkert email eller adgangskode.';
@@ -112,6 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     cursor: pointer;
     border-bottom: 4px solid transparent;
     user-select: none;
+    transition: border-color 0.3s ease;
   }
   .tab.active {
     border-bottom-color: #0b1e3d;
@@ -136,6 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     border: 1.5px solid #0b1e3d;
     border-radius: 5px;
     font-size: 1rem;
+    box-sizing: border-box;
   }
   input[type="checkbox"] {
     margin-right: 0.5rem;
@@ -150,6 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     border-radius: 6px;
     cursor: pointer;
     font-size: 1.1rem;
+    transition: background-color 0.3s ease;
   }
   button:hover {
     background-color: #005f8a;
@@ -158,6 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     margin-bottom: 1rem;
     padding: 0.7rem 1rem;
     border-radius: 5px;
+    box-sizing: border-box;
   }
   .error {
     background-color: #ffe6e6;
@@ -192,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
   <div class="message success"><?php echo htmlspecialchars($success); ?></div>
 <?php endif; ?>
 
-<form id="loginForm" class="active" method="post" novalidate>
+<form id="loginForm" class="active" method="post" novalidate autocomplete="off">
   <input type="hidden" name="action" value="login" />
   <label for="email_login">Email</label>
   <input type="email" id="email_login" name="email_login" placeholder="din@email.dk" required />
@@ -203,7 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
   <button type="submit">Log ind</button>
 </form>
 
-<form id="registerForm" method="post" novalidate>
+<form id="registerForm" method="post" novalidate autocomplete="off">
   <input type="hidden" name="action" value="register" />
   <label for="email">Email</label>
   <input type="email" id="email" name="email" placeholder="din@email.dk" required />
