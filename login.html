@@ -60,6 +60,7 @@
     nav ul.menu li a:hover {
       color: #00ccff;
     }
+    /* Dropdown */
     nav ul.menu li ul.dropdown {
       display: none;
       position: absolute;
@@ -72,12 +73,13 @@
       border-radius: 6px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-    nav ul.menu li:hover ul.dropdown {
+    nav ul.menu li:hover > ul.dropdown {
       display: block;
     }
     nav ul.menu li ul.dropdown li a {
       padding: 0.5rem 1rem;
       color: white;
+      white-space: nowrap;
     }
     nav ul.menu li ul.dropdown li a:hover {
       color: #00ccff;
@@ -167,16 +169,27 @@
       font-size: 1rem;
       width: 100%;
       box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="text"]:focus {
+      border-color: #00ccff;
+      outline: none;
+      background-color: #f0f8ff;
     }
     input[type="checkbox"] {
       margin-right: 0.5rem;
       vertical-align: middle;
+      cursor: pointer;
     }
     .checkbox-label {
       font-weight: 500;
       color: #0b1e3d;
       user-select: none;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
     }
 
     button {
@@ -201,9 +214,9 @@
       padding: 1rem 1.5rem 1.5rem;
     }
 
-    /* Link nederst */
+    /* Link nederst i kort */
     .switch-message {
-      margin-top: 1.25rem;
+      margin-top: 1.5rem;
       font-size: 0.95rem;
       text-align: center;
       color: #0b1e3d;
@@ -254,7 +267,7 @@
       <ul class="menu">
         <li><a href="index.html">Hjem</a></li>
         <li>
-          <a href="#">Investeringstyper</a>
+          <a href="investeringstyper.html">Investeringstyper</a>
           <ul class="dropdown">
             <li><a href="aktier.html">Aktier</a></li>
             <li><a href="obligationer.html">Obligationer</a></li>
@@ -288,4 +301,118 @@
         <input type="email" id="email_login" name="email_login" placeholder="din@email.dk" required autocomplete="email" />
 
         <label for="password_login">Adgangskode</label>
-        <input type="password" id="password_login" name="password_login" placeholder="Adgangskode" required
+        <input type="password" id="password_login" name="password_login" placeholder="Adgangskode" required autocomplete="current-password" />
+
+        <button type="submit">Log ind</button>
+      </form>
+
+      <!-- Register form -->
+      <form id="register-panel" role="tabpanel" aria-labelledby="register-tab" method="post" novalidate style="display:none;">
+        <label for="name_register">Fulde navn</label>
+        <input type="text" id="name_register" name="name_register" placeholder="Dit fulde navn" required autocomplete="name" />
+
+        <label for="email_register">Email</label>
+        <input type="email" id="email_register" name="email_register" placeholder="din@email.dk" required autocomplete="email" />
+
+        <label for="password_register">Adgangskode</label>
+        <input type="password" id="password_register" name="password_register" placeholder="Adgangskode" required autocomplete="new-password" />
+
+        <label class="checkbox-label" for="newsletter">
+          <input type="checkbox" id="newsletter" name="newsletter" />
+          Jeg vil gerne tilmeldes nyhedsbrevet
+        </label>
+
+        <button type="submit">Opret profil</button>
+      </form>
+
+      <div class="switch-message">
+        <p id="message-login" style="display:none;">
+          Har du allerede en profil? <a href="#" id="switch-to-login">Log ind her</a>
+        </p>
+        <p id="message-register">
+          Har du ikke en profil? <a href="#" id="switch-to-register">Opret en her</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+  </footer>
+
+  <script>
+    const loginTab = document.getElementById('login-tab');
+    const registerTab = document.getElementById('register-tab');
+    const loginPanel = document.getElementById('login-panel');
+    const registerPanel = document.getElementById('register-panel');
+    const messageLogin = document.getElementById('message-login');
+    const messageRegister = document.getElementById('message-register');
+    const switchToLogin = document.getElementById('switch-to-login');
+    const switchToRegister = document.getElementById('switch-to-register');
+
+    function switchToLoginView() {
+      loginTab.classList.add('active');
+      loginTab.setAttribute('aria-selected', 'true');
+      loginTab.tabIndex = 0;
+      registerTab.classList.remove('active');
+      registerTab.setAttribute('aria-selected', 'false');
+      registerTab.tabIndex = -1;
+
+      loginPanel.style.display = 'flex';
+      loginPanel.classList.add('active');
+      registerPanel.style.display = 'none';
+      registerPanel.classList.remove('active');
+
+      messageLogin.style.display = 'none';
+      messageRegister.style.display = 'block';
+    }
+
+    function switchToRegisterView() {
+      registerTab.classList.add('active');
+      registerTab.setAttribute('aria-selected', 'true');
+      registerTab.tabIndex = 0;
+      loginTab.classList.remove('active');
+      loginTab.setAttribute('aria-selected', 'false');
+      loginTab.tabIndex = -1;
+
+      registerPanel.style.display = 'flex';
+      registerPanel.classList.add('active');
+      loginPanel.style.display = 'none';
+      loginPanel.classList.remove('active');
+
+      messageLogin.style.display = 'block';
+      messageRegister.style.display = 'none';
+    }
+
+    loginTab.addEventListener('click', switchToLoginView);
+    registerTab.addEventListener('click', switchToRegisterView);
+
+    switchToLogin.addEventListener('click', e => {
+      e.preventDefault();
+      switchToLoginView();
+      loginTab.focus();
+    });
+    switchToRegister.addEventListener('click', e => {
+      e.preventDefault();
+      switchToRegisterView();
+      registerTab.focus();
+    });
+
+    // Keyboard accessibility for tabs
+    [loginTab, registerTab].forEach(tab => {
+      tab.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          if (tab === loginTab) {
+            switchToRegisterView();
+            registerTab.focus();
+          } else {
+            switchToLoginView();
+            loginTab.focus();
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
