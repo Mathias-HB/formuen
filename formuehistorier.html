@@ -1,1 +1,233 @@
 <!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formuehistorier – FormueGuiden</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+    }
+    header {
+      background-color: #0b1e3d;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+    .logo-img {
+      height: 88px;
+    }
+    nav ul.menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul.menu > li {
+      position: relative;
+    }
+    nav ul.menu > li > a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem;
+      display: block;
+    }
+    nav ul.menu > li:hover > a {
+      color: #00ccff;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      flex-direction: column;
+      min-width: 200px;
+    }
+    nav ul.menu > li:hover .dropdown {
+      display: flex;
+    }
+    .dropdown a {
+      color: #0b1e3d;
+      text-decoration: none;
+      padding: 0.4rem 0;
+    }
+    .dropdown a:hover {
+      color: #0077cc;
+    }
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(to right, #0b1e3d, #153c5d);
+      color: white;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    .stories {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .story-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .story-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .story-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .story-content h3 {
+      margin-bottom: 0.8rem;
+      font-size: 1.2rem;
+      color: #0b1e3d;
+    }
+    .story-content p {
+      flex-grow: 1;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .read-more {
+      margin-top: 1rem;
+      display: inline-block;
+      color: #0077cc;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .read-more:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #0b1e3d;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+    }
+    @media(max-width: 768px) {
+      nav ul.menu {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .dropdown {
+        position: static;
+        background: none;
+        box-shadow: none;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
+  </div>
+  <nav>
+    <ul class="menu">
+      <li>
+        <a href="#">Blog</a>
+        <div class="dropdown">
+          <a href="begynderguide.html">Begynderguide</a>
+          <a href="valgafplatform.html">Valg af platform</a>
+          <a href="formuehistorier.html">Formuehistorier</a>
+          <a href="portefolje.html">Porteføljen</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Om os</a>
+        <div class="dropdown">
+          <a href="team.html">Teamet</a>
+          <a href="vision.html">Vores vision</a>
+        </div>
+      </li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="login.html">Log ind / Opret</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Virkelige historier fra danske investorer</h1>
+  <p>Bliv inspireret af, hvordan andre har bygget – eller påbegyndt – deres vej mod økonomisk frihed</p>
+</section>
+
+<section class="stories">
+  <article class="story-card">
+    <img src="billeder/andreas.jpg" alt="Andreas – ETF-investor" />
+    <div class="story-content">
+      <h3>Andreas bygger formue gennem ETF’er</h3>
+      <p>Siden 2017 har Andreas investeret månedligt i globale indeksfonde via sin netbank. Han fokuserer på lave omkostninger og langsigtet strategi.</p>
+      <a href="#" class="read-more">Læs mere</a>
+    </div>
+  </article>
+
+  <article class="story-card">
+    <img src="billeder/louise.jpg" alt="Louise – ejendomsinvestor" />
+    <div class="story-content">
+      <h3>Louise købte sin første udlejningsejendom som 28-årig</h3>
+      <p>Med en fast opsparing og realistisk budget lagde Louise grunden til sit første køb i Odense. Hun fokuserer på stabil udlejning frem for hurtig gevinst.</p>
+      <a href="#" class="read-more">Læs mere</a>
+    </div>
+  </article>
+
+  <article class="story-card">
+    <img src="billeder/mikkel.jpg" alt="Mikkel – freelancer og investor" />
+    <div class="story-content">
+      <h3>Mikkel investerer en del af sin freelance-indkomst</h3>
+      <p>Som selvstændig i den kreative branche sætter Mikkel månedligt et beløb til side i aktier og obligationer. For ham handler det om økonomisk tryghed og frihed på sigt.</p>
+      <a href="#" class="read-more">Læs mere</a>
+    </div>
+  </article>
+
+  <article class="story-card">
+    <img src="billeder/emilie.jpg" alt="Emilie – ny investor" />
+    <div class="story-content">
+      <h3>Emilie er netop begyndt sin investeringsrejse</h3>
+      <p>Efter at have læst op på investering i sin fritid, har Emilie købt sine første fonde. Hun starter stille ud, men har lagt en plan med fokus på læring og stabilitet.</p>
+      <a href="#" class="read-more">Læs mere</a>
+    </div>
+  </article>
+</section>
+
+<footer>
+  &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+</footer>
+
+</body>
+</html>
