@@ -4,35 +4,122 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Eksklusiv Portefølje</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    /* Header med mørk baggrund og hvid tekst som på index.html */
+    /* Global styles (samme som index.html) */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; background: #f5f9fc; color: #0b1e3d;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
     }
     header {
-      background-color: #003f5c; /* Mørk blå baggrund */
-      padding: 20px 15px;
-      text-align: center;
-      box-shadow: none;
-    }
-    header h1 {
+      background-color: #0b1e3d;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       color: white;
-      font-weight: 700;
-      font-size: 2.5rem;
-      margin: 0;
-      letter-spacing: 0.1em;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      position: relative;
+      z-index: 1000;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo-img {
+      height: 88px;
+      width: auto;
+      display: block;
+    }
+    nav {
+      position: relative;
+    }
+    ul.menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    ul.menu > li {
+      position: relative;
+    }
+    ul.menu > li > a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem;
+      display: block;
+      transition: color 0.2s ease;
+    }
+    ul.menu > li:hover > a {
+      color: #00ccff;
+    }
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+      z-index: 999;
+    }
+    .dropdown a {
+      color: #0b1e3d;
+      text-decoration: none;
+      padding: 0.4rem 0;
+    }
+    .dropdown a:hover {
+      color: #0077cc;
+    }
+    ul.menu > li:hover .dropdown {
+      display: flex;
     }
 
+    @media(max-width: 768px) {
+      ul.menu {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .dropdown {
+        position: static;
+        box-shadow: none;
+        background: none;
+        padding: 0;
+      }
+      .dropdown a {
+        padding-left: 1rem;
+      }
+    }
+
+    /* Eksklusiv Portefølje side styles */
     main {
       max-width: 900px;
       margin: 40px auto 80px;
       padding: 0 15px;
+      color: #0b1e3d;
+    }
+    header.page-header {
+      background: #e9f0f8;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(11,30,61,0.1);
+      margin-bottom: 40px;
+      color: #003f5c;
+    }
+    header.page-header h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 2.5rem;
+      letter-spacing: 0.05em;
     }
 
-    /* Grafik container */
     #chartWrapper {
       background: white;
       padding: 20px 30px 30px;
@@ -40,12 +127,11 @@
       box-shadow: 0 5px 12px rgb(11 30 61 / 0.1);
       margin-bottom: 40px;
     }
-
     canvas {
       max-height: 350px;
+      width: 100% !important;
     }
 
-    /* Pros liste */
     #proContainer {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
@@ -103,7 +189,7 @@
       outline: none;
     }
 
-    /* Modal styles */
+    /* Modal */
     #modalOverlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -168,25 +254,66 @@
       color: #556b8b;
       font-size: 1rem;
     }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #0b1e3d;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+    }
   </style>
 </head>
 <body>
 
 <header>
+  <div class="logo">
+    <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
+  </div>
+  <nav>
+    <ul class="menu" role="menubar">
+      <li role="none">
+        <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">Blog</a>
+        <div class="dropdown" role="menu">
+          <a href="begynderguide.html" role="menuitem">Begynderguide</a>
+          <a href="formuehistorier.html" role="menuitem">Formuehistorier</a>
+          <a href="valg-af-platform.html" role="menuitem">Valg af platform</a>
+        </div>
+      </li>
+      <li role="none">
+        <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">Eksklusivt</a>
+        <div class="dropdown" role="menu">
+          <a href="portefølje.html" role="menuitem">Portefølje</a>
+          <a href="analyser.html" role="menuitem">Analyser</a>
+          <a href="investorer.html" role="menuitem">Investorer</a>
+        </div>
+      </li>
+      <li role="none"><a href="om-os.html" role="menuitem">Om os</a></li>
+      <li role="none"><a href="kontakt.html" role="menuitem">Kontakt</a></li>
+    </ul>
+  </nav>
+</header>
+
+<header class="page-header" role="banner" aria-label="Side titel">
   <h1>Eksklusiv Portefølje</h1>
 </header>
 
 <main>
-  <section id="chartWrapper">
-    <canvas id="portfolioChart" aria-label="Porteføljens samlede værdi over 12 uger" role="img"></canvas>
+  <section id="chartWrapper" aria-label="Porteføljens samlede værdi over 12 uger">
+    <canvas id="portfolioChart" role="img" aria-label="Graf over porteføljens værdi"></canvas>
   </section>
 
-  <section id="proContainer" aria-live="polite" aria-label="Investorer og deres aktier">
-    <!-- Pros bliver indsat her via JS -->
+  <section id="proContainer" aria-live="polite" aria-label="Liste over investorer og deres aktier">
+    <!-- JS indsætter investorer her -->
   </section>
 </main>
 
-<!-- Modal -->
+<footer>
+  &copy; 2025 FormueGuiden. Alle rettigheder forbeholdes.
+</footer>
+
+<!-- Modal til analyser -->
 <div id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
   <div id="modalContent">
     <button id="modalCloseBtn" aria-label="Luk analyse modal">&times;</button>
@@ -195,211 +322,148 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // Eksempel-data for investorer og aktier (med analyser)
-  const pros = [
-    {
-      name: "Peter Nielsen",
-      analysis: `
-        <div class="analysis-section">
-          <p>Jeg har valgt en portefølje med en god balance mellem teknologi og stabile forbrugsselskaber for at sprede risikoen og sikre et solidt afkast over tid.</p>
-        </div>
-        <div class="analysis-section">
-          <h3>Microsoft</h3>
-          <p>Microsoft har en stærk position inden for cloud computing og software, hvilket gør dem til en robust aktie med vedvarende vækstpotentiale. Virksomheden har en diversificeret produktportefølje og klarer sig godt i både enterprise- og forbrugermarkederne.</p>
-        </div>
-        <div class="analysis-section">
-          <h3>Coloplast</h3>
-          <p>Coloplast er en førende aktør inden for medicinsk udstyr med fokus på innovative løsninger til kroniske sygdomme. Deres produkter har høj efterspørgsel globalt, og de nyder godt af demografiske trends og stigende sundhedsudgifter.</p>
-        </div>
-      `,
-      stocks: [
-        { name: "Microsoft", afkast: 0.10 },
-        { name: "Coloplast", afkast: 0.07 }
-      ]
-    },
-    {
-      name: "Mette Hansen",
-      analysis: `
-        <div class="analysis-section">
-          <p>Jeg vælger vækstaktier inden for teknologi og vedvarende energi, da jeg forventer stor innovationskraft og øget fokus på bæredygtighed fremover.</p>
-        </div>
-        <div class="analysis-section">
-          <h3>Alphabet (Google)</h3>
-          <p>Alphabet dominerer inden for søgning og digital annoncering, og deres massive investeringer i AI og cloud kan åbne nye indtjeningsmuligheder. Aktiens værdi er stadig attraktiv i forhold til det langsigtede vækstpotentiale.</p>
-        </div>
-        <div class="analysis-section">
-          <h3>Vestas</h3>
-          <p>Vestas er en af verdens største producenter af vindmøller, hvilket placerer dem godt i den grønne omstilling. Efterspørgslen på vedvarende energi stiger globalt, og Vestas har gode muligheder for at øge sin markedsandel.</p>
-        </div>
-      `,
-      stocks: [
-        { name: "Alphabet", afkast: 0.14 },
-        { name: "Vestas", afkast: 0.08 }
-      ]
-    },
-    {
-      name: "Thomas Kristensen",
-      analysis: `
-        <div class="analysis-section">
-          <p>Jeg satser på stabile industrivirksomheder, som giver en sikker base med gode udbytter og stabil indtjening i både gode og dårlige tider.</p>
-        </div>
-        <div class="analysis-section">
-          <h3>A.P. Møller - Mærsk</h3>
-          <p>Mærsk har en stærk position i global shipping og logistik, som sikrer stabilitet trods konjunkturudsving. Virksomheden har investeret i digitalisering og bæredygtige løsninger.</p>
-        </div>
-        <div class="analysis-section">
-          <h3>Novozymes</h3>
-          <p>Novozymes er førende inden for enzymer og bioteknologi med fokus på bæredygtige løsninger. Deres produkter understøtter grøn omstilling i industrien og landbruget.</p>
-        </div>
-      `,
-      stocks: [
-        { name: "A.P. Møller - Mærsk", afkast: 0.06 },
-        { name: "Novozymes", afkast: 0.09 }
-      ]
-    },
-    {
-      name: "Sofie Larsen",
-      analysis: `
-        <div class="analysis-section">
-          <p>Jeg foretrækker innovative selskaber inden for sundhedsteknologi og digitale løsninger, der kan revolutionere deres markeder.</p>
-        </div>
-        <div class="analysis-section">
-          <h3>Ambu</h3>
-          <p>Ambu udvikler avancerede medicinske enheder og har en stærk pipeline af produkter med stort vækstpotentiale.</p>
-        </div>
-        <div class="analysis-section">
-          <h3>Demant</h3>
-          <p>Demant er global leder inden for høreapparater og høreteknologi, hvilket giver gode langsigtede muligheder i et voksende marked.</p>
-        </div>
-      `,
-      stocks: [
-        { name: "Ambu", afkast: 0.12 },
-        { name: "Demant", afkast: 0.07 }
-      ]
-    },
-    {
-      name: "Martin Pedersen",
-      analysis: `
-        <div class="analysis-section">
-          <p>Jeg satser på finanssektoren, hvor jeg ser attraktive udbytter og potentiale for digital transformation.</p>
-        </div>
-        <div class="analysis-section">
-          <h3>Danske Bank</h3>
-          <p>Danske Bank arbejder på at styrke sin digitale platform og øge effektiviteten, hvilket kan give øget indtjening fremover.</p>
-        </div>
-        <div class="analysis-section">
-          <h3>Jyske Bank</h3>
-          <p>Jyske Bank har fokus på kundeoplevelse og bæredygtige investeringer, hvilket styrker deres position i markedet.</p>
-        </div>
-      `,
-      stocks: [
-        { name: "Danske Bank", afkast: 0.05 },
-        { name: "Jyske Bank", afkast: 0.06 }
-      ]
-    }
-  ];
-
-  // Funktion til at formatere procent til streng med 2 decimaler
-  function formatPercent(value) {
-    return (value * 100).toFixed(2) + '%';
-  }
-
-  // Indsæt pros i DOM
-  const proContainer = document.getElementById('proContainer');
-  pros.forEach((pro, idx) => {
-    const proCard = document.createElement('article');
-    proCard.className = 'pro-card';
-    proCard.innerHTML = `
-      <h2 class="pro-name">${pro.name}</h2>
-      <ul class="stocks-list">
-        ${pro.stocks.map(stock => `
-          <li>
-            <span class="stock-name">${stock.name}</span>
-            <span class="afkast">${formatPercent(stock.afkast)}</span>
-          </li>
-        `).join('')}
-      </ul>
-      <button class="analysis-btn" data-index="${idx}">Se analyse</button>
-    `;
-    proContainer.appendChild(proCard);
-  });
-
-  // Modal funktionalitet
-  const modalOverlay = document.getElementById('modalOverlay');
-  const modalText = document.getElementById('modalText');
-  const modalCloseBtn = document.getElementById('modalCloseBtn');
-
-  proContainer.addEventListener('click', e => {
-    if(e.target.classList.contains('analysis-btn')) {
-      const idx = e.target.getAttribute('data-index');
-      modalText.innerHTML = pros[idx].analysis;
-      modalOverlay.classList.add('active');
-      modalOverlay.focus();
-    }
-  });
-
-  modalCloseBtn.addEventListener('click', () => {
-    modalOverlay.classList.remove('active');
-  });
-
-  modalOverlay.addEventListener('click', e => {
-    if(e.target === modalOverlay) {
-      modalOverlay.classList.remove('active');
-    }
-  });
-
-  // Data til graf (fiktive portefølje værdier over 12 uger)
-  const labels = Array.from({length: 12}, (_, i) => `Uge ${i + 1}`);
-  const portfolioValues = [100000, 102000, 101500, 103000, 104500, 105000, 106000, 107500, 108000, 110000, 111500, 113000];
+  const chartData = {
+    labels: ['Uge 1', 'Uge 2', 'Uge 3', 'Uge 4', 'Uge 5', 'Uge 6', 'Uge 7', 'Uge 8', 'Uge 9', 'Uge 10', 'Uge 11', 'Uge 12'],
+    datasets: [{
+      label: 'Porteføljens værdi (DKK)',
+      data: [10000, 10250, 10500, 10300, 10800, 11000, 11250, 11500, 11700, 12000, 12300, 12500],
+      borderColor: '#0b1e3d',
+      backgroundColor: 'rgba(11, 30, 61, 0.3)',
+      fill: true,
+      tension: 0.3,
+      pointRadius: 4,
+      pointHoverRadius: 6,
+      borderWidth: 3,
+    }]
+  };
 
   const ctx = document.getElementById('portfolioChart').getContext('2d');
   const portfolioChart = new Chart(ctx, {
     type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Porteføljens værdi DKK',
-        data: portfolioValues,
-        fill: false,
-        borderColor: '#003f5c',
-        backgroundColor: '#003f5c',
-        tension: 0.3,
-        pointRadius: 5,
-        pointHoverRadius: 7
-      }]
-    },
+    data: chartData,
     options: {
       responsive: true,
       plugins: {
-        legend: {
-          onClick: e => e.stopPropagation()  // Deaktiver klik på legend (ingen toggle)
-        },
+        legend: { display: true },
         tooltip: {
           mode: 'index',
           intersect: false,
+          callbacks: {
+            label: ctx => ctx.parsed.y.toLocaleString('da-DK', { style: 'currency', currency: 'DKK' })
+          }
         }
-      },
-      interaction: {
-        mode: 'nearest',
-        intersect: false
       },
       scales: {
         y: {
           beginAtZero: false,
           ticks: {
-            callback: value => value.toLocaleString('da-DK', {style: 'currency', currency: 'DKK'})
-          },
-          title: {
-            display: true,
-            text: 'DKK'
+            callback: val => val.toLocaleString('da-DK', { style: 'currency', currency: 'DKK' })
           }
-        },
-        x: {
-          title: {
-            display: true,
-            text: 'Uger'
-          }
+        }
+      },
+      interaction: {
+        mode: 'nearest',
+        intersect: false
+      }
+    }
+  });
+
+  const proData = [
+    {
+      navn: "Ole Invest",
+      aktier: [
+        { navn: "Apple", procent: 15, afkast: "8%" },
+        { navn: "Novo Nordisk", procent: 25, afkast: "12%" },
+        { navn: "Microsoft", procent: 10, afkast: "5%" }
+      ],
+      analyse: `<div class="analysis-section">
+                  <h3>Strategi</h3>
+                  <p>Ole Invest fokuserer på stabile tech- og medicinalaktier med god langsigtet vækst.</p>
+                </div>
+                <div class="analysis-section">
+                  <h3>Risiko</h3>
+                  <p>Moderat risiko pga. koncentration i få sektorer.</p>
+                </div>`
+    },
+    {
+      navn: "Anna Kapital",
+      aktier: [
+        { navn: "Tesla", procent: 20, afkast: "15%" },
+        { navn: "Vestas", procent: 30, afkast: "10%" },
+        { navn: "A.P. Moller", procent: 10, afkast: "7%" }
+      ],
+      analyse: `<div class="analysis-section">
+                  <h3>Strategi</h3>
+                  <p>Anna Kapital satser på grøn energi og disruptive teknologier.</p>
+                </div>
+                <div class="analysis-section">
+                  <h3>Risiko</h3>
+                  <p>Høj risiko pga. volatilitet i sektorerne.</p>
+                </div>`
+    }
+  ];
+
+  const proContainer = document.getElementById('proContainer');
+  proData.forEach((pro, idx) => {
+    const card = document.createElement('article');
+    card.className = 'pro-card';
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-labelledby', `proName${idx}`);
+    card.innerHTML = `
+      <h2 id="proName${idx}" class="pro-name">${pro.navn}</h2>
+      <ul class="stocks-list">
+        ${pro.aktier.map(stock => `<li><span class="stock-name">${stock.navn}</span><span>${stock.procent}% (<em class="afkast">${stock.afkast}</em>)</span></li>`).join('')}
+      </ul>
+      <button class="analysis-btn" aria-haspopup="dialog" aria-controls="modalOverlay" aria-expanded="false" data-index="${idx}">Se Analyse</button>
+    `;
+    proContainer.appendChild(card);
+  });
+
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalText = document.getElementById('modalText');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  const analysisButtons = document.querySelectorAll('.analysis-btn');
+
+  analysisButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const idx = button.getAttribute('data-index');
+      modalText.innerHTML = proData[idx].analyse;
+      modalOverlay.classList.add('active');
+      modalCloseBtn.focus();
+      button.setAttribute('aria-expanded', 'true');
+    });
+  });
+
+  modalCloseBtn.addEventListener('click', () => {
+    modalOverlay.classList.remove('active');
+    analysisButtons.forEach(btn => btn.setAttribute('aria-expanded', 'false'));
+  });
+
+  // Luk modal med ESC
+  window.addEventListener('keydown', (e) => {
+    if (e.key === "Escape" && modalOverlay.classList.contains('active')) {
+      modalOverlay.classList.remove('active');
+      analysisButtons.forEach(btn => btn.setAttribute('aria-expanded', 'false'));
+    }
+  });
+
+  // Fokusfangst i modal
+  modalOverlay.addEventListener('keydown', e => {
+    if (e.key === 'Tab') {
+      const focusableElements = modalOverlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length -1];
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
         }
       }
     }
