@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Teamet bag – FormueGuiden</title>
   <style>
-    /* Genbrug af design fra forsiden */
     * {
       margin: 0;
       padding: 0;
@@ -15,6 +14,7 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #f7f9fc;
       color: #333;
+      line-height: 1.6;
     }
     header {
       background-color: #0b1e3d;
@@ -24,14 +24,8 @@
       align-items: center;
       color: white;
     }
-    .logo {
-      display: flex;
-      align-items: center;
-    }
     .logo-img {
       height: 88px;
-      width: auto;
-      display: block;
       cursor: pointer;
     }
     nav ul.menu {
@@ -46,10 +40,6 @@
       color: white;
       text-decoration: none;
       font-weight: 500;
-      padding: 0.5rem;
-    }
-    nav ul.menu > li:hover > a {
-      color: #00ccff;
     }
     .dropdown {
       position: absolute;
@@ -83,7 +73,7 @@
       margin-bottom: 1rem;
     }
     .hero p {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       max-width: 600px;
       margin: auto;
     }
@@ -94,14 +84,20 @@
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      color: #153c5d;
-      line-height: 1.6;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    section h2 {
+      font-size: 1.4rem;
+      color: #0b1e3d;
+      margin-bottom: 1rem;
     }
     .visitkort {
       margin-top: 2rem;
       padding: 1.5rem;
-      border: 2px solid #e1e6ee;
-      border-radius: 12px;
+      border: 1px solid #d7e0ec;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       gap: 1.5rem;
@@ -131,9 +127,7 @@
 <body>
 
   <header>
-    <div class="logo">
-      <a href="index.html"><img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" /></a>
-    </div>
+    <a href="index.html"><img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" /></a>
     <nav>
       <ul class="menu">
         <li>
@@ -158,47 +152,44 @@
   </header>
 
   <section class="hero">
-    <h1>👥 Teamet bag FormueGuiden</h1>
-    <p>Vi er her for at hjælpe dig i gang</p>
+    <h1>Teamet bag FormueGuiden</h1>
+    <p>Vi er her for at hjælpe dig godt i gang med investering</p>
   </section>
 
   <main>
-    <p>
-      FormueGuiden er skabt af et team, der brænder for at gøre investering tilgængeligt for alle.
-      Vi har selv mærket, hvordan det føles at stå på sidelinjen og ikke vide, hvor man skal starte.
-      Og vi ved, hvor stor en forskel det kan gøre at få den rigtige hjælp – på det rigtige tidspunkt.
-    </p>
+    <section>
+      <h2>En platform skabt med formål</h2>
+      <p>
+        FormueGuiden er skabt af et team, der brænder for at gøre investering mere tilgængeligt for alle – også dem uden forkundskaber.
+        Vi har selv stået i samme situation og kender både usikkerheden og potentialet. Det er netop derfor, vi har bygget en platform, hvor du kan lære i dit eget tempo.
+      </p>
+    </section>
 
-    <p>
-      Derfor har vi samlet vores viden, erfaring og passion for at bygge en platform, hvor du kan lære at investere i dit eget tempo –
-      uden at drukne i begreber og buzzwords.
-    </p>
+    <section>
+      <h2>Vores tilgang</h2>
+      <ul>
+        <li>✔ Klar og ærlig kommunikation – ingen salgstricks</li>
+        <li>✔ Viden i øjenhøjde – tilpasset den almindelige dansker</li>
+        <li>✔ Gennemsigtighed og uafhængighed</li>
+        <li>✔ Praktiske værktøjer – ikke bare information</li>
+      </ul>
+    </section>
 
-    <p>Vi tror på…</p>
-    <ul>
-      <li>💬 Klar og ærlig kommunikation</li>
-      <li>📚 Viden delt i øjenhøjde</li>
-      <li>🔍 Gennemsigtighed frem for salgstricks</li>
-      <li>🛠️ Praktiske værktøjer, der hjælper dig i gang – ikke bare mere information</li>
-    </ul>
+    <section>
+      <h2>Ikke finansielle rådgivere – og det er med vilje</h2>
+      <p>
+        Vi tilbyder ikke personlig rådgivning eller finansielle produkter. I stedet hjælper vi dig med at tage styringen selv – med indsigt, forståelse og selvtillid.
+        Det handler ikke om at sælge dig noget. Det handler om at give dig redskaberne til at træffe dine egne beslutninger.
+      </p>
+    </section>
 
-    <p>
-      <strong>Vi er ikke finansielle rådgivere – og det er pointen.</strong><br>
-      Vi er ikke her for at sælge dig den næste store aktie eller en dyr portefølje.
-      Vi er her for at gøre dig selvstændig og tryg i dine egne beslutninger.
-    </p>
-
-    <p>
-      Vores mål er at give dig værktøjerne, overblikket og roen til at tage kontrol over din økonomiske fremtid.
-    </p>
-
-    <div class="visitkort">
+    <section class="visitkort">
       <img src="mathias.jpg" alt="Mathias" />
       <div>
         <h3>Mathias</h3>
-        <p>Stifter af FormueGuiden</p>
+        <p>Stifter og ejer af FormueGuiden</p>
       </div>
-    </div>
+    </section>
   </main>
 
   <footer>
