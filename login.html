@@ -3,61 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Login | FormueGuiden</title>
+  <title>Log ind eller Opret profil | FormueGuiden</title>
   <style>
+    /* Reset og base */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
-    html, body {
-      height: 100%;
-    }
-
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f7f9fc;
-      color: #153c5d;
+      color: #333;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
+    /* Header */
     header {
       background-color: #0b1e3d;
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: white;
+      position: relative;
+      z-index: 1000;
     }
-
+    .logo {
+      display: flex;
+      align-items: center;
+    }
     .logo-img {
       height: 88px;
       width: auto;
+      display: block;
     }
-
     nav ul.menu {
       list-style: none;
       display: flex;
       gap: 2rem;
     }
-
     nav ul.menu li {
       position: relative;
     }
-
     nav ul.menu li a {
       color: white;
       text-decoration: none;
       font-weight: 500;
       padding: 0.5rem;
       display: block;
+      transition: color 0.2s ease;
+      cursor: pointer;
     }
-
     nav ul.menu li a:hover {
       color: #00ccff;
     }
-
     nav ul.menu li ul.dropdown {
       display: none;
       position: absolute;
@@ -67,80 +69,117 @@
       list-style: none;
       min-width: 180px;
       z-index: 10;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
     nav ul.menu li:hover ul.dropdown {
       display: block;
     }
-
     nav ul.menu li ul.dropdown li a {
       padding: 0.5rem 1rem;
+      color: white;
+    }
+    nav ul.menu li ul.dropdown li a:hover {
+      color: #00ccff;
     }
 
+    /* Hero */
     .hero {
-      padding: 3rem 2rem;
+      padding: 4rem 2rem 2rem;
       text-align: center;
       background: linear-gradient(to right, #0b1e3d, #153c5d);
       color: white;
     }
-
     .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
     }
-
     .hero p {
-      font-size: 1rem;
+      font-size: 1.1rem;
       max-width: 600px;
       margin: auto;
     }
 
-    .form-wrapper {
+    /* Kort container */
+    main {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 3rem 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
     }
-
-    .form-container {
-      max-width: 400px;
-      width: 100%;
+    .card {
       background: white;
       padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      max-width: 420px;
+      width: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      color: #153c5d;
+      box-sizing: border-box;
     }
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
+    /* Tab knapper */
+    .tabs {
+      display: flex;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #0b1e3d;
+    }
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem 0;
+      cursor: pointer;
       font-weight: 600;
+      color: #0b1e3d;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+      user-select: none;
+      border-radius: 6px 6px 0 0;
+    }
+    .tab:hover {
+      background-color: #e0e7f2;
+    }
+    .tab.active {
+      border-bottom-color: #00ccff;
+      background-color: #f0f8ff;
+      font-weight: 700;
     }
 
+    /* Formularer */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
     input[type="email"],
     input[type="password"],
     input[type="text"] {
-      width: 100%;
       padding: 0.6rem;
-      margin-bottom: 1.2rem;
       border: 1.5px solid #0b1e3d;
       border-radius: 5px;
       font-size: 1rem;
-    }
-
-    .checkbox-group {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .checkbox-group input {
-      margin-right: 0.5rem;
-    }
-
-    button[type="submit"] {
       width: 100%;
+      box-sizing: border-box;
+    }
+    input[type="checkbox"] {
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+    .checkbox-label {
+      font-weight: 500;
+      color: #0b1e3d;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    button {
       padding: 0.8rem;
       background-color: #0b1e3d;
       color: white;
@@ -151,136 +190,102 @@
       font-size: 1.1rem;
       transition: background-color 0.3s ease;
     }
-
-    button[type="submit"]:hover {
+    button:hover {
       background-color: #005f8a;
     }
 
-    .form-toggle {
-      text-align: center;
-      margin-top: 1.5rem;
+    /* Skift af form bg ved aktiv tab */
+    form.active {
+      background-color: #f7fbff;
+      border-radius: 10px;
+      padding: 1rem 1.5rem 1.5rem;
     }
 
-    .form-toggle button {
-      background: none;
-      border: none;
+    /* Link nederst */
+    .switch-message {
+      margin-top: 1.25rem;
       font-size: 0.95rem;
-      font-weight: 600;
+      text-align: center;
       color: #0b1e3d;
+      user-select: none;
+    }
+    .switch-message a {
+      color: #00ccff;
+      text-decoration: none;
+      font-weight: 600;
       cursor: pointer;
-      transition: color 0.3s ease;
+    }
+    .switch-message a:hover {
+      text-decoration: underline;
     }
 
-    .form-toggle button:hover {
-      color: #007acc;
-    }
-
-    .hidden {
-      display: none;
-    }
-
+    /* Footer */
     footer {
+      text-align: center;
+      padding: 1.5rem;
       background-color: #0b1e3d;
       color: white;
-      text-align: center;
-      padding: 1.5rem 1rem;
       font-size: 0.9rem;
       margin-top: auto;
+    }
+
+    /* Responsive */
+    @media(max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .card {
+        padding: 1.5rem;
+        max-width: 100%;
+      }
+      nav ul.menu {
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" /></a>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Hjem</a></li>
+        <li>
+          <a href="#">Investeringstyper</a>
+          <ul class="dropdown">
+            <li><a href="aktier.html">Aktier</a></li>
+            <li><a href="obligationer.html">Obligationer</a></li>
+            <li><a href="fonde.html">Fonde</a></li>
+            <li><a href="ejendomme.html">Ejendomme</a></li>
+          </ul>
+        </li>
+        <li><a href="begynderguide.html">Begynderguide</a></li>
+        <li><a href="formuehistorier.html">Formuehistorier</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="login.html">Log ind</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<header>
-  <div class="logo">
-    <a href="index.html"><img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" /></a>
-  </div>
-  <nav>
-    <ul class="menu">
-      <li><a href="index.html">Hjem</a></li>
-      <li>
-        <a href="#">Investeringstyper</a>
-        <ul class="dropdown">
-          <li><a href="aktier.html">Aktier</a></li>
-          <li><a href="obligationer.html">Obligationer</a></li>
-          <li><a href="fonde.html">Fonde</a></li>
-          <li><a href="ejendomme.html">Ejendomme</a></li>
-        </ul>
-      </li>
-      <li><a href="begynderguide.html">Begynderguide</a></li>
-      <li><a href="formuehistorier.html">Formuehistorier</a></li>
-      <li><a href="kontakt.html">Kontakt</a></li>
-    </ul>
-  </nav>
-</header>
+  <section class="hero" role="banner" aria-label="Log ind eller Opret profil">
+    <h1>Log ind eller Opret profil</h1>
+    <p>Opret dig som bruger og få adgang til mere indhold samt vores nyhedsbrev</p>
+  </section>
 
-<section class="hero">
-  <h1>Log ind eller Opret profil</h1>
-  <p>Opret dig som bruger og få adgang til mere indhold samt vores nyhedsbrev</p>
-</section>
-
-<div class="form-wrapper">
-  <div class="form-container">
-    <!-- Login form -->
-    <form id="loginForm">
-      <label for="email_login">Email</label>
-      <input type="email" id="email_login" name="email_login" placeholder="din@email.dk" required />
-
-      <label for="password_login">Adgangskode</label>
-      <input type="password" id="password_login" name="password_login" placeholder="Adgangskode" required />
-
-      <button type="submit">Log ind</button>
-
-      <div class="form-toggle">
-        <button type="button" id="toggleForm">Har du ikke en profil? Opret en her</button>
-      </div>
-    </form>
-
-    <!-- Register form -->
-    <form id="registerForm" class="hidden">
-      <label for="name_register">Fulde navn</label>
-      <input type="text" id="name_register" name="name_register" placeholder="Dit fulde navn" required />
-
-      <label for="email_register">Email</label>
-      <input type="email" id="email_register" name="email_register" placeholder="din@email.dk" required />
-
-      <label for="password_register">Adgangskode</label>
-      <input type="password" id="password_register" name="password_register" placeholder="Vælg en adgangskode" required />
-
-      <div class="checkbox-group">
-        <input type="checkbox" id="newsletter" name="newsletter" />
-        <label for="newsletter">Tilmeld mig nyhedsbrevet</label>
+  <main>
+    <div class="card" role="main" aria-live="polite">
+      <div class="tabs" role="tablist" aria-label="Vælg login eller opret profil">
+        <div id="login-tab" class="tab active" role="tab" tabindex="0" aria-selected="true" aria-controls="login-panel">Log ind</div>
+        <div id="register-tab" class="tab" role="tab" tabindex="-1" aria-selected="false" aria-controls="register-panel">Opret profil</div>
       </div>
 
-      <button type="submit">Opret profil</button>
+      <!-- Login form -->
+      <form id="login-panel" class="active" role="tabpanel" aria-labelledby="login-tab" method="post" novalidate>
+        <label for="email_login">Email</label>
+        <input type="email" id="email_login" name="email_login" placeholder="din@email.dk" required autocomplete="email" />
 
-      <div class="form-toggle">
-        <button type="button" id="toggleFormBack">Har du allerede en profil? Log ind her</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<footer>
-  &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
-</footer>
-
-<script>
-  const loginForm = document.getElementById('loginForm');
-  const registerForm = document.getElementById('registerForm');
-  const toggleToRegister = document.getElementById('toggleForm');
-  const toggleToLogin = document.getElementById('toggleFormBack');
-
-  toggleToRegister.addEventListener('click', () => {
-    loginForm.classList.add('hidden');
-    registerForm.classList.remove('hidden');
-  });
-
-  toggleToLogin.addEventListener('click', () => {
-    registerForm.classList.add('hidden');
-    loginForm.classList.remove('hidden');
-  });
-</script>
-
-</body>
-</html>
+        <label for="password_login">Adgangskode</label>
+        <input type="password" id="password_login" name="password_login" placeholder="Adgangskode" required
