@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Log ind eller Opret profil | FormueGuiden</title>
   <style>
-    /* Reset og base */
+    /* Samme CSS som index.html */
     * {
       margin: 0;
       padding: 0;
@@ -19,8 +19,6 @@
       display: flex;
       flex-direction: column;
     }
-
-    /* Header */
     header {
       background-color: #0b1e3d;
       padding: 1rem 2rem;
@@ -40,69 +38,67 @@
       width: auto;
       display: block;
     }
-    nav ul.menu {
+    nav {
+      position: relative;
+    }
+    ul.menu {
       list-style: none;
       display: flex;
       gap: 2rem;
     }
-    nav ul.menu li {
+    ul.menu > li {
       position: relative;
     }
-    nav ul.menu li a {
+    ul.menu > li > a {
       color: white;
       text-decoration: none;
       font-weight: 500;
       padding: 0.5rem;
       display: block;
       transition: color 0.2s ease;
-      cursor: pointer;
     }
-    nav ul.menu li a:hover {
+    ul.menu > li:hover > a {
       color: #00ccff;
     }
-    /* Dropdown */
-    nav ul.menu li ul.dropdown {
-      display: none;
+    .dropdown {
       position: absolute;
-      background-color: #153c5d;
       top: 100%;
       left: 0;
-      list-style: none;
-      min-width: 180px;
-      z-index: 10;
+      background: white;
+      padding: 1rem;
       border-radius: 6px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+      z-index: 999;
     }
-    nav ul.menu li:hover > ul.dropdown {
-      display: block;
+    .dropdown a {
+      color: #0b1e3d;
+      text-decoration: none;
+      padding: 0.4rem 0;
     }
-    nav ul.menu li ul.dropdown li a {
-      padding: 0.5rem 1rem;
-      color: white;
-      white-space: nowrap;
+    .dropdown a:hover {
+      color: #0077cc;
     }
-    nav ul.menu li ul.dropdown li a:hover {
-      color: #00ccff;
+    ul.menu > li:hover .dropdown {
+      display: flex;
     }
-
-    /* Hero */
     .hero {
-      padding: 4rem 2rem 2rem;
+      padding: 4rem 2rem;
       text-align: center;
       background: linear-gradient(to right, #0b1e3d, #153c5d);
       color: white;
     }
     .hero h1 {
       font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
     .hero p {
       font-size: 1.1rem;
       max-width: 600px;
       margin: auto;
     }
-
-    /* Kort container */
     main {
       flex: 1;
       display: flex;
@@ -148,12 +144,20 @@
       background-color: #f0f8ff;
       font-weight: 700;
     }
-
     /* Formularer */
     form {
       display: flex;
       flex-direction: column;
       gap: 1rem;
+    }
+    form.active {
+      background-color: #f7fbff;
+      border-radius: 10px;
+      padding: 1rem 1.5rem 1.5rem;
+      display: flex;
+    }
+    form.inactive {
+      display: none;
     }
     label {
       font-weight: 600;
@@ -191,7 +195,6 @@
       display: inline-flex;
       align-items: center;
     }
-
     button {
       padding: 0.8rem;
       background-color: #0b1e3d;
@@ -206,14 +209,6 @@
     button:hover {
       background-color: #005f8a;
     }
-
-    /* Skift af form bg ved aktiv tab */
-    form.active {
-      background-color: #f7fbff;
-      border-radius: 10px;
-      padding: 1rem 1.5rem 1.5rem;
-    }
-
     /* Link nederst i kort */
     .switch-message {
       margin-top: 1.5rem;
@@ -231,8 +226,6 @@
     .switch-message a:hover {
       text-decoration: underline;
     }
-
-    /* Footer */
     footer {
       text-align: center;
       padding: 1.5rem;
@@ -241,7 +234,6 @@
       font-size: 0.9rem;
       margin-top: auto;
     }
-
     /* Responsive */
     @media(max-width: 480px) {
       .hero h1 {
@@ -251,7 +243,7 @@
         padding: 1.5rem;
         max-width: 100%;
       }
-      nav ul.menu {
+      ul.menu {
         gap: 1rem;
         flex-wrap: wrap;
       }
@@ -261,158 +253,19 @@
 <body>
   <header>
     <div class="logo">
-      <a href="index.html"><img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" /></a>
+      <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
     </div>
     <nav>
       <ul class="menu">
-        <li><a href="index.html">Hjem</a></li>
         <li>
-          <a href="investeringstyper.html">Investeringstyper</a>
-          <ul class="dropdown">
-            <li><a href="aktier.html">Aktier</a></li>
-            <li><a href="obligationer.html">Obligationer</a></li>
-            <li><a href="fonde.html">Fonde</a></li>
-            <li><a href="ejendomme.html">Ejendomme</a></li>
-          </ul>
+          <a href="#">Blog</a>
+          <div class="dropdown">
+            <a href="begynderguide.html">Begynderguide</a>
+            <a href="formuehistorier.html">Formuehistorier</a>
+            <a href="portefolje.html">Vores Portefølje</a>
+          </div>
         </li>
-        <li><a href="begynderguide.html">Begynderguide</a></li>
-        <li><a href="formuehistorier.html">Formuehistorier</a></li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="login.html">Log ind</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section class="hero" role="banner" aria-label="Log ind eller Opret profil">
-    <h1>Log ind eller Opret profil</h1>
-    <p>Opret dig som bruger og få adgang til mere indhold samt vores nyhedsbrev</p>
-  </section>
-
-  <main>
-    <div class="card" role="main" aria-live="polite">
-      <div class="tabs" role="tablist" aria-label="Vælg login eller opret profil">
-        <div id="login-tab" class="tab active" role="tab" tabindex="0" aria-selected="true" aria-controls="login-panel">Log ind</div>
-        <div id="register-tab" class="tab" role="tab" tabindex="-1" aria-selected="false" aria-controls="register-panel">Opret profil</div>
-      </div>
-
-      <!-- Login form -->
-      <form id="login-panel" class="active" role="tabpanel" aria-labelledby="login-tab" method="post" novalidate>
-        <label for="email_login">Email</label>
-        <input type="email" id="email_login" name="email_login" placeholder="din@email.dk" required autocomplete="email" />
-
-        <label for="password_login">Adgangskode</label>
-        <input type="password" id="password_login" name="password_login" placeholder="Adgangskode" required autocomplete="current-password" />
-
-        <button type="submit">Log ind</button>
-      </form>
-
-      <!-- Register form -->
-      <form id="register-panel" role="tabpanel" aria-labelledby="register-tab" method="post" novalidate style="display:none;">
-        <label for="name_register">Fulde navn</label>
-        <input type="text" id="name_register" name="name_register" placeholder="Dit fulde navn" required autocomplete="name" />
-
-        <label for="email_register">Email</label>
-        <input type="email" id="email_register" name="email_register" placeholder="din@email.dk" required autocomplete="email" />
-
-        <label for="password_register">Adgangskode</label>
-        <input type="password" id="password_register" name="password_register" placeholder="Adgangskode" required autocomplete="new-password" />
-
-        <label class="checkbox-label" for="newsletter">
-          <input type="checkbox" id="newsletter" name="newsletter" />
-          Jeg vil gerne tilmeldes nyhedsbrevet
-        </label>
-
-        <button type="submit">Opret profil</button>
-      </form>
-
-      <div class="switch-message">
-        <p id="message-login" style="display:none;">
-          Har du allerede en profil? <a href="#" id="switch-to-login">Log ind her</a>
-        </p>
-        <p id="message-register">
-          Har du ikke en profil? <a href="#" id="switch-to-register">Opret en her</a>
-        </p>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    © 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
-  </footer>
-
-  <script>
-    const loginTab = document.getElementById('login-tab');
-    const registerTab = document.getElementById('register-tab');
-    const loginPanel = document.getElementById('login-panel');
-    const registerPanel = document.getElementById('register-panel');
-    const messageLogin = document.getElementById('message-login');
-    const messageRegister = document.getElementById('message-register');
-    const switchToLogin = document.getElementById('switch-to-login');
-    const switchToRegister = document.getElementById('switch-to-register');
-
-    function switchToLoginView() {
-      loginTab.classList.add('active');
-      loginTab.setAttribute('aria-selected', 'true');
-      loginTab.tabIndex = 0;
-      registerTab.classList.remove('active');
-      registerTab.setAttribute('aria-selected', 'false');
-      registerTab.tabIndex = -1;
-
-      loginPanel.style.display = 'flex';
-      loginPanel.classList.add('active');
-      registerPanel.style.display = 'none';
-      registerPanel.classList.remove('active');
-
-      messageLogin.style.display = 'none';
-      messageRegister.style.display = 'block';
-    }
-
-    function switchToRegisterView() {
-      registerTab.classList.add('active');
-      registerTab.setAttribute('aria-selected', 'true');
-      registerTab.tabIndex = 0;
-      loginTab.classList.remove('active');
-      loginTab.setAttribute('aria-selected', 'false');
-      loginTab.tabIndex = -1;
-
-      registerPanel.style.display = 'flex';
-      registerPanel.classList.add('active');
-      loginPanel.style.display = 'none';
-      loginPanel.classList.remove('active');
-
-      messageLogin.style.display = 'block';
-      messageRegister.style.display = 'none';
-    }
-
-    loginTab.addEventListener('click', switchToLoginView);
-    registerTab.addEventListener('click', switchToRegisterView);
-
-    switchToLogin.addEventListener('click', e => {
-      e.preventDefault();
-      switchToLoginView();
-      loginTab.focus();
-    });
-    switchToRegister.addEventListener('click', e => {
-      e.preventDefault();
-      switchToRegisterView();
-      registerTab.focus();
-    });
-
-    // Keyboard accessibility for tabs
-    [loginTab, registerTab].forEach(tab => {
-      tab.addEventListener('keydown', e => {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-          e.preventDefault();
-          if (tab === loginTab) {
-            switchToRegisterView();
-            registerTab.focus();
-          } else {
-            switchToLoginView();
-            loginTab.focus();
-          }
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+        <li>
+          <a href="#">Om os</a>
+          <div class="dropdown">
+            <a href="team.html">Teamet</a>
