@@ -1,11 +1,10 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FormueGuiden</title>
   <style>
-    /* Samme CSS som tidligere, bare logo 20% mindre */
     * {
       margin: 0;
       padding: 0;
@@ -31,7 +30,7 @@
       align-items: center;
     }
     .logo-img {
-      height: 88px; /* 20% mindre end 110px */
+      height: 88px;
       width: auto;
       display: block;
     }
@@ -103,7 +102,6 @@
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      font-family: 'Segoe UI', sans-serif;
       color: #153c5d;
     }
     section.fremskriver h2 {
@@ -176,7 +174,13 @@
           <div class="dropdown">
             <a href="begynderguide.html">Begynderguide</a>
             <a href="formuehistorier.html">Formuehistorier</a>
-            <a href="portefolje.html">Vores Portefølje</a>
+            <a href="valg-af-platform.html">Valg af platform</a>
+          </div>
+        </li>
+        <li>
+          <a href="#">Eksklusivt</a>
+          <div class="dropdown">
+            <a href="portefolje.html">Porteføljen</a>
           </div>
         </li>
         <li>
@@ -196,7 +200,7 @@
     <h1>Få indblik i din vej til formuevækst</h1>
     <p>Opnå kontrol, overblik og bliv komfortabel med dine investeringer</p>
   </section>
-  
+
   <section class="fremskriver">
     <h2>Fremskriv din formue</h2>
 
@@ -278,9 +282,7 @@
           }
         },
         plugins: {
-          legend: {
-            display: false
-          },
+          legend: { display: false },
           tooltip: {
             callbacks: {
               label: ctx => ctx.parsed.y.toLocaleString('da-DK') + ' kr'
@@ -301,8 +303,8 @@
       afkastVal.textContent = afkast.toFixed(1);
       aarVal.textContent = aar;
 
-      const r = afkast / 100 / 12; // månedlig rente
-      const n = aar * 12; // antal måneder
+      const r = afkast / 100 / 12;
+      const n = aar * 12;
 
       let saldo = kapital;
       let saldoArray = [saldo];
