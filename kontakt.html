@@ -1,1 +1,115 @@
 <!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sammenligning af investeringsplatforme</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+      color: #222;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 45%;
+      min-width: 280px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .card img {
+      max-width: 120px;
+      display: block;
+      margin-bottom: 15px;
+    }
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.4em;
+      color: #00539C;
+    }
+    ul {
+      padding-left: 20px;
+      margin-top: 0;
+    }
+    @media (max-width: 700px) {
+      .card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Sammenligning af investeringsplatforme</h1>
+  
+  <div class="card-container">
+    <!-- Saxo Bank -->
+    <div class="card">
+      <img src="saxo-bank.png" alt="Saxo Bank logo" />
+      <h2>Saxo Bank</h2>
+      <ul>
+        <li>Kurtage fra 0,03%</li>
+        <li>Valutaveksling 0,25%</li>
+        <li>Månedsopsparing</li>
+      </ul>
+    </div>
+
+    <!-- Nordnet -->
+    <div class="card">
+      <img src="nordnet.png" alt="Nordnet logo" />
+      <h2>Nordnet</h2>
+      <ul>
+        <li>Valutaveksling 0,25%</li>
+        <li>Månedsopsparing</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-container" style="margin-top: 30px;">
+    <!-- Endavu -->
+    <div class="card">
+      <img src="endavu.png" alt="Endavu logo" />
+      <h2>Endavu</h2>
+      <ul>
+        <li>Månedsopsparing</li>
+      </ul>
+    </div>
+
+    <!-- Pluto -->
+    <div class="card">
+      <img src="pluto.png" alt="Pluto logo" />
+      <h2>Pluto</h2>
+      <ul>
+        <li>Valutaveksling 0,15%</li>
+        <li>Månedsopsparing</li>
+        <li>Fraktioner af aktier</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-container" style="margin-top: 30px;">
+    <!-- Etoro -->
+    <div class="card" style="width: 45%;">
+      <img src="etoro.png" alt="Etoro logo" />
+      <h2>Etoro</h2>
+      <ul>
+        <li>Copytrading</li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>
