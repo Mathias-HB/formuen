@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FormueGuiden</title>
+  <title>FormueGuiden - Portefølje</title>
   <style>
+    /* Kopiér dit eksisterende header/footer/menu CSS fra forsiden */
     * {
       margin: 0;
       padding: 0;
@@ -14,7 +15,6 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #f7f9fc;
       color: #333;
-      line-height: 1.5;
     }
     header {
       background-color: #0b1e3d;
@@ -81,92 +81,134 @@
     ul.menu > li:hover .dropdown {
       display: flex;
     }
-    .hero {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: linear-gradient(to right, #0b1e3d, #153c5d);
-      color: white;
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: auto;
-    }
-
+    /* --- Portefølje side styling --- */
     main {
-      max-width: 960px;
+      max-width: 1100px;
       margin: 2rem auto 4rem;
-      padding: 0 1rem;
-    }
-
-    /* Portefølje graf */
-    section.portfolio-overview {
       background: white;
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      margin-bottom: 3rem;
       color: #153c5d;
     }
-    section.portfolio-overview h2 {
+    h1 {
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       color: #0b1e3d;
     }
     #portfolioChart {
       max-width: 100%;
-      height: 350px;
+      height: 300px;
+      margin-bottom: 2rem;
     }
-
-    /* Professionelle aktievalg */
-    section.pro-choices {
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      color: #153c5d;
-    }
-    section.pro-choices h2 {
-      text-align: center;
+    .pro-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
       margin-bottom: 1.5rem;
+      background: #f9faff;
+      box-shadow: 0 2px 6px rgba(11,30,61,0.1);
+    }
+    .pro-name {
+      font-weight: 700;
+      font-size: 1.25rem;
       color: #0b1e3d;
+      margin-bottom: 1rem;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
+    .stocks-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 1rem;
     }
-    thead {
-      background-color: #0b1e3d;
-      color: white;
-    }
-    th, td {
-      padding: 0.75rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-    tbody tr:hover {
-      background-color: #e6f0fa;
+    .stocks-list li {
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
     .stock-name {
       font-weight: 600;
-      color: #0b1e3d;
+      color: #153c5d;
+    }
+    .stock-details {
+      color: #555;
+      font-size: 0.9rem;
+      margin-left: 1rem;
+      flex: 1 1 auto;
+      text-align: right;
     }
     .currency-usd {
       color: #0077cc;
-      font-weight: 600;
+      font-weight: 700;
     }
     .currency-dkk {
-      color: #0b5e0b;
-      font-weight: 600;
+      color: #0b1e3d;
+      font-weight: 700;
     }
     .afkast {
+      color: #009933;
+      font-weight: 600;
+    }
+    .analysis-btn {
+      background-color: #0b1e3d;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      margin-top: 0.5rem;
+    }
+    .analysis-btn:hover {
+      background-color: #005f99;
+    }
+    /* Modal */
+    #modalOverlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      z-index: 2000;
+    }
+    #modalOverlay.active {
+      display: flex;
+    }
+    #modalContent {
+      background: white;
+      padding: 1.5rem 2rem;
+      border-radius: 10px;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      color: #0b1e3d;
+      position: relative;
+    }
+    #modalTitle {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
       font-weight: 700;
-      color: #cc6600;
+    }
+    #modalText {
+      font-size: 1rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+    #modalCloseBtn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: #0b1e3d;
     }
     @media(max-width: 768px) {
       ul.menu {
@@ -182,220 +224,212 @@
       .dropdown a {
         padding-left: 1rem;
       }
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-      thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-      }
-      tr {
-        margin-bottom: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        padding: 1rem;
-      }
-      td {
-        border: none;
-        position: relative;
-        padding-left: 50%;
-        white-space: normal;
+      .stock-details {
         text-align: left;
+        margin-left: 0;
+        margin-top: 0.25rem;
+        flex-basis: 100%;
       }
-      td:before {
-        position: absolute;
-        top: 0.75rem;
-        left: 1rem;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        font-weight: 700;
-        color: #0b1e3d;
-      }
-      td:nth-of-type(1):before { content: "Professionel"; }
-      td:nth-of-type(2):before { content: "Aktie 1"; }
-      td:nth-of-type(3):before { content: "Pris 1"; }
-      td:nth-of-type(4):before { content: "Afkast 1"; }
-      td:nth-of-type(5):before { content: "Aktie 2"; }
-      td:nth-of-type(6):before { content: "Pris 2"; }
-      td:nth-of-type(7):before { content: "Afkast 2"; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">
-      <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
-    </div>
-    <nav>
-      <ul class="menu">
-        <li>
-          <a href="#">Blog</a>
-          <div class="dropdown">
-            <a href="begynderguide.html">Begynderguide</a>
-            <a href="formuehistorier.html">Formuehistorier</a>
-            <a href="valg-af-platform.html">Valg af platform</a>
-          </div>
-        </li>
-        <li>
-          <a href="#">Eksklusivt</a>
-          <div class="dropdown">
-            <a href="portefølje.html">Porteføljen</a>
-          </div>
-        </li>
-        <li>
-          <a href="#">Om os</a>
-          <div class="dropdown">
-            <a href="team.html">Teamet</a>
-            <a href="vision.html">Vores vision</a>
-          </div>
-        </li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="login.html">Log ind / Opret</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <div class="logo">
+    <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
+  </div>
+  <nav>
+    <ul class="menu">
+      <li>
+        <a href="#">Blog</a>
+        <div class="dropdown">
+          <a href="begynderguide.html">Begynderguide</a>
+          <a href="formuehistorier.html">Formuehistorier</a>
+          <a href="valg-af-platform.html">Valg af platform</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Eksklusivt</a>
+        <div class="dropdown">
+          <a href="portefølje.html">Porteføljen</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Om os</a>
+        <div class="dropdown">
+          <a href="team.html">Teamet</a>
+          <a href="vision.html">Vores vision</a>
+        </div>
+      </li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="login.html">Log ind / Opret</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <section class="hero">
-    <h1>Få indblik i din vej til formuevækst</h1>
-    <p>Opnå kontrol, overblik og bliv komfortabel med dine investeringer</p>
-  </section>
+<main>
+  <h1>Professionelle Aktiestrategier</h1>
+  <canvas id="portfolioChart" aria-label="Portefølje værdi over tid" role="img"></canvas>
+  <div id="proContainer"></div>
+</main>
 
-  <main>
-    <section class="portfolio-overview" aria-label="Samlet portefølje fremskrivning">
-      <h2>Samlet portefølje: Startkapital 1.000.000 kr</h2>
-      <canvas id="portfolioChart" aria-describedby="portfolioDescription"></canvas>
-      <p id="portfolioDescription" style="text-align:center; margin-top:1rem; color:#0b1e3d; font-weight:600;">
-        Grafen viser en fremskrivning af porteføljen med gennemsnitligt årligt afkast på 8% over 20 år.
-      </p>
-    </section>
+<footer>
+  &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+</footer>
 
-    <section class="pro-choices" aria-label="Professionelle aktievalg">
-      <h2>Professionelle valg: To aktier pr. investor</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Professionel</th>
-            <th>Aktie 1</th>
-            <th>Pris 1</th>
-            <th>Årligt afkast 1</th>
-            <th>Aktie 2</th>
-            <th>Pris 2</th>
-            <th>Årligt afkast 2</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Maria Jensen</td>
-            <td class="stock-name">Novo Nordisk</td>
-            <td class="currency-dkk">870 kr</td>
-            <td class="afkast">9.0%</td>
-            <td class="stock-name">Apple</td>
-            <td class="currency-usd">$170</td>
-            <td class="afkast">12.0%</td>
-          </tr>
-          <tr>
-            <td>Lars Pedersen</td>
-            <td class="stock-name">Ørsted</td>
-            <td class="currency-dkk">950 kr</td>
-            <td class="afkast">7.5%</td>
-            <td class="stock-name">Microsoft</td>
-            <td class="currency-usd">$310</td>
-            <td class="afkast">11.5%</td>
-          </tr>
-          <tr>
-            <td>Anne Sørensen</td>
-            <td class="stock-name">Vestas Wind</td>
-            <td class="currency-dkk">370 kr</td>
-            <td class="afkast">8.2%</td>
-            <td class="stock-name">Amazon</td>
-            <td class="currency-usd">$125</td>
-            <td class="afkast">14.0%</td>
-          </tr>
-          <tr>
-            <td>Peter Nielsen</td>
-            <td class="stock-name">Coloplast</td>
-            <td class="currency-dkk">600 kr</td>
-            <td class="afkast">6.8%</td>
-            <td class="stock-name">Google (Alphabet)</td>
-            <td class="currency-usd">$135</td>
-            <td class="afkast">13.0%</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Dummy data for pros and stocks
+  const pros = [
+    {
+      name: "Peter Jensen",
+      analysis: "Peter fokuserer på stabile vækstaktier med stærk historik.",
+      stocks: [
+        { name: "Apple", price: 145, afkast: 0.12, currency: "USD" },
+        { name: "Novo Nordisk", price: 700, afkast: 0.09, currency: "DKK" }
+      ]
+    },
+    {
+      name: "Maria Hansen",
+      analysis: "Maria satser på teknologisektoren med stor risiko men højt afkast.",
+      stocks: [
+        { name: "Tesla", price: 720, afkast: 0.18, currency: "USD" },
+        { name: "Vestas", price: 230, afkast: 0.10, currency: "DKK" }
+      ]
+    },
+    // Tilføj flere professionelle som ønsket
+  ];
 
-  <footer>
-    &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
-  </footer>
+  const startInvestPerStock = 50000; // kr pr aktie
+  const totalYears = 20;
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const ctxPortfolio = document.getElementById('portfolioChart').getContext('2d');
+  const ctx = document.getElementById('portfolioChart').getContext('2d');
 
-    // Simpel fremskrivning for samlet portefølje start 1.000.000 kr, 8% årligt afkast, 20 år
-    const startCapital = 1000000;
-    const years = 20;
-    const annualReturn = 0.08;
+  // Beregn samlet værdi pr år (for linjegraf)
+  let labels = Array.from({length: totalYears+1}, (_, i) => i);
+  let portfolioValues = [];
 
-    let labels = [];
-    let data = [];
+  for(let year = 0; year <= totalYears; year++) {
+    let totalValue = 0;
+    pros.forEach(pro => {
+      pro.stocks.forEach(stock => {
+        const val = startInvestPerStock * Math.pow(1 + stock.afkast, year);
+        totalValue += val;
+      });
+    });
+    portfolioValues.push(Math.round(totalValue));
+  }
 
-    for (let year = 0; year <= years; year++) {
-      labels.push(year);
-      // Fremtidig værdi = startCapital * (1 + r)^t
-      data.push(Math.round(startCapital * Math.pow(1 + annualReturn, year)));
-    }
-
-    const portfolioChart = new Chart(ctxPortfolio, {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Porteføljens værdi (DKK)',
-          data: data,
-          borderColor: '#0b1e3d',
-          backgroundColor: 'rgba(11, 30, 61, 0.25)',
-          fill: true,
-          tension: 0.3,
-          pointRadius: 4,
-          pointHoverRadius: 7,
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: false,
-            ticks: {
-              callback: val => val.toLocaleString('da-DK') + ' kr',
-              precision: 0
-            }
-          },
-          x: {
-            title: { display: true, text: 'År' },
-            ticks: { precision: 0 }
+  let portfolioChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Porteføljens værdi (DKK)',
+        data: portfolioValues,
+        borderColor: '#0b1e3d',
+        backgroundColor: 'rgba(11, 30, 61, 0.2)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 3,
+        pointHoverRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: v => v.toLocaleString('da-DK') + ' kr',
+            precision: 0
           }
         },
-        plugins: {
-          legend: {
-            display: true,
-            labels: {
-              color: '#0b1e3d',
-              font: { weight: '600' }
-            }
-          },
-          tooltip: {
-            callbacks: {
-              label: ctx => ctx.parsed.y.toLocaleString('da-DK') + ' kr'
-            }
+        x: {
+          title: { display: true, text: 'År' },
+          ticks: { precision: 0 }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.parsed.y.toLocaleString('da-DK') + ' kr'
           }
         }
       }
-    });
-  </script>
+    }
+  });
+
+  const proContainer = document.getElementById('proContainer');
+  pros.forEach((pro, i) => {
+    const card = document.createElement('div');
+    card.className = 'pro-card';
+    card.innerHTML = `
+      <h3 class="pro-name">${pro.name}</h3>
+      <ul class="stocks-list">
+        ${pro.stocks.map(stock => {
+          const finalValue = startInvestPerStock * Math.pow(1 + stock.afkast, totalYears);
+          return `
+            <li>
+              <span class="stock-name">${stock.name}</span>
+              <span class="stock-details">
+                Pris i dag: <span class="currency-${stock.currency === 'USD' ? 'usd' : 'dkk'}">${stock.currency === 'USD' ? '$' + stock.price : stock.price + ' kr'}</span> | 
+                Afkast pr. år: <span class="afkast">${(stock.afkast * 100).toFixed(1)}%</span> | 
+                Værdi efter ${totalYears} år: <strong>${finalValue.toLocaleString('da-DK')} kr</strong>
+              </span>
+            </li>
+          `;
+        }).join('')}
+      </ul>
+      <button class="analysis-btn" data-pro-index="${i}">Læs analyse</button>
+    `;
+    proContainer.appendChild(card);
+  });
+
+  // Modal funktionalitet
+  const modal = document.createElement('div');
+  modal.id = 'modalOverlay';
+  modal.innerHTML = `
+    <div id="modalContent" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+      <button id="modalCloseBtn" aria-label="Luk modal">&times;</button>
+      <h2 id="modalTitle"></h2>
+      <div id="modalText"></div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  const modalTitle = document.getElementById('modalTitle');
+  const modalText = document.getElementById('modalText');
+  const closeBtn = document.getElementById('modalCloseBtn');
+
+  proContainer.addEventListener('click', e => {
+    if(e.target.classList.contains('analysis-btn')){
+      const proIndex = e.target.getAttribute('data-pro-index');
+      modalTitle.textContent = `Analyse af ${pros[proIndex].name}`;
+      modalText.textContent = pros[proIndex].analysis;
+      modal.classList.add('active');
+      modal.querySelector('#modalContent').focus();
+    }
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  modal.addEventListener('click', e => {
+    if(e.target === modal){
+      modal.classList.remove('active');
+    }
+  });
+
+  window.addEventListener('keydown', e => {
+    if(e.key === "Escape" && modal.classList.contains('active')){
+      modal.classList.remove('active');
+    }
+  });
+</script>
+
 </body>
 </html>
