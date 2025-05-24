@@ -3,433 +3,169 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FormueGuiden - Portefølje</title>
+  <title>Porteføljen - Eksklusivt</title>
   <style>
-    /* Kopiér dit eksisterende header/footer/menu CSS fra forsiden */
-    * {
+    body {
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f7f9fc;
-      color: #333;
-    }
-    header {
-      background-color: #0b1e3d;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    header, footer {
+      background-color: #333;
       color: white;
-      position: relative;
-      z-index: 1000;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-    .logo-img {
-      height: 88px;
-      width: auto;
-      display: block;
-    }
-    nav {
-      position: relative;
-    }
-    ul.menu {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-    ul.menu > li {
-      position: relative;
-    }
-    ul.menu > li > a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 0.5rem;
-      display: block;
-      transition: color 0.2s ease;
-    }
-    ul.menu > li:hover > a {
-      color: #00ccff;
-    }
-    .dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: white;
-      padding: 1rem;
-      border-radius: 6px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      display: none;
-      flex-direction: column;
-      min-width: 200px;
-      z-index: 999;
-    }
-    .dropdown a {
-      color: #0b1e3d;
-      text-decoration: none;
-      padding: 0.4rem 0;
-    }
-    .dropdown a:hover {
-      color: #0077cc;
-    }
-    ul.menu > li:hover .dropdown {
-      display: flex;
-    }
-    /* --- Portefølje side styling --- */
-    main {
-      max-width: 1100px;
-      margin: 2rem auto 4rem;
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      color: #153c5d;
-    }
-    h1 {
       text-align: center;
-      margin-bottom: 2rem;
-      color: #0b1e3d;
+      padding: 1rem;
+    }
+    .hero {
+      background-color: #f4f4f4;
+      padding: 2rem;
+      text-align: center;
     }
     #portfolioChart {
-      max-width: 100%;
-      height: 300px;
-      margin-bottom: 2rem;
+      max-width: 800px;
+      margin: 2rem auto;
     }
-    .pro-card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 1rem 1.5rem;
-      margin-bottom: 1.5rem;
-      background: #f9faff;
-      box-shadow: 0 2px 6px rgba(11,30,61,0.1);
-    }
-    .pro-name {
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: #0b1e3d;
-      margin-bottom: 1rem;
-    }
-    .stocks-list {
-      list-style: none;
-      padding-left: 0;
-      margin-bottom: 1rem;
-    }
-    .stocks-list li {
-      margin-bottom: 0.6rem;
-      font-size: 1rem;
+    #profsContainer {
       display: flex;
-      justify-content: space-between;
       flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem;
     }
-    .stock-name {
-      font-weight: 600;
-      color: #153c5d;
+    .prof-card {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1rem;
+      width: 300px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .stock-details {
-      color: #555;
-      font-size: 0.9rem;
-      margin-left: 1rem;
-      flex: 1 1 auto;
-      text-align: right;
+    .prof-card h4 {
+      margin-top: 0;
     }
-    .currency-usd {
-      color: #0077cc;
-      font-weight: 700;
-    }
-    .currency-dkk {
-      color: #0b1e3d;
-      font-weight: 700;
-    }
-    .afkast {
-      color: #009933;
-      font-weight: 600;
-    }
-    .analysis-btn {
-      background-color: #0b1e3d;
-      border: none;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-      margin-top: 0.5rem;
-    }
-    .analysis-btn:hover {
-      background-color: #005f99;
-    }
-    /* Modal */
-    #modalOverlay {
+    .modal-bg {
+      display: none;
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.5);
-      display: none;
       justify-content: center;
       align-items: center;
-      padding: 1rem;
-      z-index: 2000;
+      z-index: 999;
     }
-    #modalOverlay.active {
-      display: flex;
-    }
-    #modalContent {
+    .modal {
       background: white;
-      padding: 1.5rem 2rem;
-      border-radius: 10px;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 80%;
       max-width: 600px;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      color: #0b1e3d;
       position: relative;
     }
-    #modalTitle {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-    #modalText {
-      font-size: 1rem;
-      line-height: 1.5;
-      white-space: pre-wrap;
-    }
-    #modalCloseBtn {
+    .modal-close {
       position: absolute;
-      top: 10px;
-      right: 15px;
+      top: 1rem;
+      right: 1rem;
       background: none;
       border: none;
       font-size: 1.5rem;
-      font-weight: 700;
-      cursor: pointer;
-      color: #0b1e3d;
-    }
-    @media(max-width: 768px) {
-      ul.menu {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .dropdown {
-        position: static;
-        box-shadow: none;
-        background: none;
-        padding: 0;
-      }
-      .dropdown a {
-        padding-left: 1rem;
-      }
-      .stock-details {
-        text-align: left;
-        margin-left: 0;
-        margin-top: 0.25rem;
-        flex-basis: 100%;
-      }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">
-    <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
-  </div>
-  <nav>
-    <ul class="menu">
-      <li>
-        <a href="#">Blog</a>
-        <div class="dropdown">
-          <a href="begynderguide.html">Begynderguide</a>
-          <a href="formuehistorier.html">Formuehistorier</a>
-          <a href="valg-af-platform.html">Valg af platform</a>
-        </div>
-      </li>
-      <li>
-        <a href="#">Eksklusivt</a>
-        <div class="dropdown">
-          <a href="portefølje.html">Porteføljen</a>
-        </div>
-      </li>
-      <li>
-        <a href="#">Om os</a>
-        <div class="dropdown">
-          <a href="team.html">Teamet</a>
-          <a href="vision.html">Vores vision</a>
-        </div>
-      </li>
-      <li><a href="kontakt.html">Kontakt</a></li>
-      <li><a href="login.html">Log ind / Opret</a></li>
-    </ul>
-  </nav>
+  <h2>FormueGuiden Eksklusiv</h2>
 </header>
 
+<section class="hero">
+  <h1>Eksklusiv portefølje</h1>
+  <p>Se 10 professionelle investorers valg og se udviklingen af den samlede portefølje</p>
+</section>
+
 <main>
-  <h1>Professionelle Aktiestrategier</h1>
-  <canvas id="portfolioChart" aria-label="Portefølje værdi over tid" role="img"></canvas>
-  <div id="proContainer"></div>
+  <canvas id="portfolioChart" height="100"></canvas>
+
+  <div id="profsContainer">
+    <!-- Professionelle kort genereres her -->
+  </div>
 </main>
 
 <footer>
   &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
 </footer>
 
+<!-- Modal til analyse -->
+<div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Luk analyse">×</button>
+    <h3 id="modalTitle"></h3>
+    <p id="modalContent"></p>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // Dummy data for pros and stocks
-  const pros = [
+  const professionals = [
     {
-      name: "Peter Jensen",
-      analysis: "Peter fokuserer på stabile vækstaktier med stærk historik.",
-      stocks: [
-        { name: "Apple", price: 145, afkast: 0.12, currency: "USD" },
-        { name: "Novo Nordisk", price: 700, afkast: 0.09, currency: "DKK" }
-      ]
+      navn: "Mikkel Sørvig",
+      aktier: [
+        { navn: "Novo Nordisk", ticker: "NOVO-B", sektor: "C25", startPris: 1100, currentPris: 1230, valuta: "DKK", afkast: 11.8 },
+        { navn: "Vestas", ticker: "VWS", sektor: "C25", startPris: 600, currentPris: 660, valuta: "DKK", afkast: 10.0 }
+      ],
+      analyse: "Jeg har valgt Novo Nordisk og Vestas, fordi de begge repræsenterer langsigtede strukturelle trends. Novo Nordisk er førende inden for diabetesbehandling, og deres pipeline ser lovende ud. Vestas er en nøglespiller i den grønne omstilling med en stærk global tilstedeværelse. Begge virksomheder har solide fundamentale nøgletal og stærke ledelsesteams, hvilket gør dem til attraktive langsigtede investeringer."
     },
     {
-      name: "Maria Hansen",
-      analysis: "Maria satser på teknologisektoren med stor risiko men højt afkast.",
-      stocks: [
-        { name: "Tesla", price: 720, afkast: 0.18, currency: "USD" },
-        { name: "Vestas", price: 230, afkast: 0.10, currency: "DKK" }
-      ]
+      navn: "Julie Thorsen",
+      aktier: [
+        { navn: "Genmab", ticker: "GMAB", sektor: "C25", startPris: 1700, currentPris: 1870, valuta: "DKK", afkast: 10.0 },
+        { navn: "Jyske Bank", ticker: "JYSK", sektor: "C25", startPris: 200, currentPris: 230, valuta: "DKK", afkast: 15.0 }
+      ],
+      analyse: "Mit porteføljevalg kombinerer innovativ biotek og traditionel bankforretning. Genmab har en stærk pipeline og partnerskaber, der kan føre til betydelig vækst. Jyske Bank har vist robusthed i en udfordrende finansiel sektor og har en solid kapitalstruktur. Kombinationen af høj vækst og stabilitet giver en balanceret portefølje."
     },
-    // Tilføj flere professionelle som ønsket
-  ];
-
-  const startInvestPerStock = 50000; // kr pr aktie
-  const totalYears = 20;
-
-  const ctx = document.getElementById('portfolioChart').getContext('2d');
-
-  // Beregn samlet værdi pr år (for linjegraf)
-  let labels = Array.from({length: totalYears+1}, (_, i) => i);
-  let portfolioValues = [];
-
-  for(let year = 0; year <= totalYears; year++) {
-    let totalValue = 0;
-    pros.forEach(pro => {
-      pro.stocks.forEach(stock => {
-        const val = startInvestPerStock * Math.pow(1 + stock.afkast, year);
-        totalValue += val;
-      });
-    });
-    portfolioValues.push(Math.round(totalValue));
-  }
-
-  let portfolioChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Porteføljens værdi (DKK)',
-        data: portfolioValues,
-        borderColor: '#0b1e3d',
-        backgroundColor: 'rgba(11, 30, 61, 0.2)',
-        fill: true,
-        tension: 0.3,
-        pointRadius: 3,
-        pointHoverRadius: 6,
-      }]
+    {
+      navn: "Nikolaj Birk",
+      aktier: [
+        { navn: "Pandora", ticker: "PNDORA", sektor: "C25", startPris: 700, currentPris: 770, valuta: "DKK", afkast: 10.0 },
+        { navn: "Rockwool", ticker: "ROCK", sektor: "C25", startPris: 900, currentPris: 990, valuta: "DKK", afkast: 10.0 }
+      ],
+      analyse: "Jeg har valgt Pandora for brandværdi og Rockwool pga. den grønne bølge i byggeriet. Pandora har formået at genopfinde sig selv og tiltrække nye kundesegmenter, mens Rockwool drager fordel af øget fokus på energieffektivitet og bæredygtigt byggeri. Begge selskaber har stærke markedspositioner og potentiale for vækst."
     },
-    options: {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            callback: v => v.toLocaleString('da-DK') + ' kr',
-            precision: 0
-          }
-        },
-        x: {
-          title: { display: true, text: 'År' },
-          ticks: { precision: 0 }
-        }
-      },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: ctx => ctx.parsed.y.toLocaleString('da-DK') + ' kr'
-          }
-        }
-      }
-    }
-  });
-
-  const proContainer = document.getElementById('proContainer');
-  pros.forEach((pro, i) => {
-    const card = document.createElement('div');
-    card.className = 'pro-card';
-    card.innerHTML = `
-      <h3 class="pro-name">${pro.name}</h3>
-      <ul class="stocks-list">
-        ${pro.stocks.map(stock => {
-          const finalValue = startInvestPerStock * Math.pow(1 + stock.afkast, totalYears);
-          return `
-            <li>
-              <span class="stock-name">${stock.name}</span>
-              <span class="stock-details">
-                Pris i dag: <span class="currency-${stock.currency === 'USD' ? 'usd' : 'dkk'}">${stock.currency === 'USD' ? '$' + stock.price : stock.price + ' kr'}</span> | 
-                Afkast pr. år: <span class="afkast">${(stock.afkast * 100).toFixed(1)}%</span> | 
-                Værdi efter ${totalYears} år: <strong>${finalValue.toLocaleString('da-DK')} kr</strong>
-              </span>
-            </li>
-          `;
-        }).join('')}
-      </ul>
-      <button class="analysis-btn" data-pro-index="${i}">Læs analyse</button>
-    `;
-    proContainer.appendChild(card);
-  });
-
-  // Modal funktionalitet
-  const modal = document.createElement('div');
-  modal.id = 'modalOverlay';
-  modal.innerHTML = `
-    <div id="modalContent" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
-      <button id="modalCloseBtn" aria-label="Luk modal">&times;</button>
-      <h2 id="modalTitle"></h2>
-      <div id="modalText"></div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-
-  const modalTitle = document.getElementById('modalTitle');
-  const modalText = document.getElementById('modalText');
-  const closeBtn = document.getElementById('modalCloseBtn');
-
-  proContainer.addEventListener('click', e => {
-    if(e.target.classList.contains('analysis-btn')){
-      const proIndex = e.target.getAttribute('data-pro-index');
-      modalTitle.textContent = `Analyse af ${pros[proIndex].name}`;
-      modalText.textContent = pros[proIndex].analysis;
-      modal.classList.add('active');
-      modal.querySelector('#modalContent').focus();
-    }
-  });
-
-  closeBtn.addEventListener('click', () => {
-    modal.classList.remove('active');
-  });
-
-  modal.addEventListener('click', e => {
-    if(e.target === modal){
-      modal.classList.remove('active');
-    }
-  });
-
-  window.addEventListener('keydown', e => {
-    if(e.key === "Escape" && modal.classList.contains('active')){
-      modal.classList.remove('active');
-    }
-  });
-</script>
-
-</body>
-</html>
+    {
+      navn: "Sanne Krogh",
+      aktier: [
+        { navn: "Chr. Hansen", ticker: "CHR", sektor: "C25", startPris: 400, currentPris: 440, valuta: "DKK", afkast: 10.0 },
+        { navn: "Coloplast", ticker: "COLO", sektor: "C25", startPris: 800, currentPris: 840, valuta: "DKK", afkast: 5.0 }
+      ],
+      analyse: "Biotek og sundhedspleje er stabile og bæredygtige investeringer på lang sigt. Chr. Hansen har en stærk position inden for naturlige ingredienser, og Coloplast er førende inden for medicinsk udstyr. Begge virksomheder har vist evne til at levere stabil vækst og har stærke konkurrencemæssige fordele."
+    },
+    {
+      navn: "Rasmus Høgh",
+      aktier: [
+        { navn: "DSV", ticker: "DSV", sektor: "C25", startPris: 1400, currentPris: 1500, valuta: "DKK", afkast: 7.1 },
+        { navn: "Ørsted", ticker: "ORSTED", sektor: "C25", startPris: 850, currentPris: 930, valuta: "DKK", afkast: 9.4 }
+      ],
+      analyse: "Transport og grøn energi er nøgleområder i fremtidens økonomi. DSV har en stærk global tilstedeværelse og effektive logistiske løsninger, mens Ørsted er en pioner inden for vedvarende energi. Investering i disse sektorer giver eksponering mod langsigtede væksttrends."
+    },
+    {
+      navn: "Eva Lindholm",
+      aktier: [
+        { navn: "Tryg", ticker: "TRYG", sektor: "C25", startPris: 150, currentPris: 160, valuta: "DKK", afkast: 6.7 },
+        { navn: "Topdanmark", ticker: "TOP", sektor: "C25", startPris: 300, currentPris: 315, valuta: "DKK", afkast: 5.0 }
+      ],
+      analyse: "Forsikring er en undervurderet sektor med solidt afkast og lav volatilitet. Tryg og Topdanmark har stærke markedspositioner og stabile indtægtsstrømme. Deres evne til at tilpasse sig ændringer i risikobilledet gør dem til attraktive investeringer i en usikker økonomisk tid."
+    },
+    {
+      navn: "Daniel Holm",
+      aktier: [
+        { navn: "Carlsberg", ticker: "CARL-B", sektor: "C25", startPris: 980, currentPris: 1020, valuta: "DKK", afkast: 4.1 },
+        { navn: "Ambu", ticker: "AMBU-B", sektor: "C25", startPris: 140, currentPris: 150, valuta: "DKK", afkast: 7.1 }
+      ],
+      analyse: "Konsumentvarer og sundhedsteknologi skaber god balance i min portefølje. Carlsberg har en stærk global tilstedeværelse og et bredt produktsortiment, mens Ambu er innovativ inden for medicinsk udstyr. Kombinationen af stabilitet og innovation giver en diversificeret portefølje."
+    },
+    {
+      navn: "Line Nørgaard",
+      aktier: [
+        { navn: "FLSmidth", ticker: "FLS", sektor: "C25", startPris: 280, currentPris: 300, valuta: "DKK", afkast: 7.1 },
+        { navn: "Netcompany", ticker: "NETC", sektor: "C25", startPris: 400, currentPris: 420, valuta: "DKK", afkast: 5.0 }
+      ],
+      analyse
+::contentReference[oaicite:5]{index=5}
