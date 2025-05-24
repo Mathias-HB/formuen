@@ -1,4 +1,7 @@
 <?php
+require 'dbconfig.php';  // inkluder databaseforbindelsen
+
+// Resten af din kode følger...
 // --- DATABASE KONFIGURATION ---
 $dbHost = 'localhost';
 $dbName = 'formueguiden';
