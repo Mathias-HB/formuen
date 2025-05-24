@@ -1,1 +1,209 @@
 <!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teamet bag – FormueGuiden</title>
+  <style>
+    /* Genbrug af design fra forsiden */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+    }
+    header {
+      background-color: #0b1e3d;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo-img {
+      height: 88px;
+      width: auto;
+      display: block;
+      cursor: pointer;
+    }
+    nav ul.menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul.menu > li {
+      position: relative;
+    }
+    nav ul.menu > li > a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem;
+    }
+    nav ul.menu > li:hover > a {
+      color: #00ccff;
+    }
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+      z-index: 999;
+    }
+    .dropdown a {
+      color: #0b1e3d;
+      text-decoration: none;
+      padding: 0.4rem 0;
+    }
+    nav ul.menu > li:hover .dropdown {
+      display: flex;
+    }
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(to right, #0b1e3d, #153c5d);
+      color: white;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      color: #153c5d;
+      line-height: 1.6;
+    }
+    .visitkort {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border: 2px solid #e1e6ee;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background-color: #f1f4f9;
+    }
+    .visitkort img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #ccc;
+    }
+    .visitkort h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #0b1e3d;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" /></a>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li>
+          <a href="#">Blog</a>
+          <div class="dropdown">
+            <a href="begynderguide.html">Begynderguide</a>
+            <a href="formuehistorier.html">Formuehistorier</a>
+            <a href="portefolje.html">Vores Portefølje</a>
+          </div>
+        </li>
+        <li>
+          <a href="#">Om os</a>
+          <div class="dropdown">
+            <a href="team.html">Teamet</a>
+            <a href="vision.html">Vores vision</a>
+          </div>
+        </li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="login.html">Log ind</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>👥 Teamet bag FormueGuiden</h1>
+    <p>Vi er her for at hjælpe dig i gang</p>
+  </section>
+
+  <main>
+    <p>
+      FormueGuiden er skabt af et team, der brænder for at gøre investering tilgængeligt for alle.
+      Vi har selv mærket, hvordan det føles at stå på sidelinjen og ikke vide, hvor man skal starte.
+      Og vi ved, hvor stor en forskel det kan gøre at få den rigtige hjælp – på det rigtige tidspunkt.
+    </p>
+
+    <p>
+      Derfor har vi samlet vores viden, erfaring og passion for at bygge en platform, hvor du kan lære at investere i dit eget tempo –
+      uden at drukne i begreber og buzzwords.
+    </p>
+
+    <p>Vi tror på…</p>
+    <ul>
+      <li>💬 Klar og ærlig kommunikation</li>
+      <li>📚 Viden delt i øjenhøjde</li>
+      <li>🔍 Gennemsigtighed frem for salgstricks</li>
+      <li>🛠️ Praktiske værktøjer, der hjælper dig i gang – ikke bare mere information</li>
+    </ul>
+
+    <p>
+      <strong>Vi er ikke finansielle rådgivere – og det er pointen.</strong><br>
+      Vi er ikke her for at sælge dig den næste store aktie eller en dyr portefølje.
+      Vi er her for at gøre dig selvstændig og tryg i dine egne beslutninger.
+    </p>
+
+    <p>
+      Vores mål er at give dig værktøjerne, overblikket og roen til at tage kontrol over din økonomiske fremtid.
+    </p>
+
+    <div class="visitkort">
+      <img src="mathias.jpg" alt="Mathias" />
+      <div>
+        <h3>Mathias</h3>
+        <p>Stifter af FormueGuiden</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+  </footer>
+
+</body>
+</html>
