@@ -1,1 +1,104 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valg af platform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+      margin: 0;
+    }
+    header, footer {
+      background-color: #0b1e3d;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    h1 {
+      text-align: center;
+      color: #0b1e3d;
+      margin-bottom: 2rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h2 {
+      margin-bottom: 0.5rem;
+      color: #0b1e3d;
+    }
+    .card p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .card a {
+      display: inline-block;
+      background-color: #0b1e3d;
+      color: white;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+    .card a:hover {
+      background-color: #0077cc;
+    }
+  </style>
+</head>
+<body>
 
+  <header>
+    <h1>Vælg din investeringsplatform</h1>
+  </header>
+
+  <div class="container">
+    <div class="cards">
+      <div class="card">
+        <h2>Saxo Bank</h2>
+        <p>En avanceret platform med adgang til globale markeder. God til erfarne investorer.</p>
+        <a href="https://www.home.saxo/" target="_blank">Besøg Saxo</a>
+      </div>
+      <div class="card">
+        <h2>Nordnet</h2>
+        <p>Populær blandt danske privatinvestorer. Nem at bruge og mange gratis fonde.</p>
+        <a href="https://www.nordnet.dk/" target="_blank">Besøg Nordnet</a>
+      </div>
+      <div class="card">
+        <h2>Endavu</h2>
+        <p>Innovativ dansk platform med fokus på gennemsigtighed og brugeroplevelse.</p>
+        <a href="https://www.endavu.dk/" target="_blank">Besøg Endavu</a>
+      </div>
+      <div class="card">
+        <h2>Pluto Markets</h2>
+        <p>En nyere spiller med konkurrencedygtige priser og moderne interface.</p>
+        <a href="https://www.plutomarkets.com/" target="_blank">Besøg Pluto</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+  </footer>
+
+</body>
+</html>
