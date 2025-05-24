@@ -371,99 +371,101 @@
   });
 
   const proData = [
-    {
-      navn: "Ole Rasmussen",
-      aktier: [
-        { navn: "Novo Nordisk", procent: 25, afkast: "12%" },
-        { navn: "Microsoft", procent: 10, afkast: "5%" }
-      ],
-      analyse: `<div class="analysis-section">
-                  <h3>Strategi</h3>
-                  <p>Ole Invest fokuserer på stabile tech- og medicinalaktier med god langsigtet vækst.</p>
-                </div>
-                <div class="analysis-section">
-                  <h3>Risiko</h3>
-                  <p>Moderat risiko pga. koncentration i få sektorer.</p>
-                </div>`
-    },
-    {
-      navn: "Anna Kapital",
-      aktier: [
-        { navn: "Tesla", procent: 20, afkast: "15%" },
-        { navn: "Vestas", procent: 30, afkast: "10%" },
-      ],
-      analyse: `<div class="analysis-section">
-                  <h3>Strategi</h3>
-                  <p>Anna Kapital satser på grøn energi og disruptive teknologier.</p>
-                </div>
-                <div class="analysis-section">
-                  <h3>Risiko</h3>
-                  <p>Høj risiko pga. volatilitet i sektorerne.</p>
-                </div>`
-      {
-      navn: "Mikkel Sørvig",
-      aktier: [
-        { navn: "Novo Nordisk", ticker: "NOVO-B", sektor: "C25", startPris: 1100, currentPris: 1230, valuta: "DKK", afkast: 11.8 },
-        { navn: "Vestas", ticker: "VWS", sektor: "C25", startPris: 600, currentPris: 660, valuta: "DKK", afkast: 10.0 }
-      ],
-      analyse: "Jeg har valgt Novo Nordisk og Vestas, fordi de begge repræsenterer langsigtede strukturelle trends. Novo Nordisk er førende inden for diabetesbehandling, og deres pipeline ser lovende ud. Vestas er en nøglespiller i den grønne omstilling med en stærk global tilstedeværelse. Begge virksomheder har solide fundamentale nøgletal og stærke ledelsesteams, hvilket gør dem til attraktive langsigtede investeringer."
-    },
-    {
-      navn: "Julie Thorsen",
-      aktier: [
-        { navn: "Genmab", ticker: "GMAB", sektor: "C25", startPris: 1700, currentPris: 1870, valuta: "DKK", afkast: 10.0 },
-        { navn: "Jyske Bank", ticker: "JYSK", sektor: "C25", startPris: 200, currentPris: 230, valuta: "DKK", afkast: 15.0 }
-      ],
-      analyse: "Mit porteføljevalg kombinerer innovativ biotek og traditionel bankforretning. Genmab har en stærk pipeline og partnerskaber, der kan føre til betydelig vækst. Jyske Bank har vist robusthed i en udfordrende finansiel sektor og har en solid kapitalstruktur. Kombinationen af høj vækst og stabilitet giver en balanceret portefølje."
-    },
-    {
-      navn: "Nikolaj Birk",
-      aktier: [
-        { navn: "Pandora", ticker: "PNDORA", sektor: "C25", startPris: 700, currentPris: 770, valuta: "DKK", afkast: 10.0 },
-        { navn: "Rockwool", ticker: "ROCK", sektor: "C25", startPris: 900, currentPris: 990, valuta: "DKK", afkast: 10.0 }
-      ],
-      analyse: "Jeg har valgt Pandora for brandværdi og Rockwool pga. den grønne bølge i byggeriet. Pandora har formået at genopfinde sig selv og tiltrække nye kundesegmenter, mens Rockwool drager fordel af øget fokus på energieffektivitet og bæredygtigt byggeri. Begge selskaber har stærke markedspositioner og potentiale for vækst."
-    },
-    {
-      navn: "Sanne Krogh",
-      aktier: [
-        { navn: "Chr. Hansen", ticker: "CHR", sektor: "C25", startPris: 400, currentPris: 440, valuta: "DKK", afkast: 10.0 },
-        { navn: "Coloplast", ticker: "COLO", sektor: "C25", startPris: 800, currentPris: 840, valuta: "DKK", afkast: 5.0 }
-      ],
-      analyse: "Biotek og sundhedspleje er stabile og bæredygtige investeringer på lang sigt. Chr. Hansen har en stærk position inden for naturlige ingredienser, og Coloplast er førende inden for medicinsk udstyr. Begge virksomheder har vist evne til at levere stabil vækst og har stærke konkurrencemæssige fordele."
-    },
-    {
-      navn: "Rasmus Høgh",
-      aktier: [
-        { navn: "DSV", ticker: "DSV", sektor: "C25", startPris: 1400, currentPris: 1500, valuta: "DKK", afkast: 7.1 },
-        { navn: "Ørsted", ticker: "ORSTED", sektor: "C25", startPris: 850, currentPris: 930, valuta: "DKK", afkast: 9.4 }
-      ],
-      analyse: "Transport og grøn energi er nøgleområder i fremtidens økonomi. DSV har en stærk global tilstedeværelse og effektive logistiske løsninger, mens Ørsted er en pioner inden for vedvarende energi. Investering i disse sektorer giver eksponering mod langsigtede væksttrends."
-    },
-    {
-      navn: "Eva Lindholm",
-      aktier: [
-        { navn: "Tryg", ticker: "TRYG", sektor: "C25", startPris: 150, currentPris: 160, valuta: "DKK", afkast: 6.7 },
-        { navn: "Topdanmark", ticker: "TOP", sektor: "C25", startPris: 300, currentPris: 315, valuta: "DKK", afkast: 5.0 }
-      ],
-      analyse: "Forsikring er en undervurderet sektor med solidt afkast og lav volatilitet. Tryg og Topdanmark har stærke markedspositioner og stabile indtægtsstrømme. Deres evne til at tilpasse sig ændringer i risikobilledet gør dem til attraktive investeringer i en usikker økonomisk tid."
-    },
-    {
-      navn: "Daniel Holm",
-      aktier: [
-        { navn: "Carlsberg", ticker: "CARL-B", sektor: "C25", startPris: 980, currentPris: 1020, valuta: "DKK", afkast: 4.1 },
-        { navn: "Ambu", ticker: "AMBU-B", sektor: "C25", startPris: 140, currentPris: 150, valuta: "DKK", afkast: 7.1 }
-      ],
-      analyse: "Konsumentvarer og sundhedsteknologi skaber god balance i min portefølje. Carlsberg har en stærk global tilstedeværelse og et bredt produktsortiment, mens Ambu er innovativ inden for medicinsk udstyr. Kombinationen af stabilitet og innovation giver en diversificeret portefølje."
-    },
-    {
-      navn: "Line Nørgaard",
-      aktier: [
-        { navn: "FLSmidth", ticker: "FLS", sektor: "C25", startPris: 280, currentPris: 300, valuta: "DKK", afkast: 7.1 },
-        { navn: "Netcompany", ticker: "NETC", sektor: "C25", startPris: 400, currentPris: 420, valuta: "DKK", afkast: 5.0 }
-      ],
-    }
-  ];
+  {
+    navn: "Ole Rasmussen",
+    aktier: [
+      { navn: "Novo Nordisk", procent: 25, afkast: "12%" },
+      { navn: "Microsoft", procent: 10, afkast: "5%" }
+    ],
+    analyse: `<div class="analysis-section">
+                <h3>Strategi</h3>
+                <p>Ole Invest fokuserer på stabile tech- og medicinalaktier med god langsigtet vækst.</p>
+              </div>
+              <div class="analysis-section">
+                <h3>Risiko</h3>
+                <p>Moderat risiko pga. koncentration i få sektorer.</p>
+              </div>`
+  },
+  {
+    navn: "Anna Kapital",
+    aktier: [
+      { navn: "Tesla", procent: 20, afkast: "15%" },
+      { navn: "Vestas", procent: 30, afkast: "10%" }
+    ],
+    analyse: `<div class="analysis-section">
+                <h3>Strategi</h3>
+                <p>Anna Kapital satser på grøn energi og disruptive teknologier.</p>
+              </div>
+              <div class="analysis-section">
+                <h3>Risiko</h3>
+                <p>Høj risiko pga. volatilitet i sektorerne.</p>
+              </div>`
+  },
+  {
+    navn: "Mikkel Sørvig",
+    aktier: [
+      { navn: "Novo Nordisk", ticker: "NOVO-B", sektor: "C25", startPris: 1100, currentPris: 1230, valuta: "DKK", afkast: 11.8 },
+      { navn: "Vestas", ticker: "VWS", sektor: "C25", startPris: 600, currentPris: 660, valuta: "DKK", afkast: 10.0 }
+    ],
+    analyse: "Jeg har valgt Novo Nordisk og Vestas, fordi de begge repræsenterer langsigtede strukturelle trends. Novo Nordisk er førende inden for diabetesbehandling, og deres pipeline ser lovende ud. Vestas er en nøglespiller i den grønne omstilling med en stærk global tilstedeværelse. Begge virksomheder har solide fundamentale nøgletal og stærke ledelsesteams, hvilket gør dem til attraktive langsigtede investeringer."
+  },
+  {
+    navn: "Julie Thorsen",
+    aktier: [
+      { navn: "Genmab", ticker: "GMAB", sektor: "C25", startPris: 1700, currentPris: 1870, valuta: "DKK", afkast: 10.0 },
+      { navn: "Jyske Bank", ticker: "JYSK", sektor: "C25", startPris: 200, currentPris: 230, valuta: "DKK", afkast: 15.0 }
+    ],
+    analyse: "Mit porteføljevalg kombinerer innovativ biotek og traditionel bankforretning. Genmab har en stærk pipeline og partnerskaber, der kan føre til betydelig vækst. Jyske Bank har vist robusthed i en udfordrende finansiel sektor og har en solid kapitalstruktur. Kombinationen af høj vækst og stabilitet giver en balanceret portefølje."
+  },
+  {
+    navn: "Nikolaj Birk",
+    aktier: [
+      { navn: "Pandora", ticker: "PNDORA", sektor: "C25", startPris: 700, currentPris: 770, valuta: "DKK", afkast: 10.0 },
+      { navn: "Rockwool", ticker: "ROCK", sektor: "C25", startPris: 900, currentPris: 990, valuta: "DKK", afkast: 10.0 }
+    ],
+    analyse: "Jeg har valgt Pandora for brandværdi og Rockwool pga. den grønne bølge i byggeriet. Pandora har formået at genopfinde sig selv og tiltrække nye kundesegmenter, mens Rockwool drager fordel af øget fokus på energieffektivitet og bæredygtigt byggeri. Begge selskaber har stærke markedspositioner og potentiale for vækst."
+  },
+  {
+    navn: "Sanne Krogh",
+    aktier: [
+      { navn: "Chr. Hansen", ticker: "CHR", sektor: "C25", startPris: 400, currentPris: 440, valuta: "DKK", afkast: 10.0 },
+      { navn: "Coloplast", ticker: "COLO", sektor: "C25", startPris: 800, currentPris: 840, valuta: "DKK", afkast: 5.0 }
+    ],
+    analyse: "Biotek og sundhedspleje er stabile og bæredygtige investeringer på lang sigt. Chr. Hansen har en stærk position inden for naturlige ingredienser, og Coloplast er førende inden for medicinsk udstyr. Begge virksomheder har vist evne til at levere stabil vækst og har stærke konkurrencemæssige fordele."
+  },
+  {
+    navn: "Rasmus Høgh",
+    aktier: [
+      { navn: "DSV", ticker: "DSV", sektor: "C25", startPris: 1400, currentPris: 1500, valuta: "DKK", afkast: 7.1 },
+      { navn: "Ørsted", ticker: "ORSTED", sektor: "C25", startPris: 850, currentPris: 930, valuta: "DKK", afkast: 9.4 }
+    ],
+    analyse: "Transport og grøn energi er nøgleområder i fremtidens økonomi. DSV har en stærk global tilstedeværelse og effektive logistiske løsninger, mens Ørsted er en pioner inden for vedvarende energi. Investering i disse sektorer giver eksponering mod langsigtede væksttrends."
+  },
+  {
+    navn: "Eva Lindholm",
+    aktier: [
+      { navn: "Tryg", ticker: "TRYG", sektor: "C25", startPris: 150, currentPris: 160, valuta: "DKK", afkast: 6.7 },
+      { navn: "Topdanmark", ticker: "TOP", sektor: "C25", startPris: 300, currentPris: 315, valuta: "DKK", afkast: 5.0 }
+    ],
+    analyse: "Forsikring er en undervurderet sektor med solidt afkast og lav volatilitet. Tryg og Topdanmark har stærke markedspositioner og stabile indtægtsstrømme. Deres evne til at tilpasse sig ændringer i risikobilledet gør dem til attraktive investeringer i en usikker økonomisk tid."
+  },
+  {
+    navn: "Daniel Holm",
+    aktier: [
+      { navn: "Carlsberg", ticker: "CARL-B", sektor: "C25", startPris: 980, currentPris: 1020, valuta: "DKK", afkast: 4.1 },
+      { navn: "Ambu", ticker: "AMBU-B", sektor: "C25", startPris: 140, currentPris: 150, valuta: "DKK", afkast: 7.1 }
+    ],
+    analyse: "Konsumentvarer og sundhedsteknologi skaber god balance i min portefølje. Carlsberg har en stærk global tilstedeværelse og et bredt produktsortiment, mens Ambu er innovativ inden for medicinsk udstyr. Kombinationen af stabilitet og innovation giver en diversificeret portefølje."
+  },
+  {
+    navn: "Line Nørgaard",
+    aktier: [
+      { navn: "FLSmidth", ticker: "FLS", sektor: "C25", startPris: 280, currentPris: 300, valuta: "DKK", afkast: 7.1 },
+      { navn: "Netcompany", ticker: "NETC", sektor: "C25", startPris: 400, currentPris: 420, valuta: "DKK", afkast: 5.0 }
+    ],
+    analyse: ""  // Hvis du ikke har analyse, kan du lade det være tomt
+  }
+];
 
   const proContainer = document.getElementById('proContainer');
   proData.forEach((pro, idx) => {
