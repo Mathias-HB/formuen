@@ -73,25 +73,6 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .form-toggle {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .form-toggle button {
-      background: none;
-      border: none;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #0b1e3d;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    .form-toggle button:hover {
-      color: #007acc;
-    }
-
     label {
       display: block;
       margin-bottom: 0.5rem;
@@ -136,6 +117,25 @@
       background-color: #005f8a;
     }
 
+    .form-toggle {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .form-toggle button {
+      background: none;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0b1e3d;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .form-toggle button:hover {
+      color: #007acc;
+    }
+
     footer {
       text-align: center;
       padding: 1.5rem;
@@ -172,10 +172,6 @@
 </section>
 
 <div class="form-container">
-  <div class="form-toggle">
-    <button id="toggleForm">Har du ikke en profil? Opret en her</button>
-  </div>
-
   <!-- Login form -->
   <form id="loginForm">
     <label for="email_login">Email</label>
@@ -185,6 +181,10 @@
     <input type="password" id="password_login" name="password_login" placeholder="Adgangskode" required />
 
     <button type="submit">Log ind</button>
+
+    <div class="form-toggle">
+      <button type="button" id="toggleForm">Har du ikke en profil? Opret en her</button>
+    </div>
   </form>
 
   <!-- Register form -->
@@ -204,6 +204,10 @@
     </div>
 
     <button type="submit">Opret profil</button>
+
+    <div class="form-toggle">
+      <button type="button" id="toggleFormBack">Har du allerede en profil? Log ind her</button>
+    </div>
   </form>
 </div>
 
@@ -212,22 +216,19 @@
 </footer>
 
 <script>
-  const toggleBtn = document.getElementById('toggleForm');
   const loginForm = document.getElementById('loginForm');
   const registerForm = document.getElementById('registerForm');
+  const toggleToRegister = document.getElementById('toggleForm');
+  const toggleToLogin = document.getElementById('toggleFormBack');
 
-  toggleBtn.addEventListener('click', () => {
-    const showingLogin = !loginForm.classList.contains('hidden');
+  toggleToRegister.addEventListener('click', () => {
+    loginForm.classList.add('hidden');
+    registerForm.classList.remove('hidden');
+  });
 
-    if (showingLogin) {
-      loginForm.classList.add('hidden');
-      registerForm.classList.remove('hidden');
-      toggleBtn.textContent = 'Har du allerede en profil? Log ind her';
-    } else {
-      registerForm.classList.add('hidden');
-      loginForm.classList.remove('hidden');
-      toggleBtn.textContent = 'Har du ikke en profil? Opret en her';
-    }
+  toggleToLogin.addEventListener('click', () => {
+    registerForm.classList.add('hidden');
+    loginForm.classList.remove('hidden');
   });
 </script>
 
