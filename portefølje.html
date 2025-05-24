@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FormueGuiden - Eksklusiv Portefølje</title>
+  <title>FormueGuiden - Eksklusiv portefølje</title>
   <style>
+    /* Kopieret CSS fra din index.html header/footer/menu for konsistens */
     * {
       margin: 0;
       padding: 0;
@@ -28,7 +29,6 @@
     .logo {
       display: flex;
       align-items: center;
-      cursor: pointer;
     }
     .logo-img {
       height: 88px;
@@ -81,70 +81,153 @@
     ul.menu > li:hover .dropdown {
       display: flex;
     }
-    .hero {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: linear-gradient(to right, #0b1e3d, #153c5d);
-      color: white;
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: auto;
-    }
-    section.fremskriver {
-      max-width: 900px;
-      margin: 2rem auto 4rem auto;
-      background: #fff;
-      padding: 2rem 3rem;
+    main {
+      max-width: 1100px;
+      margin: 2rem auto 4rem;
+      background: white;
+      padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       color: #153c5d;
     }
-    section.fremskriver h2 {
+    h1 {
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       color: #0b1e3d;
-    }
-    #ekspertContainer {
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      margin-top: 2rem;
-    }
-    .ekspert-kort {
-      background: #f0f4fa;
-      border-radius: 8px;
-      padding: 1.8rem 2rem;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-      color: #0b1e3d;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-    .ekspert-kort h3 {
-      margin-bottom: 0.7rem;
       font-weight: 700;
-      font-size: 1.3rem;
+    }
+    #portfolioChart {
+      max-width: 100%;
+      height: 300px;
+      margin-bottom: 2rem;
+    }
+
+    /* Pro kort styling */
+    .pro-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      background: #f9faff;
+      box-shadow: 0 2px 6px rgba(11,30,61,0.1);
+    }
+    .pro-name {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #0b1e3d;
+      margin-bottom: 1rem;
+    }
+    .stocks-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 1rem;
+    }
+    .stocks-list li {
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .stock-name {
+      font-weight: 600;
+      color: #153c5d;
+    }
+    .stock-details {
+      color: #555;
+      font-size: 0.9rem;
+      margin-left: 1rem;
+      flex: 1 1 auto;
+      text-align: right;
+    }
+    .currency-usd {
       color: #0077cc;
+      font-weight: 700;
     }
-    .ekspert-kort p {
-      margin-bottom: 0.7rem;
+    .currency-dkk {
+      color: #0b1e3d;
+      font-weight: 700;
     }
-    .aktie-liste strong {
+    .afkast {
+      color: #009933;
+      font-weight: 600;
+    }
+    .analysis-btn {
+      background-color: #0b1e3d;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      margin-top: 0.5rem;
+    }
+    .analysis-btn:hover {
+      background-color: #005f99;
+    }
+
+    /* Modal */
+    #modalOverlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      z-index: 2000;
+    }
+    #modalOverlay.active {
+      display: flex;
+    }
+    #modalContent {
+      background: white;
+      padding: 1.5rem 2rem;
+      border-radius: 10px;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      color: #0b1e3d;
+      position: relative;
+    }
+    #modalTitle {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    #modalText {
+      font-size: 1rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+    #modalCloseBtn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+      cursor: pointer;
       color: #0b1e3d;
     }
+
     footer {
-      text-align: center;
-      padding: 1.5rem;
       background-color: #0b1e3d;
       color: white;
+      text-align: center;
+      padding: 1rem 0;
       font-size: 0.9rem;
-      margin-top: 2rem;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      height: 60px;
+      line-height: 60px;
+      font-weight: 400;
     }
+
     @media(max-width: 768px) {
       ul.menu {
         flex-direction: column;
@@ -159,9 +242,11 @@
       .dropdown a {
         padding-left: 1rem;
       }
-      section.fremskriver {
-        padding: 1.5rem 1.5rem;
-        max-width: 95%;
+      .stock-details {
+        text-align: left;
+        margin-left: 0;
+        margin-top: 0.25rem;
+        flex-basis: 100%;
       }
     }
   </style>
@@ -169,8 +254,8 @@
 <body>
 
 <header>
-  <div class="logo" onclick="window.location.href='index.html'">
-    <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
+  <div class="logo">
+    <a href="index.html"><img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" /></a>
   </div>
   <nav>
     <ul class="menu">
@@ -178,12 +263,14 @@
         <a href="#">Blog</a>
         <div class="dropdown">
           <a href="begynderguide.html">Begynderguide</a>
-          <a href="valgafplatform.html">Valg af platform</a>
           <a href="formuehistorier.html">Formuehistorier</a>
-          <a href="#">Eksklusivt</a>
-          <div class="dropdown" style="margin-left: 1rem;">
-            <a href="portefolje.html">Porteføljen</a>
-          </div>
+          <a href="valg-af-platform.html">Valg af platform</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Eksklusivt</a>
+        <div class="dropdown">
+          <a href="portefolje.html">Porteføljen</a>
         </div>
       </li>
       <li>
@@ -199,19 +286,11 @@
   </nav>
 </header>
 
-<section class="hero">
-  <h1>Eksklusiv Portefølje - Professionelle aktievalg</h1>
-  <p>Se hvordan 10 eksperter hver har udvalgt 2 aktier til en samlet portefølje på 1.000.000 kr.<br /> 
-     Følg porteføljens udvikling og analyser på aktierne.</p>
-</section>
-
-<section class="fremskriver">
-  <h2>Porteføljens samlede udvikling</h2>
-
-  <canvas id="portefoljeGraf" style="margin-top: 1rem; max-width: 100%; height: 300px;"></canvas>
-
-  <div id="ekspertContainer"></div>
-</section>
+<main>
+  <h1>Eksklusiv portefølje</h1>
+  <canvas id="portfolioChart" aria-label="Portefølje værdi over tid" role="img"></canvas>
+  <div id="proContainer"></div>
+</main>
 
 <footer>
   &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
@@ -219,247 +298,287 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // Data for 10 eksperter med 2 aktier hver (navn, aktier, analyser, afkast)
-  const eksperter = [
+  const pros = [
     {
-      navn: "Lars Mikkelsen",
-      aktier: [
-        {
-          navn: "Apple (AAPL)",
-          analyse: "Lars fokuserer på høj vækst og teknologisk dominans. Apple er valgt for sin stærke økosystemeffekt og cash flow.",
-          afkast: 14.2
-        },
-        {
-          navn: "NVIDIA (NVDA)",
-          analyse: "NVIDIA udmærker sig ved sin position indenfor AI og grafikchips, hvor efterspørgslen er eksplosiv.",
-          afkast: 22.8
-        }
+      name: "Peter Jensen",
+      analysis: `Peter Jensen fokuserer på stabile vækstaktier med en stærk historik, der har vist vedvarende vækst over flere årtier. Han prioriterer virksomheder med solid ledelse, stærke produktporteføljer og evnen til at tilpasse sig markedsændringer. Peters strategi er at investere i selskaber, der kombinerer innovation med økonomisk robusthed, hvilket typisk mindsker risikoen i porteføljen. Hans valg af Apple og Novo Nordisk reflekterer denne tilgang, da begge virksomheder har global tilstedeværelse og leder inden for deres respektive sektorer. Peter lægger desuden vægt på langsigtet vækst og regelmæssig geninvestering af udbytte, hvilket bidrager til kumulativ formueopbygning.`,
+      stocks: [
+        { name: "Apple", afkast: 0.12 },   // 12% p.a.
+        { name: "Novo Nordisk", afkast: 0.09 }
       ]
     },
     {
-      navn: "Anna Jensen",
-      aktier: [
-        {
-          navn: "Novo Nordisk (NOVO)",
-          analyse: "Anna satser på sundhedssektoren med fokus på stabil vækst og globale markedsandele indenfor diabetesbehandling.",
-          afkast: 11.5
-        },
-        {
-          navn: "Coloplast (COLO)",
-          analyse: "Coloplast er stærk i nichemarkeder med solidt brand og loyal kundebase.",
-          afkast: 9.8
-        }
+      name: "Maria Hansen",
+      analysis: `Maria Hansen satser primært på teknologisektoren, hvor der er større volatilitet, men også mulighed for højere afkast. Hun følger nøje trends inden for elbiler og vedvarende energi, og har en investeringshorisont, der tillader midlertidige udsving. Hendes investering i Tesla og Vestas er strategisk positioneret for at drage fordel af den globale omstilling mod grøn energi og elektrificering af transport. Maria analyserer løbende teknologiske fremskridt og markedsdynamikker for at optimere sine positioner og anvender ofte teknisk analyse kombineret med fundamental research for at træffe beslutninger.`,
+      stocks: [
+        { name: "Tesla", afkast: 0.18 },
+        { name: "Vestas", afkast: 0.10 }
       ]
     },
     {
-      navn: "Peter Hansen",
-      aktier: [
-        {
-          navn: "Vestas Wind Systems (VWS)",
-          analyse: "Peter tror på den grønne omstilling og Vestas' førerposition i vindenergi globalt.",
-          afkast: 18.1
-        },
-        {
-          navn: "Ørsted (ORSTED)",
-          analyse: "Ørsted udbygger sin offshore vindkapacitet og er en frontløber i bæredygtig energi.",
-          afkast: 16.7
-        }
+      name: "Lars Nielsen",
+      analysis: `Lars Nielsen foretrækker en konservativ tilgang med fokus på stabile, dividendebetalende selskaber, som giver løbende indkomst til porteføljen. Han prioriterer virksomheder med stærk økonomi og forudsigelig cash flow, hvilket giver en vis sikkerhed i usikre tider. Med investeringer i Mærsk og Coloplast søger Lars at balancere sin portefølje mellem industri og sundhedssektoren, som begge har vist robusthed selv under økonomiske nedgangsperioder. Lars' strategi inkluderer regelmæssig geninvestering af udbytte og en disciplineret genbalancering for at fastholde risikoprofilen.`,
+      stocks: [
+        { name: "Mærsk", afkast: 0.07 },
+        { name: "Coloplast", afkast: 0.08 }
       ]
     },
     {
-      navn: "Maria Sørensen",
-      aktier: [
-        {
-          navn: "Microsoft (MSFT)",
-          analyse: "Maria vægter cloud-tjenester og software, hvor Microsoft leverer stabil vækst og innovation.",
-          afkast: 20.4
-        },
-        {
-          navn: "Amazon (AMZN)",
-          analyse: "Amazon styrker sin position i e-handel og cloud computing globalt.",
-          afkast: 25.3
-        }
+      name: "Sofie Rasmussen",
+      analysis: `Sofie Rasmussen fokuserer på emerging markets, hvor vækstpotentialet ofte er højere, men risikoen også kan være større. Hun analyserer politiske og økonomiske faktorer i de lande, hun investerer i, for at finde undervurderede aktier med potentiale for betydelig prisstigning. Sofies portefølje indeholder aktier i selskaber, der er førende inden for infrastruktur og teknologi i vækstlande. Hun kombinerer kvantitativ dataanalyse med feltarbejde for at sikre sig de bedste muligheder. Hendes investering i Alibaba og Samsung reflekterer denne globale og vækstorienterede tilgang.`,
+      stocks: [
+        { name: "Alibaba", afkast: 0.15 },
+        { name: "Samsung", afkast: 0.11 }
       ]
     },
     {
-      navn: "Anders Pedersen",
-      aktier: [
-        {
-          navn: "Carlsberg (CARL)",
-          analyse: "Anders satser på stærke brands med global rækkevidde inden for drikkevarer.",
-          afkast: 7.2
-        },
-        {
-          navn: "Heineken (HEIA)",
-          analyse: "Heineken har solid markedsandel i vækstmarkeder og stærk brandloyalitet.",
-          afkast: 8.9
-        }
+      name: "Anders Mikkelsen",
+      analysis: `Anders Mikkelsen har en value-investor tilgang med fokus på at finde undervurderede selskaber, som markedet midlertidigt overser. Han benytter sig af dybdegående finansiel analyse og søger selskaber med stærke balancer og langsigtede vækstmuligheder. Anders lægger vægt på selskaber med lav gæld og høj egenkapital, og han investerer typisk i sektorer som finans og industri, hvor der er klare fundamentale værdier. Hans valg af Danske Bank og Novo Nordisk afspejler denne forsigtige, men langsigtede strategi.`,
+      stocks: [
+        { name: "Danske Bank", afkast: 0.06 },
+        { name: "Novo Nordisk", afkast: 0.09 }
       ]
     },
     {
-      navn: "Camilla Larsen",
-      aktier: [
-        {
-          navn: "Tesla (TSLA)",
-          analyse: "Camilla er bullish på elbiler og vedvarende energi med Tesla som markedsleder.",
-          afkast: 30.5
-        },
-        {
-          navn: "NIO (NIO)",
-          analyse: "NIO er en kinesisk konkurrent inden for elbiler med stærk vækstpotentiale.",
-          afkast: 27.1
-        }
+      name: "Kristine Pedersen",
+      analysis: `Kristine Pedersen satser på bæredygtige investeringer og ESG-fokuserede selskaber. Hun vurderer ikke kun finansielle nøgletal, men også miljømæssige og sociale faktorer, der kan påvirke virksomhedens langsigtede performance. Kristine tror på, at ansvarlige investeringer ikke blot gavner planeten, men også giver attraktive afkast over tid. Hendes portefølje inkluderer Ørsted og Vestas, som er blandt pionererne inden for grøn energi, hvilket sikrer eksponering mod fremtidens energiløsninger.`,
+      stocks: [
+        { name: "Ørsted", afkast: 0.11 },
+        { name: "Vestas", afkast: 0.10 }
       ]
     },
     {
-      navn: "Jens Kristensen",
-      aktier: [
-        {
-          navn: "Danske Bank (DANSKE)",
-          analyse: "Jens satser på det finansielle marked med fokus på stabilitet og udbytte.",
-          afkast: 5.4
-        },
-        {
-          navn: "Nordea (NDA-DK)",
-          analyse: "Nordea er stor i Norden med god risikostyring og digitalisering.",
-          afkast: 6.7
-        }
+      name: "Morten Kristensen",
+      analysis: `Morten Kristensen har en teknisk analytiker tilgang, hvor han benytter mønstre i prisudviklingen, volumen og momentum til at træffe hurtige investeringsbeslutninger. Hans strategi er mere aktiv og kræver konstant overvågning af markederne. Morten investerer i aktier som Novo Nordisk og Coloplast, hvor han finder tekniske signaler, der peger på kortsigtede op- eller nedture. Han kombinerer sin tekniske tilgang med risikostyring for at maksimere afkastet og minimere tab.`,
+      stocks: [
+        { name: "Novo Nordisk", afkast: 0.09 },
+        { name: "Coloplast", afkast: 0.08 }
       ]
     },
     {
-      navn: "Sofie Nielsen",
-      aktier: [
-        {
-          navn: "LEGO Group (privat)",
-          analyse: "Sofie tror på bæredygtig leg og kreativitet, hvor LEGO leverer stabil omsætning.",
-          afkast: 10.3
-        },
-        {
-          navn: "Hasbro (HAS)",
-          analyse: "Hasbro udvider digitalt og styrker sit brand i legetøjsmarkedet.",
-          afkast: 8.6
-        }
+      name: "Anna Sørensen",
+      analysis: `Anna Sørensen prioriterer en diversificeret portefølje med blanding af teknologi, sundhed og industri for at sprede risiko. Hun følger makroøkonomiske trends tæt og tilpasser sin portefølje i takt med ændringer i renteniveauer og globale begivenheder. Hendes valg af Microsoft og Mærsk afspejler denne diversifikation, hvor hun kombinerer en af verdens største tech-giganter med en global transport- og logistikvirksomhed. Anna fokuserer på langsigtet vækst og stabilitet.`,
+      stocks: [
+        { name: "Microsoft", afkast: 0.13 },
+        { name: "Mærsk", afkast: 0.07 }
       ]
     },
     {
-      navn: "Martin Johansen",
-      aktier: [
-        {
-          navn: "Maersk (MAERSK)",
-          analyse: "Martin fokuserer på global shipping og logistik med Maersk som førende aktør.",
-          afkast: 12.8
-        },
-        {
-          navn: "Hapag-Lloyd (HLAG)",
-          analyse: "Hapag-Lloyd er stærk i containertransport og drager fordel af global handel.",
-          afkast: 11.1
-        }
+      name: "Jakob Larsen",
+      analysis: `Jakob Larsen har en højrisiko-høj-afkast strategi og investerer ofte i startups og små teknologivirksomheder med stort potentiale. Han ser efter disruptive teknologier og nye markeder, hvor tidlig indtræden kan give stor gevinst. Jakob kombinerer fundamentale analyser med netværksbaseret research og har en portefølje, der inkluderer Tesla og Alibaba, som begge repræsenterer innovative virksomheder med global rækkevidde. Han er forberedt på større volatilitet i bytte for muligheden for markant afkast.`,
+      stocks: [
+        { name: "Tesla", afkast: 0.18 },
+        { name: "Alibaba", afkast: 0.15 }
       ]
     },
     {
-      navn: "Katrine Holm",
-      aktier: [
-        {
-          navn: "Novo Nordisk (NOVO)",
-          analyse: "Katrine satser på pharma med fokus på innovation og global udbredelse.",
-          afkast: 13.7
-        },
-        {
-          navn: "Genmab (GEN)",
-          analyse: "Genmab arbejder med banebrydende kræftbehandlinger og har højt vækstpotentiale.",
-          afkast: 19.9
-        }
+      name: "Camilla Thomsen",
+      analysis: `Camilla Thomsen fokuserer på langsigtede investeringer i defensive sektorer som sundhed og forsyning, hvilket giver en stabil portefølje under økonomiske udsving. Hun lægger vægt på selskaber med stærke brandværdier og høj kundeloyalitet. Hendes investeringer i Coloplast og Ørsted er kendetegnet ved lav volatilitet og regelmæssige udbytter. Camilla arbejder med en balanceret tilgang, der kombinerer sikkerhed med tilstrækkelig vækst til at beskytte og øge formuen over tid.`,
+      stocks: [
+        { name: "Coloplast", afkast: 0.08 },
+        { name: "Ørsted", afkast: 0.11 }
       ]
     }
   ];
 
-  // Simulerede månedlige porteføljedata (for graf) - eksempel: 12 måneder
-  // Her summeres værdien af alle aktier med udgangspunkt i 50.000 kr. per aktie og afkast.
-  // For simplificering, afkastet er jævnt fordelt over året per måned.
+  const weeks = 53;
+  const startInvestPerStock = 50000;
+  const proCount = pros.length;
 
-  const måneder = ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"];
-  const startKapital = 1000000; // 20 aktier x 50.000 kr.
-  
-  // Beregn samlet afkast over året baseret på gennemsnit af alle aktiers afkast
-  const gennemsnitAfkast = eksperter.reduce((sum, eks) => {
-    return sum + eks.aktier.reduce((sum2, aktie) => sum2 + aktie.afkast, 0);
-  }, 0) / (eksperter.length * 2);
+  // Opret ugentlige labels
+  const labels = [];
+  for(let i = 0; i < weeks; i++) {
+    labels.push(`Uge ${i}`);
+  }
 
-  // Beregn værdier pr måned som en lineær vækst (for demo)
-  const værdier = måneder.map((_, i) => {
-    return Math.round(startKapital * (1 + (gennemsnitAfkast/100) * (i / (måneder.length - 1))));
-  });
+  // Funktion til at simulere ugentligt afkast med ±2% variation
+  function weeklyReturn(annualReturn) {
+    const weeklyBase = Math.pow(1 + annualReturn, 1/52) - 1;
+    const variation = weeklyBase * (Math.random() * 0.04 - 0.02);
+    return weeklyBase + variation;
+  }
 
-  // Setup Chart.js graf
-  const ctxPortfolio = document.getElementById('portefoljeGraf').getContext('2d');
-  const portefoljeChart = new Chart(ctxPortfolio, {
+  // Simuler porteføljens værdi uge for uge
+  const portfolioValues = [startInvestPerStock * 2 * proCount]; // Startværdi
+
+  for(let week = 1; week < weeks; week++) {
+    let prevVal = portfolioValues[week -1];
+    let newVal = 0;
+
+    // For hver pro og deres aktier
+    pros.forEach(pro => {
+      pro.stocks.forEach(stock => {
+        const ret = weeklyReturn(stock.afkast);
+        // Beregn startværdi for denne aktie i porteføljen:
+        // Deler portefølje ligeligt mellem alle aktier
+        // Da vi starter med 50.000 kr pr. aktie, beholder vi væksten relativt
+        // Vi kan beregne den relative vækst uge for uge
+
+        // Vi kan gemme akkumuleret vækst for hver aktie per uge:
+        // Men for simplificering: start med 50.000 * (1 + ret)^week (ca)
+
+        // Men det giver for stort spring hvis vi regner pr uge uafhængigt,
+        // Så vi laver en midlertidig vækst akkumulering for hver aktie:
+        // Denne simplificering holder fint til demonstration.
+
+        // Her vælger vi at bruge en vækstfaktor uge-for-uge akkumuleret:
+        // For korrekt simulering burde vi huske akkumulering pr aktie.
+      });
+    });
+
+    // For korrekt simulering laver vi akkumulering uden variation først
+    // Så vi laver separat struktur til vækst per aktie
+  }
+
+  // For korrekt simulation laver vi akkumuleret værdi pr aktie pr uge:
+  const growthPerStock = pros.map(pro => pro.stocks.map(stock => [1])); // uge 0 = 1
+
+  for(let week = 1; week < weeks; week++) {
+    pros.forEach((pro, pIndex) => {
+      pro.stocks.forEach((stock, sIndex) => {
+        const lastGrowth = growthPerStock[pIndex][sIndex][week-1];
+        const ret = weeklyReturn(stock.afkast);
+        growthPerStock[pIndex][sIndex][week] = lastGrowth * (1 + ret);
+      });
+    });
+  }
+
+  for(let week = 0; week < weeks; week++) {
+    let weekSum = 0;
+    pros.forEach((pro, pIndex) => {
+      pro.stocks.forEach((stock, sIndex) => {
+        weekSum += startInvestPerStock * growthPerStock[pIndex][sIndex][week];
+      });
+    });
+    portfolioValues[week] = weekSum;
+  }
+
+  // Tegn chart med Chart.js
+  const ctx = document.getElementById('portfolioChart').getContext('2d');
+  const portfolioChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: måneder,
+      labels,
       datasets: [{
-        label: 'Samlet Porteføljeværdi (DKK)',
-        data: værdier,
-        borderColor: '#0077cc',
-        backgroundColor: 'rgba(0,119,204,0.1)',
+        label: 'Porteføljens værdi (DKK)',
+        data: portfolioValues.map(v => Math.round(v)),
+        borderColor: '#0b1e3d',
+        backgroundColor: 'rgba(11,30,61,0.1)',
         fill: true,
         tension: 0.3,
-        pointRadius: 4,
-        pointHoverRadius: 6,
-        borderWidth: 2
+        pointRadius: 2,
+        pointHoverRadius: 5,
       }]
     },
     options: {
       responsive: true,
-      scales: {
-        y: {
-          beginAtZero: false,
-          ticks: {
-            callback: function(value) {
-              return value.toLocaleString('da-DK') + ' kr';
-            }
-          }
-        }
-      },
       plugins: {
         legend: {
-          display: true,
           labels: {
             color: '#0b1e3d',
-            font: { weight: 'bold' }
+            font: { weight: '600' }
           }
         },
         tooltip: {
           callbacks: {
-            label: function(context) {
-              return context.parsed.y.toLocaleString('da-DK') + ' kr';
-            }
+            label: context => context.parsed.y.toLocaleString('da-DK', { style: 'currency', currency: 'DKK' })
           }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#0b1e3d' }
+        },
+        y: {
+          ticks: {
+            color: '#0b1e3d',
+            callback: val => val.toLocaleString('da-DK', { style: 'currency', currency: 'DKK' })
+          },
+          beginAtZero: false
         }
       }
     }
   });
 
-  // Funktion til at generere ekspertkort i HTML
-  function genererEkspertKort() {
-    const container = document.getElementById('ekspertContainer');
-    eksperter.forEach(ekspert => {
-      const kort = document.createElement('div');
-      kort.className = 'ekspert-kort';
+  // Vis pros med deres aktier og analyser
+  const proContainer = document.getElementById('proContainer');
+  pros.forEach(pro => {
+    const card = document.createElement('div');
+    card.className = 'pro-card';
 
-      let html = `<h3>📈 ${ekspert.navn}</h3>`;
-      html += `<p class="aktie-liste"><strong>Valgte aktier:</strong> ${ekspert.aktier.map(a => a.navn).join(', ')}</p>`;
+    const proName = document.createElement('h3');
+    proName.className = 'pro-name';
+    proName.textContent = pro.name;
+    card.appendChild(proName);
 
-      ekspert.aktier.forEach(aktie => {
-        html += `<p><strong>${aktie.navn}:</strong> ${aktie.analyse} Afkast siden start: <strong>${aktie.afkast}%</strong></p>`;
-      });
+    const ul = document.createElement('ul');
+    ul.className = 'stocks-list';
 
-      kort.innerHTML = html;
-      container.appendChild(kort);
+    pro.stocks.forEach(stock => {
+      const li = document.createElement('li');
+
+      const stockName = document.createElement('span');
+      stockName.className = 'stock-name';
+      stockName.textContent = stock.name;
+
+      const startVal = startInvestPerStock;
+      const endVal = startVal * Math.pow(1 + stock.afkast, 1);
+
+      const stockDetails = document.createElement('span');
+      stockDetails.className = 'stock-details currency-dkk';
+      stockDetails.textContent = `${startVal.toLocaleString('da-DK')} kr → ${Math.round(endVal).toLocaleString('da-DK')} kr (${(stock.afkast*100).toFixed(1)}% p.a.)`;
+
+      li.appendChild(stockName);
+      li.appendChild(stockDetails);
+      ul.appendChild(li);
     });
+
+    card.appendChild(ul);
+
+    const btn = document.createElement('button');
+    btn.className = 'analysis-btn';
+    btn.textContent = 'Se analyse';
+    btn.addEventListener('click', () => openModal(pro.name, pro.analysis));
+    card.appendChild(btn);
+
+    proContainer.appendChild(card);
+  });
+
+  // Modal funktionalitet
+  const modalOverlay = document.createElement('div');
+  modalOverlay.id = 'modalOverlay';
+
+  modalOverlay.innerHTML = `
+    <div id="modalContent" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+      <button id="modalCloseBtn" aria-label="Luk modal">×</button>
+      <h2 id="modalTitle"></h2>
+      <p id="modalText"></p>
+    </div>
+  `;
+
+  document.body.appendChild(modalOverlay);
+
+  const modalTitle = document.getElementById('modalTitle');
+  const modalText = document.getElementById('modalText');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+  function openModal(title, text) {
+    modalTitle.textContent = title;
+    modalText.textContent = text;
+    modalOverlay.classList.add('active');
+    modalCloseBtn.focus();
+  }
+  function closeModal() {
+    modalOverlay.classList.remove('active');
   }
 
-  // Kald funktionen for at bygge siden dynamisk
-  genererEkspertKort();
+  modalCloseBtn.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', e => {
+    if(e.target === modalOverlay) closeModal();
+  });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
+  });
 </script>
 
 </body>
