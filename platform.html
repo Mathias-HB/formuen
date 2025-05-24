@@ -3,98 +3,261 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Valg af platform</title>
+  <title>Valg af platform – FormueGuiden</title>
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f7f9fc;
       color: #333;
-      margin: 0;
     }
-    header, footer {
+    header {
       background-color: #0b1e3d;
-      color: white;
       padding: 1rem 2rem;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      position: relative;
+      z-index: 1000;
     }
-    .container {
-      max-width: 1100px;
-      margin: 2rem auto;
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo-img {
+      height: 88px;
+      width: auto;
+      display: block;
+    }
+    nav {
+      position: relative;
+    }
+    ul.menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    ul.menu > li {
+      position: relative;
+    }
+    ul.menu > li > a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem;
+      display: block;
+      transition: color 0.2s ease;
+    }
+    ul.menu > li:hover > a {
+      color: #00ccff;
+    }
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
       padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+      z-index: 999;
     }
-    h1 {
-      text-align: center;
+    .dropdown a {
       color: #0b1e3d;
-      margin-bottom: 2rem;
+      text-decoration: none;
+      padding: 0.4rem 0;
     }
-    .cards {
+    .dropdown a:hover {
+      color: #0077cc;
+    }
+    ul.menu > li:hover .dropdown {
+      display: flex;
+    }
+
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(to right, #0b1e3d, #153c5d);
+      color: white;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .platforme {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      gap: 2rem;
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
     }
-    .card {
-      background: white;
+    .kort {
+      background: #fff;
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
       text-align: center;
       transition: transform 0.2s ease;
     }
-    .card:hover {
+    .kort:hover {
       transform: translateY(-5px);
     }
-    .card h2 {
-      margin-bottom: 0.5rem;
+    .kort h3 {
       color: #0b1e3d;
-    }
-    .card p {
-      font-size: 0.95rem;
       margin-bottom: 1rem;
     }
-    .card a {
+    .kort ul {
+      text-align: left;
+      padding-left: 1.2rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    .kort a {
+      text-decoration: none;
+      color: white;
+      background-color: #0b1e3d;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
       display: inline-block;
+    }
+    .kort a:hover {
+      background-color: #153c5d;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
       background-color: #0b1e3d;
       color: white;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background-color 0.2s ease;
+      font-size: 0.9rem;
+      margin-top: 4rem;
     }
-    .card a:hover {
-      background-color: #0077cc;
+
+    @media(max-width: 768px) {
+      ul.menu {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .dropdown {
+        position: static;
+        box-shadow: none;
+        background: none;
+        padding: 0;
+      }
+      .dropdown a {
+        padding-left: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Vælg din investeringsplatform</h1>
+    <div class="logo">
+      <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
+    </div>
+    <nav>
+      <ul class="menu">
+        <li>
+          <a href="#">Blog</a>
+          <div class="dropdown">
+            <a href="begynderguide.html">Begynderguide</a>
+            <a href="formuehistorier.html">Formuehistorier</a>
+            <a href="platform.html">Valg af platform</a>
+          </div>
+        </li>
+        <li>
+          <a href="#">Eksklusivt</a>
+          <div class="dropdown">
+            <a href="portefølje.html">Porteføljen</a>
+          </div>
+        </li>
+        <li>
+          <a href="#">Om os</a>
+          <div class="dropdown">
+            <a href="team.html">Teamet</a>
+            <a href="vision.html">Vores vision</a>
+          </div>
+        </li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="login.html">Log ind / Opret</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="container">
-    <div class="cards">
-      <div class="card">
-        <h2>Saxo Bank</h2>
-        <p>En avanceret platform med adgang til globale markeder. God til erfarne investorer.</p>
-        <a href="https://www.home.saxo/" target="_blank">Besøg Saxo</a>
-      </div>
-      <div class="card">
-        <h2>Nordnet</h2>
-        <p>Populær blandt danske privatinvestorer. Nem at bruge og mange gratis fonde.</p>
-        <a href="https://www.nordnet.dk/" target="_blank">Besøg Nordnet</a>
-      </div>
-      <div class="card">
-        <h2>Endavu</h2>
-        <p>Innovativ dansk platform med fokus på gennemsigtighed og brugeroplevelse.</p>
-        <a href="https://www.endavu.dk/" target="_blank">Besøg Endavu</a>
-      </div>
-      <div class="card">
-        <h2>Pluto Markets</h2>
-        <p>En nyere spiller med konkurrencedygtige priser og moderne interface.</p>
-        <a href="https://www.plutomarkets.com/" target="_blank">Besøg Pluto</a>
-      </div>
+  <section class="hero">
+    <h1>Find den rette investeringsplatform</h1>
+    <p>Sammenlign og vælg blandt de bedste platforme til investering og opsparing</p>
+  </section>
+
+  <section class="platforme">
+
+    <div class="kort">
+      <h3>Saxo Bank</h3>
+      <ul>
+        <li>Lav kurtage fra 0,05%</li>
+        <li>Bredt aktieunivers</li>
+        <li>Professionelt værktøj</li>
+        <li>Høje valutagebyrer</li>
+      </ul>
+      <a href="https://www.home.saxo" target="_blank">Besøg Saxo</a>
     </div>
-  </div>
+
+    <div class="kort">
+      <h3>Nordnet</h3>
+      <ul>
+        <li>Gratis månedsopsparing</li>
+        <li>Lav kurtage DK aktier</li>
+        <li>Brugervenligt design</li>
+        <li>Gode analyseredskaber</li>
+      </ul>
+      <a href="https://www.nordnet.dk" target="_blank">Besøg Nordnet</a>
+    </div>
+
+    <div class="kort">
+      <h3>Endavu</h3>
+      <ul>
+        <li>Automatiseret opsparing</li>
+        <li>Ingen skjulte gebyrer</li>
+        <li>Fokus på bæredygtighed</li>
+        <li>Brugerbaseret rådgivning</li>
+      </ul>
+      <a href="https://www.endavu.com" target="_blank">Besøg Endavu</a>
+    </div>
+
+    <div class="kort">
+      <h3>Pluto Markets</h3>
+      <ul>
+        <li>Handel uden kurtage</li>
+        <li>Gratis realtidskurser</li>
+        <li>Mobilapp i fokus</li>
+        <li>God til daytrading</li>
+      </ul>
+      <a href="https://www.plutomarkets.com" target="_blank">Besøg Pluto</a>
+    </div>
+
+    <div class="kort">
+      <h3>Lunar Bank</h3>
+      <ul>
+        <li>Gratis aktiehandel (basis)</li>
+        <li>Let at komme i gang</li>
+        <li>Mobilbank og investering</li>
+        <li>Ingen månedsopsparing</li>
+      </ul>
+      <a href="https://www.lunar.app" target="_blank">Besøg Lunar</a>
+    </div>
+
+  </section>
 
   <footer>
     &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
