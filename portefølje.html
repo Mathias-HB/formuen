@@ -183,35 +183,45 @@
     }
     #modalContent {
       background: white;
-      padding: 1.5rem 2rem;
-      border-radius: 10px;
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
       max-width: 600px;
       max-height: 80vh;
       overflow-y: auto;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
       color: #0b1e3d;
       position: relative;
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 400;
     }
     #modalTitle {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+      font-size: 1.75rem;
+      margin-bottom: 1.2rem;
       font-weight: 700;
+      color: #0b1e3d;
+      border-bottom: 2px solid #00ccff;
+      padding-bottom: 0.4rem;
     }
-    #modalText {
-      font-size: 1rem;
-      line-height: 1.5;
-      white-space: pre-wrap;
+    #modalText p {
+      margin-bottom: 1rem;
+      text-align: justify;
+      color: #153c5d;
     }
     #modalCloseBtn {
       position: absolute;
-      top: 10px;
-      right: 15px;
+      top: 12px;
+      right: 18px;
       background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: 700;
       cursor: pointer;
       color: #0b1e3d;
+      transition: color 0.3s ease;
+    }
+    #modalCloseBtn:hover {
+      color: #00ccff;
     }
 
     footer {
@@ -298,286 +308,325 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+  // Data for 10 personer med 2 aktier hver og længere analyser med linjeskift til p-opdeling i modal
   const pros = [
     {
       name: "Peter Jensen",
-      analysis: `Peter Jensen fokuserer på stabile vækstaktier med en stærk historik, der har vist vedvarende vækst over flere årtier. Han prioriterer virksomheder med solid ledelse, stærke produktporteføljer og evnen til at tilpasse sig markedsændringer. Peters strategi er at investere i selskaber, der kombinerer innovation med økonomisk robusthed, hvilket typisk mindsker risikoen i porteføljen. Hans valg af Apple og Novo Nordisk reflekterer denne tilgang, da begge virksomheder har global tilstedeværelse og leder inden for deres respektive sektorer. Peter lægger desuden vægt på langsigtet vækst og regelmæssig geninvestering af udbytte, hvilket bidrager til kumulativ formueopbygning.`,
+      analysis: `Peter Jensen har en solid tilgang til investering med fokus på stabile vækstaktier. 
+Han mener, at langsigtet investering i virksomheder med dokumenteret vækst og stærk finansiel historik giver bedst afkast over tid.
+Derfor har han valgt aktier, som har potentiale for både kapitalgevinst og udbytte.
+
+Denne strategi mindsker risikoen for større tab i volatile perioder.
+
+Ved at fokusere på både amerikanske og europæiske markeder søger han også diversifikation.`,
       stocks: [
-        { name: "Apple", afkast: 0.12 },   // 12% p.a.
-        { name: "Novo Nordisk", afkast: 0.09 }
+        { name: "Apple", priceUSD: 172.68, shares: 15, afkast: 0.12 },
+        { name: "Novo Nordisk", priceDKK: 990, shares: 20, afkast: 0.08 }
       ]
     },
     {
-      name: "Maria Hansen",
-      analysis: `Maria Hansen satser primært på teknologisektoren, hvor der er større volatilitet, men også mulighed for højere afkast. Hun følger nøje trends inden for elbiler og vedvarende energi, og har en investeringshorisont, der tillader midlertidige udsving. Hendes investering i Tesla og Vestas er strategisk positioneret for at drage fordel af den globale omstilling mod grøn energi og elektrificering af transport. Maria analyserer løbende teknologiske fremskridt og markedsdynamikker for at optimere sine positioner og anvender ofte teknisk analyse kombineret med fundamental research for at træffe beslutninger.`,
+      name: "Anne Sørensen",
+      analysis: `Anne Sørensen prioriterer bæredygtige investeringer. 
+Hun vælger virksomheder med grøn profil og god ESG-score.
+
+Hendes portefølje indeholder aktier, der bidrager til en grønnere fremtid, samtidig med at de har et solidt økonomisk fundament.
+
+Anne forventer moderate, men stabile afkast på længere sigt og ønsker at støtte ansvarlige virksomheder.`,
       stocks: [
-        { name: "Tesla", afkast: 0.18 },
-        { name: "Vestas", afkast: 0.10 }
+        { name: "Ørsted", priceDKK: 800, shares: 25, afkast: 0.10 },
+        { name: "Tesla", priceUSD: 215.50, shares: 10, afkast: 0.15 }
       ]
     },
     {
       name: "Lars Nielsen",
-      analysis: `Lars Nielsen foretrækker en konservativ tilgang med fokus på stabile, dividendebetalende selskaber, som giver løbende indkomst til porteføljen. Han prioriterer virksomheder med stærk økonomi og forudsigelig cash flow, hvilket giver en vis sikkerhed i usikre tider. Med investeringer i Mærsk og Coloplast søger Lars at balancere sin portefølje mellem industri og sundhedssektoren, som begge har vist robusthed selv under økonomiske nedgangsperioder. Lars' strategi inkluderer regelmæssig geninvestering af udbytte og en disciplineret genbalancering for at fastholde risikoprofilen.`,
+      analysis: `Lars Nielsen foretrækker value investing, hvor han køber undervurderede aktier med potentiale for genopretning.
+Han fokuserer på fundamental analyse og undervurderede sektorer.
+
+Lars' portefølje er koncentreret om finans- og industrisektoren med forventning om, at markedsfejl vil udligne sig.
+
+Denne strategi kan være langsommere, men med potentielt højt afkast, hvis aktierne revalueres.`,
       stocks: [
-        { name: "Mærsk", afkast: 0.07 },
-        { name: "Coloplast", afkast: 0.08 }
+        { name: "Danske Bank", priceDKK: 90, shares: 50, afkast: 0.05 },
+        { name: "Siemens", priceUSD: 120, shares: 12, afkast: 0.06 }
       ]
     },
     {
-      name: "Sofie Rasmussen",
-      analysis: `Sofie Rasmussen fokuserer på emerging markets, hvor vækstpotentialet ofte er højere, men risikoen også kan være større. Hun analyserer politiske og økonomiske faktorer i de lande, hun investerer i, for at finde undervurderede aktier med potentiale for betydelig prisstigning. Sofies portefølje indeholder aktier i selskaber, der er førende inden for infrastruktur og teknologi i vækstlande. Hun kombinerer kvantitativ dataanalyse med feltarbejde for at sikre sig de bedste muligheder. Hendes investering i Alibaba og Samsung reflekterer denne globale og vækstorienterede tilgang.`,
+      name: "Maria Hansen",
+      analysis: `Maria Hansen går efter teknologiaktier med højt vækstpotentiale.
+Hun følger tech-innovationer tæt og investerer i virksomheder, der driver digital transformation.
+
+Hendes strategi indebærer højere risiko, men også mulighed for væsentlige gevinster.
+
+Maria følger markedet aktivt og justerer løbende sin portefølje.`,
       stocks: [
-        { name: "Alibaba", afkast: 0.15 },
-        { name: "Samsung", afkast: 0.11 }
+        { name: "Microsoft", priceUSD: 305.20, shares: 8, afkast: 0.14 },
+        { name: "NVIDIA", priceUSD: 620.80, shares: 5, afkast: 0.20 }
       ]
     },
     {
-      name: "Anders Mikkelsen",
-      analysis: `Anders Mikkelsen har en value-investor tilgang med fokus på at finde undervurderede selskaber, som markedet midlertidigt overser. Han benytter sig af dybdegående finansiel analyse og søger selskaber med stærke balancer og langsigtede vækstmuligheder. Anders lægger vægt på selskaber med lav gæld og høj egenkapital, og han investerer typisk i sektorer som finans og industri, hvor der er klare fundamentale værdier. Hans valg af Danske Bank og Novo Nordisk afspejler denne forsigtige, men langsigtede strategi.`,
+      name: "Kasper Pedersen",
+      analysis: `Kasper Pedersen har valgt en blanding af defensive og cykliske aktier.
+Han ønsker en balanceret portefølje, som kan klare både op- og nedture i markedet.
+
+Hans investeringer er spredt over sektorer som sundhed, detail og energi.
+
+Dette sikrer stabilitet og potentiale for vækst over tid.`,
       stocks: [
-        { name: "Danske Bank", afkast: 0.06 },
-        { name: "Novo Nordisk", afkast: 0.09 }
+        { name: "Mærsk", priceDKK: 15500, shares: 2, afkast: 0.07 },
+        { name: "Novo Nordisk", priceDKK: 990, shares: 10, afkast: 0.08 }
       ]
     },
     {
-      name: "Kristine Pedersen",
-      analysis: `Kristine Pedersen satser på bæredygtige investeringer og ESG-fokuserede selskaber. Hun vurderer ikke kun finansielle nøgletal, men også miljømæssige og sociale faktorer, der kan påvirke virksomhedens langsigtede performance. Kristine tror på, at ansvarlige investeringer ikke blot gavner planeten, men også giver attraktive afkast over tid. Hendes portefølje inkluderer Ørsted og Vestas, som er blandt pionererne inden for grøn energi, hvilket sikrer eksponering mod fremtidens energiløsninger.`,
+      name: "Sofie Kristensen",
+      analysis: `Sofie Kristensen investerer primært i emerging markets.
+Hun ser vækstpotentiale i udviklingslande og vælger aktier med stærk lokal tilstedeværelse.
+
+Sofies portefølje har højere volatilitet, men også mulighed for høje afkast.
+
+Hun følger geopolitisk udvikling nøje for at styre risiko.`,
       stocks: [
-        { name: "Ørsted", afkast: 0.11 },
-        { name: "Vestas", afkast: 0.10 }
+        { name: "Alibaba", priceUSD: 105, shares: 20, afkast: 0.18 },
+        { name: "Naspers", priceUSD: 45, shares: 30, afkast: 0.15 }
       ]
     },
     {
-      name: "Morten Kristensen",
-      analysis: `Morten Kristensen har en teknisk analytiker tilgang, hvor han benytter mønstre i prisudviklingen, volumen og momentum til at træffe hurtige investeringsbeslutninger. Hans strategi er mere aktiv og kræver konstant overvågning af markederne. Morten investerer i aktier som Novo Nordisk og Coloplast, hvor han finder tekniske signaler, der peger på kortsigtede op- eller nedture. Han kombinerer sin tekniske tilgang med risikostyring for at maksimere afkastet og minimere tab.`,
+      name: "Michael Madsen",
+      analysis: `Michael Madsen satser på udbytteaktier med stabile cash flows.
+Han ønsker løbende indkomst gennem udbytte og vælger virksomheder med stærk cash flow og lav gæld.
+
+Hans portefølje indeholder store selskaber i forsyning og telekommunikation.
+
+Michael ser udbytte som en sikkerhed mod markedsudsving.`,
       stocks: [
-        { name: "Novo Nordisk", afkast: 0.09 },
-        { name: "Coloplast", afkast: 0.08 }
+        { name: "TDC", priceDKK: 35, shares: 100, afkast: 0.06 },
+        { name: "Orsted", priceDKK: 800, shares: 12, afkast: 0.10 }
       ]
     },
     {
-      name: "Anna Sørensen",
-      analysis: `Anna Sørensen prioriterer en diversificeret portefølje med blanding af teknologi, sundhed og industri for at sprede risiko. Hun følger makroøkonomiske trends tæt og tilpasser sin portefølje i takt med ændringer i renteniveauer og globale begivenheder. Hendes valg af Microsoft og Mærsk afspejler denne diversifikation, hvor hun kombinerer en af verdens største tech-giganter med en global transport- og logistikvirksomhed. Anna fokuserer på langsigtet vækst og stabilitet.`,
+      name: "Camilla Larsen",
+      analysis: `Camilla Larsen fokuserer på små- og mellemstore virksomheder med vækstpotentiale.
+Hun investerer i innovative virksomheder indenfor sundheds- og teknologisektoren.
+
+Porteføljen er risikabel, men med mulighed for høje afkast.
+
+Camilla følger markedet tæt og justerer sine investeringer aktivt.`,
       stocks: [
-        { name: "Microsoft", afkast: 0.13 },
-        { name: "Mærsk", afkast: 0.07 }
+        { name: "Vestas", priceDKK: 190, shares: 40, afkast: 0.11 },
+        { name: "Pandora", priceDKK: 650, shares: 18, afkast: 0.09 }
       ]
     },
     {
-      name: "Jakob Larsen",
-      analysis: `Jakob Larsen har en højrisiko-høj-afkast strategi og investerer ofte i startups og små teknologivirksomheder med stort potentiale. Han ser efter disruptive teknologier og nye markeder, hvor tidlig indtræden kan give stor gevinst. Jakob kombinerer fundamentale analyser med netværksbaseret research og har en portefølje, der inkluderer Tesla og Alibaba, som begge repræsenterer innovative virksomheder med global rækkevidde. Han er forberedt på større volatilitet i bytte for muligheden for markant afkast.`,
+      name: "Thomas Andersen",
+      analysis: `Thomas Andersen investerer i internationale blue-chip aktier for stabilitet.
+Han ønsker at sikre langsigtet vækst med minimal risiko.
+
+Hans portefølje består af globale markedsledere indenfor forskellige sektorer.
+
+Thomas tror på diversifikation og kvalitet frem for spekulation.`,
       stocks: [
-        { name: "Tesla", afkast: 0.18 },
-        { name: "Alibaba", afkast: 0.15 }
+        { name: "Coca-Cola", priceUSD: 60, shares: 30, afkast: 0.05 },
+        { name: "Nestlé", priceCHF: 110, shares: 20, afkast: 0.04 }
       ]
     },
     {
-      name: "Camilla Thomsen",
-      analysis: `Camilla Thomsen fokuserer på langsigtede investeringer i defensive sektorer som sundhed og forsyning, hvilket giver en stabil portefølje under økonomiske udsving. Hun lægger vægt på selskaber med stærke brandværdier og høj kundeloyalitet. Hendes investeringer i Coloplast og Ørsted er kendetegnet ved lav volatilitet og regelmæssige udbytter. Camilla arbejder med en balanceret tilgang, der kombinerer sikkerhed med tilstrækkelig vækst til at beskytte og øge formuen over tid.`,
+      name: "Emma Sørensen",
+      analysis: `Emma Sørensen har en aktiv investeringsstrategi med fokus på teknologi og grøn energi.
+Hun kombinerer kortsigtede positioner med langsigtede investeringer.
+
+Hendes portefølje afspejler markedstendenser og ny teknologi.
+
+Emma følger markedet dagligt og bruger teknisk analyse til timing.`,
       stocks: [
-        { name: "Coloplast", afkast: 0.08 },
-        { name: "Ørsted", afkast: 0.11 }
+        { name: "Tesla", priceUSD: 215.50, shares: 12, afkast: 0.15 },
+        { name: "Ørsted", priceDKK: 800, shares: 15, afkast: 0.10 }
       ]
     }
   ];
 
-  const weeks = 53;
-  const startInvestPerStock = 50000;
-  const proCount = pros.length;
-
-  // Opret ugentlige labels
-  const labels = [];
-  for(let i = 0; i < weeks; i++) {
-    labels.push(`Uge ${i}`);
-  }
-
-  // Funktion til at simulere ugentligt afkast med ±2% variation
-  function weeklyReturn(annualReturn) {
-    const weeklyBase = Math.pow(1 + annualReturn, 1/52) - 1;
-    const variation = weeklyBase * (Math.random() * 0.04 - 0.02);
-    return weeklyBase + variation;
-  }
-
-  // Simuler porteføljens værdi uge for uge
-  const portfolioValues = [startInvestPerStock * 2 * proCount]; // Startværdi
-
-  for(let week = 1; week < weeks; week++) {
-    let prevVal = portfolioValues[week -1];
-    let newVal = 0;
-
-    // For hver pro og deres aktier
-    pros.forEach(pro => {
-      pro.stocks.forEach(stock => {
-        const ret = weeklyReturn(stock.afkast);
-        // Beregn startværdi for denne aktie i porteføljen:
-        // Deler portefølje ligeligt mellem alle aktier
-        // Da vi starter med 50.000 kr pr. aktie, beholder vi væksten relativt
-        // Vi kan beregne den relative vækst uge for uge
-
-        // Vi kan gemme akkumuleret vækst for hver aktie per uge:
-        // Men for simplificering: start med 50.000 * (1 + ret)^week (ca)
-
-        // Men det giver for stort spring hvis vi regner pr uge uafhængigt,
-        // Så vi laver en midlertidig vækst akkumulering for hver aktie:
-        // Denne simplificering holder fint til demonstration.
-
-        // Her vælger vi at bruge en vækstfaktor uge-for-uge akkumuleret:
-        // For korrekt simulering burde vi huske akkumulering pr aktie.
-      });
-    });
-
-    // For korrekt simulering laver vi akkumulering uden variation først
-    // Så vi laver separat struktur til vækst per aktie
-  }
-
-  // For korrekt simulation laver vi akkumuleret værdi pr aktie pr uge:
-  const growthPerStock = pros.map(pro => pro.stocks.map(stock => [1])); // uge 0 = 1
-
-  for(let week = 1; week < weeks; week++) {
-    pros.forEach((pro, pIndex) => {
-      pro.stocks.forEach((stock, sIndex) => {
-        const lastGrowth = growthPerStock[pIndex][sIndex][week-1];
-        const ret = weeklyReturn(stock.afkast);
-        growthPerStock[pIndex][sIndex][week] = lastGrowth * (1 + ret);
-      });
-    });
-  }
-
-  for(let week = 0; week < weeks; week++) {
-    let weekSum = 0;
-    pros.forEach((pro, pIndex) => {
-      pro.stocks.forEach((stock, sIndex) => {
-        weekSum += startInvestPerStock * growthPerStock[pIndex][sIndex][week];
-      });
-    });
-    portfolioValues[week] = weekSum;
-  }
-
-  // Tegn chart med Chart.js
-  const ctx = document.getElementById('portfolioChart').getContext('2d');
-  const portfolioChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [{
-        label: 'Porteføljens værdi (DKK)',
-        data: portfolioValues.map(v => Math.round(v)),
-        borderColor: '#0b1e3d',
-        backgroundColor: 'rgba(11,30,61,0.1)',
-        fill: true,
-        tension: 0.3,
-        pointRadius: 2,
-        pointHoverRadius: 5,
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          labels: {
-            color: '#0b1e3d',
-            font: { weight: '600' }
-          }
-        },
-        tooltip: {
-          callbacks: {
-            label: context => context.parsed.y.toLocaleString('da-DK', { style: 'currency', currency: 'DKK' })
-          }
-        }
-      },
-      scales: {
-        x: {
-          ticks: { color: '#0b1e3d' }
-        },
-        y: {
-          ticks: {
-            color: '#0b1e3d',
-            callback: val => val.toLocaleString('da-DK', { style: 'currency', currency: 'DKK' })
-          },
-          beginAtZero: false
-        }
+  // Konverter evt. CHF til DKK for Thomas Andersen, fx 1 CHF = 7.0 DKK
+  pros.forEach(pro => {
+    pro.stocks.forEach(stock => {
+      if (stock.priceCHF) {
+        stock.priceDKK = stock.priceCHF * 7;
+        delete stock.priceCHF;
       }
-    }
+    });
   });
 
-  // Vis pros med deres aktier og analyser
-  const proContainer = document.getElementById('proContainer');
+  // Simuler portefølje værdi over 12 uger uden uge-til-uge svingninger
+  // (Her simuleres konstant porteføljeværdi uden store sving)
+  const weeks = 12;
+  const portfolioValues = [];
+  // Saml startværdi som sum af alle aktier pr styk x antal
+  let totalStartValue = 0;
   pros.forEach(pro => {
-    const card = document.createElement('div');
-    card.className = 'pro-card';
+    pro.stocks.forEach(stock => {
+      const price = stock.priceUSD ?? stock.priceDKK;
+      totalStartValue += price * stock.shares;
+    });
+  });
+  // Lad portefølje stige med 1% pr. uge lineært uden svingninger
+  for(let i=0; i<weeks; i++) {
+    portfolioValues.push(totalStartValue * (1 + 0.01 * i));
+  }
 
-    const proName = document.createElement('h3');
-    proName.className = 'pro-name';
-    proName.textContent = pro.name;
-    card.appendChild(proName);
+  // Vis pros og deres aktier
+  const proContainer = document.getElementById('proContainer');
 
-    const ul = document.createElement('ul');
-    ul.className = 'stocks-list';
+  pros.forEach(pro => {
+    const proDiv = document.createElement('div');
+    proDiv.classList.add('pro-card');
+
+    const nameH2 = document.createElement('h2');
+    nameH2.classList.add('pro-name');
+    nameH2.textContent = pro.name;
+    proDiv.appendChild(nameH2);
+
+    const ulStocks = document.createElement('ul');
+    ulStocks.classList.add('stocks-list');
 
     pro.stocks.forEach(stock => {
       const li = document.createElement('li');
 
-      const stockName = document.createElement('span');
-      stockName.className = 'stock-name';
-      stockName.textContent = stock.name;
+      const stockNameSpan = document.createElement('span');
+      stockNameSpan.classList.add('stock-name');
+      stockNameSpan.textContent = stock.name;
 
-      const startVal = startInvestPerStock;
-      const endVal = startVal * Math.pow(1 + stock.afkast, 1);
+      const detailsSpan = document.createElement('span');
+      detailsSpan.classList.add('stock-details');
 
-      const stockDetails = document.createElement('span');
-      stockDetails.className = 'stock-details currency-dkk';
-      stockDetails.textContent = `${startVal.toLocaleString('da-DK')} kr → ${Math.round(endVal).toLocaleString('da-DK')} kr (${(stock.afkast*100).toFixed(1)}% p.a.)`;
+      let priceStr = '';
+      if (stock.priceUSD !== undefined) {
+        priceStr = `Pris: $${stock.priceUSD.toFixed(2)}`;
+      } else if (stock.priceDKK !== undefined) {
+        priceStr = `Pris: ${stock.priceDKK.toFixed(2)} DKK`;
+      }
+      const sharesStr = `Antal: ${stock.shares}`;
+      const afkastStr = `Afkast: ${(stock.afkast * 100).toFixed(1)}%`;
 
-      li.appendChild(stockName);
-      li.appendChild(stockDetails);
-      ul.appendChild(li);
+      detailsSpan.innerHTML = `${priceStr} | ${sharesStr} | <span class="afkast">${afkastStr}</span>`;
+
+      li.appendChild(stockNameSpan);
+      li.appendChild(detailsSpan);
+      ulStocks.appendChild(li);
     });
 
-    card.appendChild(ul);
+    proDiv.appendChild(ulStocks);
 
+    // Knap til analyse
     const btn = document.createElement('button');
-    btn.className = 'analysis-btn';
+    btn.classList.add('analysis-btn');
     btn.textContent = 'Se analyse';
-    btn.addEventListener('click', () => openModal(pro.name, pro.analysis));
-    card.appendChild(btn);
+    btn.addEventListener('click', () => showAnalysis(pro));
+    proDiv.appendChild(btn);
 
-    proContainer.appendChild(card);
+    proContainer.appendChild(proDiv);
   });
 
-  // Modal funktionalitet
+  // Modal setup
   const modalOverlay = document.createElement('div');
   modalOverlay.id = 'modalOverlay';
 
-  modalOverlay.innerHTML = `
-    <div id="modalContent" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
-      <button id="modalCloseBtn" aria-label="Luk modal">×</button>
-      <h2 id="modalTitle"></h2>
-      <p id="modalText"></p>
-    </div>
-  `;
+  const modalContent = document.createElement('div');
+  modalContent.id = 'modalContent';
 
+  const modalCloseBtn = document.createElement('button');
+  modalCloseBtn.id = 'modalCloseBtn';
+  modalCloseBtn.innerHTML = '&times;';
+  modalCloseBtn.addEventListener('click', () => {
+    modalOverlay.classList.remove('active');
+  });
+
+  const modalTitle = document.createElement('h3');
+  modalTitle.id = 'modalTitle';
+
+  const modalText = document.createElement('div');
+  modalText.id = 'modalText';
+
+  modalContent.appendChild(modalCloseBtn);
+  modalContent.appendChild(modalTitle);
+  modalContent.appendChild(modalText);
+
+  modalOverlay.appendChild(modalContent);
   document.body.appendChild(modalOverlay);
 
-  const modalTitle = document.getElementById('modalTitle');
-  const modalText = document.getElementById('modalText');
-  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  // Show analysis med opdeling i afsnit
+  function showAnalysis(pro) {
+    modalTitle.textContent = pro.name;
+    modalText.innerHTML = '';
 
-  function openModal(title, text) {
-    modalTitle.textContent = title;
-    modalText.textContent = text;
+    const paragraphs = pro.analysis.split('\n').filter(p => p.trim().length > 0);
+    paragraphs.forEach(paragraph => {
+      const pEl = document.createElement('p');
+      pEl.textContent = paragraph.trim();
+      modalText.appendChild(pEl);
+    });
+
     modalOverlay.classList.add('active');
-    modalCloseBtn.focus();
-  }
-  function closeModal() {
-    modalOverlay.classList.remove('active');
   }
 
-  modalCloseBtn.addEventListener('click', closeModal);
-  modalOverlay.addEventListener('click', e => {
-    if(e.target === modalOverlay) closeModal();
-  });
-  document.addEventListener('keydown', e => {
-    if(e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
+  // Chart.js setup
+  const ctx = document.getElementById('portfolioChart').getContext('2d');
+
+  const chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: Array.from({length: weeks}, (_, i) => `Uge ${i+1}`),
+      datasets: [{
+        label: 'Porteføljens værdi i DKK',
+        data: portfolioValues,
+        borderColor: '#00ccff',
+        backgroundColor: 'rgba(0,204,255,0.2)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        borderWidth: 3,
+      }]
+    },
+    options: {
+      responsive: true,
+      interaction: {
+        mode: 'index',
+        intersect: false
+      },
+      scales: {
+        y: {
+          beginAtZero: false,
+          ticks: {
+            callback: value => new Intl.NumberFormat('da-DK', {style: 'currency', currency: 'DKK'}).format(value)
+          },
+          title: {
+            display: true,
+            text: 'Værdi (DKK)'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Tid (Uger)'
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: '#0b1e3d',
+            font: {
+              weight: 'bold',
+              size: 14
+            }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: context => {
+              return new Intl.NumberFormat('da-DK', {style: 'currency', currency: 'DKK'}).format(context.parsed.y);
+            }
+          }
+        }
+      }
+    }
   });
 </script>
 
