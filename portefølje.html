@@ -3,169 +3,464 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Porteføljen - Eksklusivt</title>
+  <title>FormueGuiden - Eksklusiv Portefølje</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
-    header, footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 1rem;
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
     }
-    .hero {
-      background-color: #f4f4f4;
-      padding: 2rem;
-      text-align: center;
-    }
-    #portfolioChart {
-      max-width: 800px;
-      margin: 2rem auto;
-    }
-    #profsContainer {
+    header {
+      background-color: #0b1e3d;
+      padding: 1rem 2rem;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      padding: 2rem;
-    }
-    .prof-card {
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 1rem;
-      width: 300px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .prof-card h4 {
-      margin-top: 0;
-    }
-    .modal-bg {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      z-index: 999;
+      color: white;
+      position: relative;
+      z-index: 1000;
     }
-    .modal {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      width: 80%;
-      max-width: 600px;
+    .logo {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .logo-img {
+      height: 88px;
+      width: auto;
+      display: block;
+    }
+    nav {
       position: relative;
     }
-    .modal-close {
+    ul.menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    ul.menu > li {
+      position: relative;
+    }
+    ul.menu > li > a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem;
+      display: block;
+      transition: color 0.2s ease;
+    }
+    ul.menu > li:hover > a {
+      color: #00ccff;
+    }
+    .dropdown {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
+      top: 100%;
+      left: 0;
+      background: white;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+      z-index: 999;
+    }
+    .dropdown a {
+      color: #0b1e3d;
+      text-decoration: none;
+      padding: 0.4rem 0;
+    }
+    .dropdown a:hover {
+      color: #0077cc;
+    }
+    ul.menu > li:hover .dropdown {
+      display: flex;
+    }
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(to right, #0b1e3d, #153c5d);
+      color: white;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    section.fremskriver {
+      max-width: 900px;
+      margin: 2rem auto 4rem auto;
+      background: #fff;
+      padding: 2rem 3rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      color: #153c5d;
+    }
+    section.fremskriver h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #0b1e3d;
+    }
+    #ekspertContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+    .ekspert-kort {
+      background: #f0f4fa;
+      border-radius: 8px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      color: #0b1e3d;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .ekspert-kort h3 {
+      margin-bottom: 0.7rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #0077cc;
+    }
+    .ekspert-kort p {
+      margin-bottom: 0.7rem;
+    }
+    .aktie-liste strong {
+      color: #0b1e3d;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #0b1e3d;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+    @media(max-width: 768px) {
+      ul.menu {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .dropdown {
+        position: static;
+        box-shadow: none;
+        background: none;
+        padding: 0;
+      }
+      .dropdown a {
+        padding-left: 1rem;
+      }
+      section.fremskriver {
+        padding: 1.5rem 1.5rem;
+        max-width: 95%;
+      }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h2>FormueGuiden Eksklusiv</h2>
+  <div class="logo" onclick="window.location.href='index.html'">
+    <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
+  </div>
+  <nav>
+    <ul class="menu">
+      <li>
+        <a href="#">Blog</a>
+        <div class="dropdown">
+          <a href="begynderguide.html">Begynderguide</a>
+          <a href="valgafplatform.html">Valg af platform</a>
+          <a href="formuehistorier.html">Formuehistorier</a>
+          <a href="#">Eksklusivt</a>
+          <div class="dropdown" style="margin-left: 1rem;">
+            <a href="portefolje.html">Porteføljen</a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a href="#">Om os</a>
+        <div class="dropdown">
+          <a href="team.html">Teamet</a>
+          <a href="vision.html">Vores vision</a>
+        </div>
+      </li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="login.html">Log ind / Opret</a></li>
+    </ul>
+  </nav>
 </header>
 
 <section class="hero">
-  <h1>Eksklusiv portefølje</h1>
-  <p>Se 10 professionelle investorers valg og se udviklingen af den samlede portefølje</p>
+  <h1>Eksklusiv Portefølje - Professionelle aktievalg</h1>
+  <p>Se hvordan 10 eksperter hver har udvalgt 2 aktier til en samlet portefølje på 1.000.000 kr.<br /> 
+     Følg porteføljens udvikling og analyser på aktierne.</p>
 </section>
 
-<main>
-  <canvas id="portfolioChart" height="100"></canvas>
+<section class="fremskriver">
+  <h2>Porteføljens samlede udvikling</h2>
 
-  <div id="profsContainer">
-    <!-- Professionelle kort genereres her -->
-  </div>
-</main>
+  <canvas id="portefoljeGraf" style="margin-top: 1rem; max-width: 100%; height: 300px;"></canvas>
+
+  <div id="ekspertContainer"></div>
+</section>
 
 <footer>
   &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
 </footer>
 
-<!-- Modal til analyse -->
-<div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal">
-    <button class="modal-close" id="modalClose" aria-label="Luk analyse">×</button>
-    <h3 id="modalTitle"></h3>
-    <p id="modalContent"></p>
-  </div>
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  const professionals = [
+  // Data for 10 eksperter med 2 aktier hver (navn, aktier, analyser, afkast)
+  const eksperter = [
     {
-      navn: "Mikkel Sørvig",
+      navn: "Lars Mikkelsen",
       aktier: [
-        { navn: "Novo Nordisk", ticker: "NOVO-B", sektor: "C25", startPris: 1100, currentPris: 1230, valuta: "DKK", afkast: 11.8 },
-        { navn: "Vestas", ticker: "VWS", sektor: "C25", startPris: 600, currentPris: 660, valuta: "DKK", afkast: 10.0 }
-      ],
-      analyse: "Jeg har valgt Novo Nordisk og Vestas, fordi de begge repræsenterer langsigtede strukturelle trends. Novo Nordisk er førende inden for diabetesbehandling, og deres pipeline ser lovende ud. Vestas er en nøglespiller i den grønne omstilling med en stærk global tilstedeværelse. Begge virksomheder har solide fundamentale nøgletal og stærke ledelsesteams, hvilket gør dem til attraktive langsigtede investeringer."
+        {
+          navn: "Apple (AAPL)",
+          analyse: "Lars fokuserer på høj vækst og teknologisk dominans. Apple er valgt for sin stærke økosystemeffekt og cash flow.",
+          afkast: 14.2
+        },
+        {
+          navn: "NVIDIA (NVDA)",
+          analyse: "NVIDIA udmærker sig ved sin position indenfor AI og grafikchips, hvor efterspørgslen er eksplosiv.",
+          afkast: 22.8
+        }
+      ]
     },
     {
-      navn: "Julie Thorsen",
+      navn: "Anna Jensen",
       aktier: [
-        { navn: "Genmab", ticker: "GMAB", sektor: "C25", startPris: 1700, currentPris: 1870, valuta: "DKK", afkast: 10.0 },
-        { navn: "Jyske Bank", ticker: "JYSK", sektor: "C25", startPris: 200, currentPris: 230, valuta: "DKK", afkast: 15.0 }
-      ],
-      analyse: "Mit porteføljevalg kombinerer innovativ biotek og traditionel bankforretning. Genmab har en stærk pipeline og partnerskaber, der kan føre til betydelig vækst. Jyske Bank har vist robusthed i en udfordrende finansiel sektor og har en solid kapitalstruktur. Kombinationen af høj vækst og stabilitet giver en balanceret portefølje."
+        {
+          navn: "Novo Nordisk (NOVO)",
+          analyse: "Anna satser på sundhedssektoren med fokus på stabil vækst og globale markedsandele indenfor diabetesbehandling.",
+          afkast: 11.5
+        },
+        {
+          navn: "Coloplast (COLO)",
+          analyse: "Coloplast er stærk i nichemarkeder med solidt brand og loyal kundebase.",
+          afkast: 9.8
+        }
+      ]
     },
     {
-      navn: "Nikolaj Birk",
+      navn: "Peter Hansen",
       aktier: [
-        { navn: "Pandora", ticker: "PNDORA", sektor: "C25", startPris: 700, currentPris: 770, valuta: "DKK", afkast: 10.0 },
-        { navn: "Rockwool", ticker: "ROCK", sektor: "C25", startPris: 900, currentPris: 990, valuta: "DKK", afkast: 10.0 }
-      ],
-      analyse: "Jeg har valgt Pandora for brandværdi og Rockwool pga. den grønne bølge i byggeriet. Pandora har formået at genopfinde sig selv og tiltrække nye kundesegmenter, mens Rockwool drager fordel af øget fokus på energieffektivitet og bæredygtigt byggeri. Begge selskaber har stærke markedspositioner og potentiale for vækst."
+        {
+          navn: "Vestas Wind Systems (VWS)",
+          analyse: "Peter tror på den grønne omstilling og Vestas' førerposition i vindenergi globalt.",
+          afkast: 18.1
+        },
+        {
+          navn: "Ørsted (ORSTED)",
+          analyse: "Ørsted udbygger sin offshore vindkapacitet og er en frontløber i bæredygtig energi.",
+          afkast: 16.7
+        }
+      ]
     },
     {
-      navn: "Sanne Krogh",
+      navn: "Maria Sørensen",
       aktier: [
-        { navn: "Chr. Hansen", ticker: "CHR", sektor: "C25", startPris: 400, currentPris: 440, valuta: "DKK", afkast: 10.0 },
-        { navn: "Coloplast", ticker: "COLO", sektor: "C25", startPris: 800, currentPris: 840, valuta: "DKK", afkast: 5.0 }
-      ],
-      analyse: "Biotek og sundhedspleje er stabile og bæredygtige investeringer på lang sigt. Chr. Hansen har en stærk position inden for naturlige ingredienser, og Coloplast er førende inden for medicinsk udstyr. Begge virksomheder har vist evne til at levere stabil vækst og har stærke konkurrencemæssige fordele."
+        {
+          navn: "Microsoft (MSFT)",
+          analyse: "Maria vægter cloud-tjenester og software, hvor Microsoft leverer stabil vækst og innovation.",
+          afkast: 20.4
+        },
+        {
+          navn: "Amazon (AMZN)",
+          analyse: "Amazon styrker sin position i e-handel og cloud computing globalt.",
+          afkast: 25.3
+        }
+      ]
     },
     {
-      navn: "Rasmus Høgh",
+      navn: "Anders Pedersen",
       aktier: [
-        { navn: "DSV", ticker: "DSV", sektor: "C25", startPris: 1400, currentPris: 1500, valuta: "DKK", afkast: 7.1 },
-        { navn: "Ørsted", ticker: "ORSTED", sektor: "C25", startPris: 850, currentPris: 930, valuta: "DKK", afkast: 9.4 }
-      ],
-      analyse: "Transport og grøn energi er nøgleområder i fremtidens økonomi. DSV har en stærk global tilstedeværelse og effektive logistiske løsninger, mens Ørsted er en pioner inden for vedvarende energi. Investering i disse sektorer giver eksponering mod langsigtede væksttrends."
+        {
+          navn: "Carlsberg (CARL)",
+          analyse: "Anders satser på stærke brands med global rækkevidde inden for drikkevarer.",
+          afkast: 7.2
+        },
+        {
+          navn: "Heineken (HEIA)",
+          analyse: "Heineken har solid markedsandel i vækstmarkeder og stærk brandloyalitet.",
+          afkast: 8.9
+        }
+      ]
     },
     {
-      navn: "Eva Lindholm",
+      navn: "Camilla Larsen",
       aktier: [
-        { navn: "Tryg", ticker: "TRYG", sektor: "C25", startPris: 150, currentPris: 160, valuta: "DKK", afkast: 6.7 },
-        { navn: "Topdanmark", ticker: "TOP", sektor: "C25", startPris: 300, currentPris: 315, valuta: "DKK", afkast: 5.0 }
-      ],
-      analyse: "Forsikring er en undervurderet sektor med solidt afkast og lav volatilitet. Tryg og Topdanmark har stærke markedspositioner og stabile indtægtsstrømme. Deres evne til at tilpasse sig ændringer i risikobilledet gør dem til attraktive investeringer i en usikker økonomisk tid."
+        {
+          navn: "Tesla (TSLA)",
+          analyse: "Camilla er bullish på elbiler og vedvarende energi med Tesla som markedsleder.",
+          afkast: 30.5
+        },
+        {
+          navn: "NIO (NIO)",
+          analyse: "NIO er en kinesisk konkurrent inden for elbiler med stærk vækstpotentiale.",
+          afkast: 27.1
+        }
+      ]
     },
     {
-      navn: "Daniel Holm",
+      navn: "Jens Kristensen",
       aktier: [
-        { navn: "Carlsberg", ticker: "CARL-B", sektor: "C25", startPris: 980, currentPris: 1020, valuta: "DKK", afkast: 4.1 },
-        { navn: "Ambu", ticker: "AMBU-B", sektor: "C25", startPris: 140, currentPris: 150, valuta: "DKK", afkast: 7.1 }
-      ],
-      analyse: "Konsumentvarer og sundhedsteknologi skaber god balance i min portefølje. Carlsberg har en stærk global tilstedeværelse og et bredt produktsortiment, mens Ambu er innovativ inden for medicinsk udstyr. Kombinationen af stabilitet og innovation giver en diversificeret portefølje."
+        {
+          navn: "Danske Bank (DANSKE)",
+          analyse: "Jens satser på det finansielle marked med fokus på stabilitet og udbytte.",
+          afkast: 5.4
+        },
+        {
+          navn: "Nordea (NDA-DK)",
+          analyse: "Nordea er stor i Norden med god risikostyring og digitalisering.",
+          afkast: 6.7
+        }
+      ]
     },
     {
-      navn: "Line Nørgaard",
+      navn: "Sofie Nielsen",
       aktier: [
-        { navn: "FLSmidth", ticker: "FLS", sektor: "C25", startPris: 280, currentPris: 300, valuta: "DKK", afkast: 7.1 },
-        { navn: "Netcompany", ticker: "NETC", sektor: "C25", startPris: 400, currentPris: 420, valuta: "DKK", afkast: 5.0 }
-      ],
-      analyse
-::contentReference[oaicite:5]{index=5}
+        {
+          navn: "LEGO Group (privat)",
+          analyse: "Sofie tror på bæredygtig leg og kreativitet, hvor LEGO leverer stabil omsætning.",
+          afkast: 10.3
+        },
+        {
+          navn: "Hasbro (HAS)",
+          analyse: "Hasbro udvider digitalt og styrker sit brand i legetøjsmarkedet.",
+          afkast: 8.6
+        }
+      ]
+    },
+    {
+      navn: "Martin Johansen",
+      aktier: [
+        {
+          navn: "Maersk (MAERSK)",
+          analyse: "Martin fokuserer på global shipping og logistik med Maersk som førende aktør.",
+          afkast: 12.8
+        },
+        {
+          navn: "Hapag-Lloyd (HLAG)",
+          analyse: "Hapag-Lloyd er stærk i containertransport og drager fordel af global handel.",
+          afkast: 11.1
+        }
+      ]
+    },
+    {
+      navn: "Katrine Holm",
+      aktier: [
+        {
+          navn: "Novo Nordisk (NOVO)",
+          analyse: "Katrine satser på pharma med fokus på innovation og global udbredelse.",
+          afkast: 13.7
+        },
+        {
+          navn: "Genmab (GEN)",
+          analyse: "Genmab arbejder med banebrydende kræftbehandlinger og har højt vækstpotentiale.",
+          afkast: 19.9
+        }
+      ]
+    }
+  ];
+
+  // Simulerede månedlige porteføljedata (for graf) - eksempel: 12 måneder
+  // Her summeres værdien af alle aktier med udgangspunkt i 50.000 kr. per aktie og afkast.
+  // For simplificering, afkastet er jævnt fordelt over året per måned.
+
+  const måneder = ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"];
+  const startKapital = 1000000; // 20 aktier x 50.000 kr.
+  
+  // Beregn samlet afkast over året baseret på gennemsnit af alle aktiers afkast
+  const gennemsnitAfkast = eksperter.reduce((sum, eks) => {
+    return sum + eks.aktier.reduce((sum2, aktie) => sum2 + aktie.afkast, 0);
+  }, 0) / (eksperter.length * 2);
+
+  // Beregn værdier pr måned som en lineær vækst (for demo)
+  const værdier = måneder.map((_, i) => {
+    return Math.round(startKapital * (1 + (gennemsnitAfkast/100) * (i / (måneder.length - 1))));
+  });
+
+  // Setup Chart.js graf
+  const ctxPortfolio = document.getElementById('portefoljeGraf').getContext('2d');
+  const portefoljeChart = new Chart(ctxPortfolio, {
+    type: 'line',
+    data: {
+      labels: måneder,
+      datasets: [{
+        label: 'Samlet Porteføljeværdi (DKK)',
+        data: værdier,
+        borderColor: '#0077cc',
+        backgroundColor: 'rgba(0,119,204,0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: false,
+          ticks: {
+            callback: function(value) {
+              return value.toLocaleString('da-DK') + ' kr';
+            }
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            color: '#0b1e3d',
+            font: { weight: 'bold' }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.parsed.y.toLocaleString('da-DK') + ' kr';
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Funktion til at generere ekspertkort i HTML
+  function genererEkspertKort() {
+    const container = document.getElementById('ekspertContainer');
+    eksperter.forEach(ekspert => {
+      const kort = document.createElement('div');
+      kort.className = 'ekspert-kort';
+
+      let html = `<h3>📈 ${ekspert.navn}</h3>`;
+      html += `<p class="aktie-liste"><strong>Valgte aktier:</strong> ${ekspert.aktier.map(a => a.navn).join(', ')}</p>`;
+
+      ekspert.aktier.forEach(aktie => {
+        html += `<p><strong>${aktie.navn}:</strong> ${aktie.analyse} Afkast siden start: <strong>${aktie.afkast}%</strong></p>`;
+      });
+
+      kort.innerHTML = html;
+      container.appendChild(kort);
+    });
+  }
+
+  // Kald funktionen for at bygge siden dynamisk
+  genererEkspertKort();
+</script>
+
+</body>
+</html>
