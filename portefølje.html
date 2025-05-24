@@ -3,281 +3,173 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portefølje - Eksklusivt</title>
+  <title>FormueGuiden</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f7f9fc;
-      color: #0b1e3d;
-      margin: 2rem;
-    }
-    h1, h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-      color: #0b1e3d;
-    }
-    .container {
+    /* ... Din eksisterende styling ... */
+    /* Kun portefølje-sektion ændret */
+    section.portefolje {
       max-width: 1100px;
-      margin: 0 auto;
+      margin: 3rem auto;
       background: white;
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(11, 30, 61, 0.15);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      color: #0b1e3d;
     }
-    .portfolio-summary {
+    section.portefolje h2 {
       text-align: center;
       margin-bottom: 2rem;
-    }
-    .total-value {
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 700;
-      margin-top: 0.3rem;
-      color: #0077cc;
     }
-    #totalAfkastChart {
-      max-width: 100%;
-      height: 320px;
-      margin-bottom: 3rem;
-    }
-    .stock-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
-    .stock-card {
-      background: #e6f0ff;
-      border-radius: 10px;
-      padding: 1rem 1.2rem;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .stock-header {
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 0.2rem;
-      color: #004a99;
-    }
-    .pro-name {
+    .portfolio-summary {
+      font-size: 1.25rem;
       font-weight: 600;
-      font-size: 0.9rem;
-      color: #3366cc;
-      margin-bottom: 0.6rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #153c5d;
     }
-    .stock-value {
-      font-weight: 700;
-      font-size: 1.3rem;
-      margin-bottom: 0.3rem;
-      color: #0077cc;
-    }
-    .stock-return {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #1a8a00;
-    }
-    .stock-return.negative {
-      color: #cc3300;
-    }
-    canvas.stock-chart {
+    table.portfolio-table {
       width: 100%;
-      height: 100px;
-      margin-top: 0.5rem;
+      border-collapse: collapse;
     }
-    @media(max-width: 600px) {
-      body {
-        margin: 1rem;
-      }
+    table.portfolio-table th, table.portfolio-table td {
+      border: 1.5px solid #0b1e3d;
+      padding: 0.8rem 1rem;
+      text-align: center;
+      vertical-align: middle;
+    }
+    table.portfolio-table th {
+      background-color: #0b1e3d;
+      color: white;
+      font-weight: 700;
+    }
+    .positive-return {
+      color: #0077cc;
+      font-weight: 700;
+    }
+    .negative-return {
+      color: #cc3300;
+      font-weight: 700;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Portefølje – Eksklusivt for betalende brugere</h1>
+  <!-- Header og Hero som før -->
 
-    <section class="portfolio-summary" aria-label="Samlet portefølje">
-      <h2>Samlet portefølje værdi og afkast</h2>
-      <div class="total-value" id="totalValue">1.000.000 kr.</div>
-      <canvas id="totalAfkastChart"></canvas>
-    </section>
+  <section class="hero">
+    <h1>Få indblik i din vej til formuevækst</h1>
+    <p>Opnå kontrol, overblik og bliv komfortabel med dine investeringer</p>
+  </section>
 
-    <section aria-label="Portefølje aktier">
-      <h2>Aktier og individuel udvikling</h2>
-      <div class="stock-list" id="stockList">
-        <!-- Aktier indsættes her via JavaScript -->
-      </div>
-    </section>
-  </div>
+  <!-- NY PORTFØLJE-SEKTION -->
+  <section class="portefolje" aria-label="Portefølje for betalende brugere">
+    <h2>Den Professionelles Valg - samlet portefølje</h2>
+    <div class="portfolio-summary" aria-live="polite" id="totalReturnSummary">
+      Indlæser portefølje og afkast...
+    </div>
+    <table class="portfolio-table" id="portfolioTable" aria-describedby="totalReturnSummary">
+      <thead>
+        <tr>
+          <th>Professionel</th>
+          <th>Aktie 1</th>
+          <th>Investering 1 (DKK)</th>
+          <th>Afkast 1 (%)</th>
+          <th>Aktie 2</th>
+          <th>Investering 2 (DKK)</th>
+          <th>Afkast 2 (%)</th>
+          <th>Samlet Afkast (DKK)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rækker indsættes her dynamisk -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Fremskriver sektion som før -->
+
+  <section class="fremskriver">
+    <!-- Din fremskriver kode -->
+  </section>
+
+  <footer>
+    &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    // Data: 10 professionelle, hver med 2 aktier
+    // === FREMSKRIVER KODE ===
+    // (Din eksisterende fremskriverkode her)
+    // For korthed udeladt i denne snippet, men du indsætter din kode fra før.
+
+    // === PORTFØLJE KODE ===
     const portfolio = [
-      { pro: 'Anders Jensen', stocks: [
-        { name: 'Novo Nordisk', initial: 50000 },
-        { name: 'Vestas', initial: 50000 }
-      ]},
-      { pro: 'Mette Sørensen', stocks: [
-        { name: 'Carlsberg', initial: 50000 },
-        { name: 'Coloplast', initial: 50000 }
-      ]},
-      { pro: 'Lars Pedersen', stocks: [
-        { name: 'DSV', initial: 50000 },
-        { name: 'Novozymes', initial: 50000 }
-      ]},
-      { pro: 'Sofie Hansen', stocks: [
-        { name: 'Pandora', initial: 50000 },
-        { name: 'Ørsted', initial: 50000 }
-      ]},
-      { pro: 'Thomas Nielsen', stocks: [
-        { name: 'Tryg', initial: 50000 },
-        { name: 'Jyske Bank', initial: 50000 }
-      ]},
-      { pro: 'Anna Kristensen', stocks: [
-        { name: 'Genmab', initial: 50000 },
-        { name: 'SimCorp', initial: 50000 }
-      ]},
-      { pro: 'Martin Larsen', stocks: [
-        { name: 'FLSmidth', initial: 50000 },
-        { name: 'Ambu', initial: 50000 }
-      ]},
-      { pro: 'Karen Madsen', stocks: [
-        { name: 'William Demant', initial: 50000 },
-        { name: 'Topdanmark', initial: 50000 }
-      ]},
-      { pro: 'Jens Holm', stocks: [
-        { name: 'AP Møller', initial: 50000 },
-        { name: 'Nordea', initial: 50000 }
-      ]},
-      { pro: 'Louise Jensen', stocks: [
-        { name: 'Chr. Hansen', initial: 50000 },
-        { name: 'Tryg', initial: 50000 }
-      ]}
+      { pro: 'Anna Hansen', stock: 'Novo Nordisk', investment: 50000, returnPct: 12.5 },
+      { pro: 'Anna Hansen', stock: 'Vestas', investment: 50000, returnPct: 8.4 },
+      { pro: 'Jens Petersen', stock: 'Mærsk', investment: 50000, returnPct: 15.1 },
+      { pro: 'Jens Petersen', stock: 'Carlsberg', investment: 50000, returnPct: 5.3 },
+      { pro: 'Lise Sørensen', stock: 'Coloplast', investment: 50000, returnPct: -3.2 },
+      { pro: 'Lise Sørensen', stock: 'Ørsted', investment: 50000, returnPct: 10.7 },
+      { pro: 'Peter Jensen', stock: 'DSV', investment: 50000, returnPct: 9.9 },
+      { pro: 'Peter Jensen', stock: 'SimCorp', investment: 50000, returnPct: 13.3 },
+      { pro: 'Maria Lund', stock: 'Ambu', investment: 50000, returnPct: 4.6 },
+      { pro: 'Maria Lund', stock: 'Genmab', investment: 50000, returnPct: 7.8 },
+      { pro: 'Klaus Andersen', stock: 'Tryg', investment: 50000, returnPct: 6.1 },
+      { pro: 'Klaus Andersen', stock: 'DSB', investment: 50000, returnPct: -1.5 },
+      { pro: 'Sofie Nielsen', stock: 'NKT', investment: 50000, returnPct: 3.9 },
+      { pro: 'Sofie Nielsen', stock: 'Jyske Bank', investment: 50000, returnPct: 11.2 },
+      { pro: 'Morten Madsen', stock: 'Pandora', investment: 50000, returnPct: 14.8 },
+      { pro: 'Morten Madsen', stock: 'William Demant', investment: 50000, returnPct: 9.4 },
+      { pro: 'Caroline Holm', stock: 'TDC', investment: 50000, returnPct: 2.7 },
+      { pro: 'Caroline Holm', stock: 'Colgate-Palmolive', investment: 50000, returnPct: 5.8 },
+      { pro: 'Thomas Vester', stock: 'Novozymes', investment: 50000, returnPct: 7.1 },
+      { pro: 'Thomas Vester', stock: 'ISS', investment: 50000, returnPct: 6.9 },
     ];
 
-    // Simuleret afkast over 12 måneder i % for hver aktie (random men stabil)
-    function generateMonthlyReturns() {
-      let returns = [];
-      let base = 0;
-      for(let i=0; i<12; i++) {
-        base += (Math.random() * 2 - 1); // +/-1% variation hver måned
-        returns.push(Number(base.toFixed(2)));
+    const portfolioTableBody = document.querySelector('#portfolioTable tbody');
+    const totalReturnSummary = document.getElementById('totalReturnSummary');
+
+    // Grupér aktier pr professionel
+    const groupedByPro = {};
+    portfolio.forEach(item => {
+      if (!groupedByPro[item.pro]) {
+        groupedByPro[item.pro] = [];
       }
-      return returns;
-    }
-
-    // Beregn værdi over tid givet initial og procentafkast
-    function calculateValueOverTime(initial, returns) {
-      return returns.map(r => +(initial * (1 + r / 100)).toFixed(0));
-    }
-
-    // Saml alle aktier i en flat liste med ekstra data
-    const allStocks = [];
-    portfolio.forEach(prof => {
-      prof.stocks.forEach(stock => {
-        stock.pro = prof.pro;
-        stock.monthlyReturns = generateMonthlyReturns();
-        stock.values = calculateValueOverTime(stock.initial, stock.monthlyReturns);
-        allStocks.push(stock);
-      });
+      groupedByPro[item.pro].push(item);
     });
 
-    // Beregn samlet portefølje værdi over tid
-    const totalValues = [];
-    for(let month=0; month<12; month++) {
-      let sum = 0;
-      allStocks.forEach(stock => {
-        sum += stock.values[month];
-      });
-      totalValues.push(sum);
-    }
+    // Byg tabellen
+    let totalReturnDKK = 0;
 
-    // Opdater samlet værdi på siden - vis seneste måned
-    const totalValueEl = document.getElementById('totalValue');
-    totalValueEl.textContent = totalValues[totalValues.length - 1].toLocaleString('da-DK') + ' kr.';
+    Object.entries(groupedByPro).forEach(([pro, stocks]) => {
+      // Antager altid 2 aktier pr. pro som i data
+      const [stock1, stock2] = stocks;
 
-    // Graf for samlet portefølje
-    const totalCtx = document.getElementById('totalAfkastChart').getContext('2d');
-    const totalChart = new Chart(totalCtx, {
-      type: 'line',
-      data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
-        datasets: [{
-          label: 'Porteføljens værdi',
-          data: totalValues,
-          borderColor: '#0077cc',
-          backgroundColor: 'rgba(0, 119, 204, 0.2)',
-          fill: true,
-          tension: 0.25,
-          pointRadius: 3,
-          pointHoverRadius: 6,
-          borderWidth: 3,
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: false,
-            ticks: {
-              callback: v => v.toLocaleString('da-DK') + ' kr'
-            }
-          }
-        },
-        plugins: {
-          legend: { display: true }
-        }
-      }
-    });
+      // Beregn samlet afkast i DKK for de to aktier
+      const return1DKK = stock1.investment * (stock1.returnPct / 100);
+      const return2DKK = stock2.investment * (stock2.returnPct / 100);
+      const combinedReturn = return1DKK + return2DKK;
+      totalReturnDKK += combinedReturn;
 
-    // Render aktierne på siden
-    const stockList = document.getElementById('stockList');
-    allStocks.forEach(stock => {
-      const div = document.createElement('div');
-      div.className = 'stock-card';
-      div.innerHTML = `
-        <div class="stock-header">${stock.name}</div>
-        <div class="pro-name">Professionel: ${stock.pro}</div>
-        <div>Startinvestering: 50.000 kr.</div>
-        <div class="stock-value" id="value-${stock.name.replace(/\s/g,'-')}">${stock.values[stock.values.length-1].toLocaleString('da-DK')} kr.</div>
-        <div class="stock-return ${stock.monthlyReturns[stock.monthlyReturns.length-1] >= 0 ? '' : 'negative'}">
-          Afkast: ${stock.monthlyReturns[stock.monthlyReturns.length-1]}%
-        </div>
-        <canvas class="stock-chart" id="chart-${stock.name.replace(/\s/g,'-')}"></canvas>
+      const tr = document.createElement('tr');
+
+      tr.innerHTML = `
+        <td>${pro}</td>
+        <td>${stock1.stock}</td>
+        <td>${stock1.investment.toLocaleString('da-DK')}</td>
+        <td class="${stock1.returnPct >= 0 ? 'positive-return' : 'negative-return'}">${stock1.returnPct.toFixed(1)}%</td>
+        <td>${stock2.stock}</td>
+        <td>${stock2.investment.toLocaleString('da-DK')}</td>
+        <td class="${stock2.returnPct >= 0 ? 'positive-return' : 'negative-return'}">${stock2.returnPct.toFixed(1)}%</td>
+        <td class="${combinedReturn >= 0 ? 'positive-return' : 'negative-return'}">${combinedReturn.toLocaleString('da-DK', {minimumFractionDigits:0, maximumFractionDigits:0})} kr</td>
       `;
-      stockList.appendChild(div);
 
-      // Tegn lille graf for aktiens værdi over tid
-      const ctxStock = div.querySelector('canvas').getContext('2d');
-      new Chart(ctxStock, {
-        type: 'line',
-        data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
-          datasets: [{
-            data: stock.values,
-            borderColor: '#004a99',
-            backgroundColor: 'rgba(0, 74, 153, 0.15)',
-            fill: true,
-            tension: 0.3,
-            pointRadius: 0,
-            borderWidth: 2,
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: { legend: { display: false } },
-          scales: {
-            x: { display: false },
-            y: { display: false }
-          },
-          elements: {
-            line: { borderJoinStyle: 'round' }
-          }
-        }
-      });
+      portfolioTableBody.appendChild(tr);
     });
-  </script>
 
+    totalReturnSummary.textContent = `Samlet forventet afkast på porteføljen: ${totalReturnDKK.toLocaleString('da-DK', {minimumFractionDigits:0, maximumFractionDigits:0})} kr`;
+  </script>
 </body>
 </html>
