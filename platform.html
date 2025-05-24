@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Valg af platform – FormueGuiden</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f7f9fc;
@@ -18,38 +22,28 @@
       justify-content: space-between;
       align-items: center;
       color: white;
-      position: relative;
-      z-index: 1000;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
     }
     .logo-img {
       height: 88px;
       width: auto;
       display: block;
     }
-    nav {
-      position: relative;
-    }
-    ul.menu {
+    nav ul.menu {
       list-style: none;
       display: flex;
       gap: 2rem;
     }
-    ul.menu > li {
+    nav ul.menu > li {
       position: relative;
     }
-    ul.menu > li > a {
+    nav ul.menu > li > a {
       color: white;
       text-decoration: none;
       font-weight: 500;
       padding: 0.5rem;
       display: block;
-      transition: color 0.2s ease;
     }
-    ul.menu > li:hover > a {
+    nav ul.menu > li:hover > a {
       color: #00ccff;
     }
     .dropdown {
@@ -73,10 +67,9 @@
     .dropdown a:hover {
       color: #0077cc;
     }
-    ul.menu > li:hover .dropdown {
+    nav ul.menu > li:hover .dropdown {
       display: flex;
     }
-
     .hero {
       padding: 4rem 2rem;
       text-align: center;
@@ -92,48 +85,51 @@
       max-width: 600px;
       margin: auto;
     }
-
-    .platforme {
+    .platform-section {
+      max-width: 1100px;
+      margin: 3rem auto;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
-      padding: 3rem 2rem;
-      max-width: 1200px;
-      margin: auto;
+      padding: 0 2rem;
     }
     .kort {
-      background: #fff;
+      background: white;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 2rem 1.5rem;
       text-align: center;
-      transition: transform 0.2s ease;
     }
-    .kort:hover {
-      transform: translateY(-5px);
+    .kort img.logo-kort {
+      height: 40px;
+      margin-bottom: 1rem;
+      object-fit: contain;
     }
     .kort h3 {
       color: #0b1e3d;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
     .kort ul {
-      text-align: left;
-      padding-left: 1.2rem;
+      list-style: none;
+      padding: 0;
       margin-bottom: 1rem;
+    }
+    .kort ul li {
+      margin: 0.3rem 0;
       font-size: 0.95rem;
     }
     .kort a {
       text-decoration: none;
       color: white;
-      background-color: #0b1e3d;
-      padding: 0.6rem 1rem;
-      border-radius: 5px;
+      background: #0b1e3d;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
       display: inline-block;
+      transition: background 0.2s;
     }
     .kort a:hover {
-      background-color: #153c5d;
+      background: #0077cc;
     }
-
     footer {
       text-align: center;
       padding: 1.5rem;
@@ -142,9 +138,8 @@
       font-size: 0.9rem;
       margin-top: 4rem;
     }
-
     @media(max-width: 768px) {
-      ul.menu {
+      nav ul.menu {
         flex-direction: column;
         gap: 1rem;
       }
@@ -196,67 +191,70 @@
   </header>
 
   <section class="hero">
-    <h1>Find den rette investeringsplatform</h1>
-    <p>Sammenlign og vælg blandt de bedste platforme til investering og opsparing</p>
+    <h1>Vælg den rette platform til dine investeringer</h1>
+    <p>Få overblik over dine muligheder og find den løsning, der passer dig bedst</p>
   </section>
 
-  <section class="platforme">
-
+  <section class="platform-section">
     <div class="kort">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Saxo_Bank_logo.svg" alt="Saxo Bank logo" class="logo-kort" />
       <h3>Saxo Bank</h3>
       <ul>
         <li>Lav kurtage fra 0,05%</li>
         <li>Bredt aktieunivers</li>
-        <li>Professionelt værktøj</li>
+        <li>Professionelle værktøjer</li>
         <li>Høje valutagebyrer</li>
       </ul>
       <a href="https://www.home.saxo" target="_blank">Besøg Saxo</a>
     </div>
 
     <div class="kort">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Nordnet_logo.svg/512px-Nordnet_logo.svg.png" alt="Nordnet logo" class="logo-kort" />
       <h3>Nordnet</h3>
       <ul>
         <li>Gratis månedsopsparing</li>
         <li>Lav kurtage DK aktier</li>
-        <li>Brugervenligt design</li>
+        <li>Brugervenlig platform</li>
         <li>Gode analyseredskaber</li>
       </ul>
       <a href="https://www.nordnet.dk" target="_blank">Besøg Nordnet</a>
     </div>
 
     <div class="kort">
+      <img src="https://www.endavu.com/images/logo.svg" alt="Endavu logo" class="logo-kort" />
       <h3>Endavu</h3>
       <ul>
         <li>Automatiseret opsparing</li>
+        <li>Bæredygtigt fokus</li>
         <li>Ingen skjulte gebyrer</li>
-        <li>Fokus på bæredygtighed</li>
-        <li>Brugerbaseret rådgivning</li>
+        <li>Intuitiv rådgivning</li>
       </ul>
       <a href="https://www.endavu.com" target="_blank">Besøg Endavu</a>
     </div>
 
     <div class="kort">
+      <img src="https://plutomarkets.com/assets/img/logo-dark.svg" alt="Pluto Markets logo" class="logo-kort" />
       <h3>Pluto Markets</h3>
       <ul>
         <li>Handel uden kurtage</li>
-        <li>Gratis realtidskurser</li>
-        <li>Mobilapp i fokus</li>
-        <li>God til daytrading</li>
+        <li>Realtidskurser gratis</li>
+        <li>Mobil-først platform</li>
+        <li>Velegnet til daytrading</li>
       </ul>
       <a href="https://www.plutomarkets.com" target="_blank">Besøg Pluto</a>
     </div>
 
     <div class="kort">
+      <img src="https://www.lunar.app/_next/image?url=%2Flogo.png&w=384&q=75" alt="Lunar Bank logo" class="logo-kort" />
       <h3>Lunar Bank</h3>
       <ul>
         <li>Gratis aktiehandel (basis)</li>
-        <li>Let at komme i gang</li>
-        <li>Mobilbank og investering</li>
+        <li>Let og hurtig opstart</li>
+        <li>Mobilbank & investering</li>
         <li>Ingen månedsopsparing</li>
       </ul>
       <a href="https://www.lunar.app" target="_blank">Besøg Lunar</a>
     </div>
-
   </section>
 
   <footer>
