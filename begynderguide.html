@@ -1,79 +1,187 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="da">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FormueGuiden</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Begynderguiden – FormueGuiden</title>
   <style>
-    body {
+    /* Genbruger samme CSS som forsiden, inkl. logo 20% mindre */
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
     }
     header {
-      background-color: #0b3c5d;
+      background-color: #0b1e3d;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       color: white;
+      position: relative;
+      z-index: 1000;
+    }
+    .logo {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-    }
-    header img {
-      height: 50px;
       cursor: pointer;
     }
-    nav a {
+    .logo-img {
+      height: 88px; /* 20% mindre end 110px */
+      width: auto;
+      display: block;
+    }
+    nav {
+      position: relative;
+    }
+    ul.menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    ul.menu > li {
+      position: relative;
+    }
+    ul.menu > li > a {
       color: white;
-      margin-left: 20px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
+      padding: 0.5rem;
+      display: block;
+      transition: color 0.2s ease;
+    }
+    ul.menu > li:hover > a {
+      color: #00ccff;
+    }
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+      z-index: 999;
+    }
+    .dropdown a {
+      color: #0b1e3d;
+      text-decoration: none;
+      padding: 0.4rem 0;
+      text-transform: none; /* Undgår kapitalisering */
+    }
+    .dropdown a:hover {
+      color: #0077cc;
+    }
+    ul.menu > li:hover .dropdown {
+      display: flex;
     }
     .hero {
       padding: 4rem 2rem;
       text-align: center;
-      background: #174a7c;
+      background: linear-gradient(to right, #153c5d, #25557a); /* lidt lysere blå end header */
       color: white;
     }
-    .content {
-      max-width: 900px;
-      margin: 3rem auto;
-      padding: 0 2rem;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
-    .content h2 {
-      color: #0b3c5d;
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: auto;
     }
-    .content p {
+    main.content {
+      max-width: 700px;
+      margin: 2rem auto 4rem;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      color: #153c5d;
       line-height: 1.6;
+      font-size: 1rem;
+    }
+    main.content h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #0b1e3d;
+    }
+    main.content p, main.content ul, main.content li {
+      margin-bottom: 1rem;
+    }
+    main.content ul {
+      list-style: disc inside;
+      padding-left: 1rem;
+    }
+    main.content ul ul {
+      list-style-type: circle;
+    }
+    main.content li {
+      margin-left: 1rem;
+    }
+    main.content strong {
+      color: #0b1e3d;
     }
     footer {
-      background-color: #0b3c5d;
-      color: white;
       text-align: center;
-      padding: 1rem;
-      margin-top: 3rem;
+      padding: 1.5rem;
+      background-color: #0b1e3d;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 4rem;
     }
-    ul {
-      padding-left: 1.5rem;
-    }
-    li {
-      margin-bottom: 0.5rem;
+    @media(max-width: 768px) {
+      ul.menu {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .dropdown {
+        position: static;
+        box-shadow: none;
+        background: none;
+        padding: 0;
+      }
+      .dropdown a {
+        padding-left: 1rem;
+      }
     }
   </style>
 </head>
-
 <body>
+
   <header>
-    <a href="index.html"><img src="logo.png" alt="FormueGuiden Logo"></a>
+    <div class="logo" onclick="location.href='index.html'" role="link" tabindex="0" aria-label="Gå til forsiden">
+      <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
+      <span style="display:none;">FormueGuiden</span>
+    </div>
     <nav>
-      <a href="#">Begynderguiden</a>
-      <a href="#">Formuehistorier</a>
-      <a href="#">Portefølje</a>
-      <a href="#">Team</a>
-      <a href="#">Vision</a>
+      <ul class="menu">
+        <li>
+          <a href="#">Blog</a>
+          <div class="dropdown">
+            <a href="begynderguide.html">Begynderguide</a>
+            <a href="formuehistorier.html">Formuehistorier</a>
+            <a href="portefolje.html">Vores Portefølje</a>
+          </div>
+        </li>
+        <li>
+          <a href="#">Om os</a>
+          <div class="dropdown">
+            <a href="team.html">Teamet</a>
+            <a href="vision.html">Vores vision</a>
+          </div>
+        </li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="login.html">Log ind</a></li>
+      </ul>
     </nav>
   </header>
 
@@ -82,58 +190,41 @@
     <p>Kom i gang med din investeringsrejse</p>
   </section>
 
-  <section class="content">
-    <h2>Velkommen til begynderguiden</h2>
+  <main class="content">
     <p>At begynde at investere kan virke skræmmende, især hvis man aldrig har prøvet det før. Mange har måske hørt historier om store kursfald, komplekse aktier og uforståelige markeder. Men sandheden er: det vigtigste er, at du kommer i gang – og gerne på en måde, der passer til dig og dit risikoniveau.</p>
 
-    <h3>🔑 Hvorfor investere?</h3>
+    <h2>🔑 Hvorfor investere?</h2>
     <p>Hvis du lader dine penge stå på en almindelig bankkonto, mister de stille og roligt værdi over tid pga. inflationen. Investering handler om at få dine penge til at arbejde for dig, så de kan vokse over tid. Jo tidligere du starter, desto mere kan du få ud af det – takket være rente-på-rente-effekten.</p>
 
-    <h3>📌 1. Start simpelt – og tænk langsigtet</h3>
+    <h2>📌 1. Start simpelt – og tænk langsigtet</h2>
     <p>Du behøver ikke være ekspert for at komme i gang. Det vigtigste er, at du tager det første skridt og starter med det beløb, du er tryg ved at investere – det kan sagtens være små beløb.</p>
-    <p>Du behøver ikke forsøge at "slå markedet". For begyndere giver det mening at tænke langsigtet og bredt.</p>
+    <p>Du behøver ikke forsøge at "slå markedet" eller finde den næste aktieraket. Faktisk har mange professionelle investorer svært ved at gøre det konsekvent. For begyndere giver det derfor god mening at tænke langsigtet og bredt.</p>
 
-    <h3>⚠️ Enkeltaktier: Spændende, men risikable</h3>
-    <p>Enkeltaktier kan være fristende, men de indebærer større risiko. Hvis én virksomhed klarer sig dårligt, kan din investering falde markant i værdi.</p>
+    <h2>⚠️ Enkeltaktier: Spændende, men risikable</h2>
+    <p>Det kan være fristende at investere i kendte virksomheder som f.eks. Novo Nordisk, Mærsk eller Tesla. Men når du køber enkeltaktier, lægger du alle æggene i én (eller få) kurv.</p>
+    <p>Det betyder, at hvis netop den virksomhed klarer sig dårligt, falder din portefølje måske meget i værdi. Det kan være nervepirrende – især i starten. Jo færre aktier du ejer, jo mere svinger din portefølje.</p>
 
-    <h3>✅ Fonde: En nem og tryg måde at starte på</h3>
+    <h2>✅ Fonde: En nem og tryg måde at starte på</h2>
+    <p>I stedet for at købe enkeltaktier, kan du købe fonde (også kaldet investeringsforeninger eller ETF’er). En fond er en kurv, der indeholder mange forskellige aktier – og på den måde spreder du automatisk din risiko.</p>
+    <p>Fordele ved fonde:</p>
     <ul>
       <li>✅ Automatisk spredning (du ejer lidt af mange selskaber)</li>
       <li>✅ Mindre svingninger end enkeltaktier</li>
-      <li>✅ Nem at investere i – via netbank eller investeringsapp</li>
+      <li>✅ Nem at investere i – især gennem din netbank eller en investeringsapp</li>
     </ul>
 
-    <h3>📝 Hvad skal du være opmærksom på med fonde?</h3>
-    <ol>
-      <li><strong>Spredning:</strong> Globale fonde = bedre spredning og lavere risiko.</li>
-      <li><strong>Omkostninger (ÅOP):</strong> Indexfonde er ofte billigere end aktivt forvaltede fonde.</li>
-      <li><strong>Beskatning:</strong> Afhænger af fondstype – spørg din bank om råd.</li>
-    </ol>
+    <h2>🧾 Skat og omkostninger</h2>
+    <p>Husk, at investering også har skattemæssige konsekvenser og omkostninger. Det er en god idé at sætte sig ind i reglerne for aktiesparekontoen eller depotkontoen, samt at være opmærksom på eventuelle omkostninger ved køb og salg.</p>
 
-    <h3>📱 Hvordan kommer du i gang?</h3>
-    <ul>
-      <li>Vælg en platform – se fanen "Valg af platform"</li>
-      <li>Opret en investeringskonto</li>
-      <li>Vælg en fond – fx global indexfond</li>
-      <li>Køb din første investering</li>
-      <li>Gentag løbende – evt. månedligt</li>
-    </ul>
+    <h2>🚀 Kom godt i gang</h2>
+    <p>Hvis du ønsker hjælp, har vi samlet en række guider og værktøjer til at gøre det enkelt og overskueligt at komme i gang. Tag det i dit tempo – og husk, at det vigtigste er at begynde.</p>
 
-    <h3>🧠 Gode råd til sidst</h3>
-    <ul>
-      <li>📅 Tænk langsigtet – 5-10 år eller mere</li>
-      <li>💸 Investér kun penge, du ikke skal bruge nu</li>
-      <li>📚 Lær lidt ad gangen – du behøver ikke kunne alt</li>
-      <li>🚧 Pas på “gode råd” på sociale medier</li>
-    </ul>
-
-    <h3>🚀 Konklusion: Bare kom i gang</h3>
-    <p>Det vigtigste råd: Kom i gang – selv med små beløb. Du behøver ikke være ekspert. Start med en fond, du forstår, og byg din viden op stille og roligt. Investering kan være vejen til økonomisk tryghed.</p>
-  </section>
+    <p><strong>God investeringsrejse!</strong></p>
+  </main>
 
   <footer>
-    <p>&copy; 2025 FormueGuiden – Rettigheder forbeholdes.</p>
+    &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
   </footer>
-</body>
 
+</body>
 </html>
