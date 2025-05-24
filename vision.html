@@ -1,1 +1,184 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vores vision – FormueGuiden</title>
+  <style>
+    /* ... Samme CSS som på forsiden – uændret ... */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+    }
+    header {
+      background-color: #0b1e3d;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      position: relative;
+      z-index: 1000;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .logo-img {
+      height: 88px;
+      width: auto;
+      display: block;
+    }
+    nav {
+      position: relative;
+    }
+    ul.menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    ul.menu > li {
+      position: relative;
+    }
+    ul.menu > li > a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem;
+      display: block;
+      transition: color 0.2s ease;
+    }
+    ul.menu > li:hover > a {
+      color: #00ccff;
+    }
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+      z-index: 999;
+    }
+    .dropdown a {
+      color: #0b1e3d;
+      text-decoration: none;
+      padding: 0.4rem 0;
+    }
+    .dropdown a:hover {
+      color: #0077cc;
+    }
+    ul.menu > li:hover .dropdown {
+      display: flex;
+    }
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(to right, #0b1e3d, #153c5d);
+      color: white;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    .content {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      color: #153c5d;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .content h2 {
+      color: #0b1e3d;
+      margin-top: 1.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #0b1e3d;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo" onclick="window.location.href='index.html'">
+      <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
+    </div>
+    <nav>
+      <ul class="menu">
+        <li>
+          <a href="#">Blog</a>
+          <div class="dropdown">
+            <a href="begynderguide.html">Begynderguide</a>
+            <a href="formuehistorier.html">Formuehistorier</a>
+            <a href="portefolje.html">Vores Portefølje</a>
+          </div>
+        </li>
+        <li>
+          <a href="#">Om os</a>
+          <div class="dropdown">
+            <a href="team.html">Teamet</a>
+            <a href="vision.html">Vores vision</a>
+          </div>
+        </li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="login.html">Log ind</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Vores vision</h1>
+    <p>Vi gør investering enkelt – for alle</p>
+  </section>
+
+  <main class="content">
+    <p>Hos FormueGuiden er vi dedikerede til at simplificere opstarten af investering. Vi ved, at investering spiller en afgørende rolle for mange menneskers formueopbygning – men vi ved også, at alt for mange aldrig kommer i gang.</p>
+
+    <h2>Hvorfor?</h2>
+    <p>Fordi det ofte virker uoverskueligt, komplekst og risikabelt. Og det er ærgerligt – for alle kan investere, og vi mener faktisk, at alle bør investere.</p>
+
+    <h2>Alle starter et sted – og selv små skridt tæller</h2>
+    <p>Du behøver hverken en økonomiuddannelse eller mange tusinde kroner for at begynde. Selv et lille beløb kan gøre en stor forskel på sigt, især hvis du investerer regelmæssigt og tænker langsigtet.</p>
+
+    <p><strong>FormueGuiden er skabt for at gøre det nemt at tage det første skridt.</strong></p>
+    <p>Vi giver dig en rolig, tryg og enkel introduktion – helt uden unødigt fagsprog eller forvirrende grafer.</p>
+
+    <h2>Vi tror på:</h2>
+    <ul>
+      <li>🟢 Lav tærskel – alle skal kunne være med</li>
+      <li>🧠 Klarhed frem for kompleksitet</li>
+      <li>📈 At små investeringer over tid skaber stor værdi – og hjælper med at realisere dine drømme</li>
+      <li>💬 Åbenhed, hjælp og læring i øjenhøjde</li>
+    </ul>
+  </main>
+
+  <footer>
+    &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+  </footer>
+
+</body>
+</html>
