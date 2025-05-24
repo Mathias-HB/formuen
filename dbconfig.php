@@ -1,10 +1,10 @@
 <?php
-// dbconfig.php - databaseforbindelse
+// dbconfig.php
 
-$dbHost = 'localhost';          // Typisk localhost, medmindre din DB ligger et andet sted
+$dbHost = 'localhost';          // Din databasehost
 $dbName = 'formueguiden';       // Dit databasenavn
 $dbUser = 'din_db_bruger';      // Dit databasebrugernavn
-$dbPass = 'dit_db_password';    // Dit databaseadgangskode
+$dbPass = 'dit_db_password';    // Dit databasepassword
 
 try {
     $pdo = new PDO("mysql:host=$dbHost;dbname=$dbName;charset=utf8", $dbUser, $dbPass);
