@@ -1,1 +1,283 @@
 <!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portefølje - Eksklusivt</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f9fc;
+      color: #0b1e3d;
+      margin: 2rem;
+    }
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #0b1e3d;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(11, 30, 61, 0.15);
+    }
+    .portfolio-summary {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .total-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-top: 0.3rem;
+      color: #0077cc;
+    }
+    #totalAfkastChart {
+      max-width: 100%;
+      height: 320px;
+      margin-bottom: 3rem;
+    }
+    .stock-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .stock-card {
+      background: #e6f0ff;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stock-header {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+      color: #004a99;
+    }
+    .pro-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #3366cc;
+      margin-bottom: 0.6rem;
+    }
+    .stock-value {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+      color: #0077cc;
+    }
+    .stock-return {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1a8a00;
+    }
+    .stock-return.negative {
+      color: #cc3300;
+    }
+    canvas.stock-chart {
+      width: 100%;
+      height: 100px;
+      margin-top: 0.5rem;
+    }
+    @media(max-width: 600px) {
+      body {
+        margin: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Portefølje – Eksklusivt for betalende brugere</h1>
+
+    <section class="portfolio-summary" aria-label="Samlet portefølje">
+      <h2>Samlet portefølje værdi og afkast</h2>
+      <div class="total-value" id="totalValue">1.000.000 kr.</div>
+      <canvas id="totalAfkastChart"></canvas>
+    </section>
+
+    <section aria-label="Portefølje aktier">
+      <h2>Aktier og individuel udvikling</h2>
+      <div class="stock-list" id="stockList">
+        <!-- Aktier indsættes her via JavaScript -->
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Data: 10 professionelle, hver med 2 aktier
+    const portfolio = [
+      { pro: 'Anders Jensen', stocks: [
+        { name: 'Novo Nordisk', initial: 50000 },
+        { name: 'Vestas', initial: 50000 }
+      ]},
+      { pro: 'Mette Sørensen', stocks: [
+        { name: 'Carlsberg', initial: 50000 },
+        { name: 'Coloplast', initial: 50000 }
+      ]},
+      { pro: 'Lars Pedersen', stocks: [
+        { name: 'DSV', initial: 50000 },
+        { name: 'Novozymes', initial: 50000 }
+      ]},
+      { pro: 'Sofie Hansen', stocks: [
+        { name: 'Pandora', initial: 50000 },
+        { name: 'Ørsted', initial: 50000 }
+      ]},
+      { pro: 'Thomas Nielsen', stocks: [
+        { name: 'Tryg', initial: 50000 },
+        { name: 'Jyske Bank', initial: 50000 }
+      ]},
+      { pro: 'Anna Kristensen', stocks: [
+        { name: 'Genmab', initial: 50000 },
+        { name: 'SimCorp', initial: 50000 }
+      ]},
+      { pro: 'Martin Larsen', stocks: [
+        { name: 'FLSmidth', initial: 50000 },
+        { name: 'Ambu', initial: 50000 }
+      ]},
+      { pro: 'Karen Madsen', stocks: [
+        { name: 'William Demant', initial: 50000 },
+        { name: 'Topdanmark', initial: 50000 }
+      ]},
+      { pro: 'Jens Holm', stocks: [
+        { name: 'AP Møller', initial: 50000 },
+        { name: 'Nordea', initial: 50000 }
+      ]},
+      { pro: 'Louise Jensen', stocks: [
+        { name: 'Chr. Hansen', initial: 50000 },
+        { name: 'Tryg', initial: 50000 }
+      ]}
+    ];
+
+    // Simuleret afkast over 12 måneder i % for hver aktie (random men stabil)
+    function generateMonthlyReturns() {
+      let returns = [];
+      let base = 0;
+      for(let i=0; i<12; i++) {
+        base += (Math.random() * 2 - 1); // +/-1% variation hver måned
+        returns.push(Number(base.toFixed(2)));
+      }
+      return returns;
+    }
+
+    // Beregn værdi over tid givet initial og procentafkast
+    function calculateValueOverTime(initial, returns) {
+      return returns.map(r => +(initial * (1 + r / 100)).toFixed(0));
+    }
+
+    // Saml alle aktier i en flat liste med ekstra data
+    const allStocks = [];
+    portfolio.forEach(prof => {
+      prof.stocks.forEach(stock => {
+        stock.pro = prof.pro;
+        stock.monthlyReturns = generateMonthlyReturns();
+        stock.values = calculateValueOverTime(stock.initial, stock.monthlyReturns);
+        allStocks.push(stock);
+      });
+    });
+
+    // Beregn samlet portefølje værdi over tid
+    const totalValues = [];
+    for(let month=0; month<12; month++) {
+      let sum = 0;
+      allStocks.forEach(stock => {
+        sum += stock.values[month];
+      });
+      totalValues.push(sum);
+    }
+
+    // Opdater samlet værdi på siden - vis seneste måned
+    const totalValueEl = document.getElementById('totalValue');
+    totalValueEl.textContent = totalValues[totalValues.length - 1].toLocaleString('da-DK') + ' kr.';
+
+    // Graf for samlet portefølje
+    const totalCtx = document.getElementById('totalAfkastChart').getContext('2d');
+    const totalChart = new Chart(totalCtx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Porteføljens værdi',
+          data: totalValues,
+          borderColor: '#0077cc',
+          backgroundColor: 'rgba(0, 119, 204, 0.2)',
+          fill: true,
+          tension: 0.25,
+          pointRadius: 3,
+          pointHoverRadius: 6,
+          borderWidth: 3,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: false,
+            ticks: {
+              callback: v => v.toLocaleString('da-DK') + ' kr'
+            }
+          }
+        },
+        plugins: {
+          legend: { display: true }
+        }
+      }
+    });
+
+    // Render aktierne på siden
+    const stockList = document.getElementById('stockList');
+    allStocks.forEach(stock => {
+      const div = document.createElement('div');
+      div.className = 'stock-card';
+      div.innerHTML = `
+        <div class="stock-header">${stock.name}</div>
+        <div class="pro-name">Professionel: ${stock.pro}</div>
+        <div>Startinvestering: 50.000 kr.</div>
+        <div class="stock-value" id="value-${stock.name.replace(/\s/g,'-')}">${stock.values[stock.values.length-1].toLocaleString('da-DK')} kr.</div>
+        <div class="stock-return ${stock.monthlyReturns[stock.monthlyReturns.length-1] >= 0 ? '' : 'negative'}">
+          Afkast: ${stock.monthlyReturns[stock.monthlyReturns.length-1]}%
+        </div>
+        <canvas class="stock-chart" id="chart-${stock.name.replace(/\s/g,'-')}"></canvas>
+      `;
+      stockList.appendChild(div);
+
+      // Tegn lille graf for aktiens værdi over tid
+      const ctxStock = div.querySelector('canvas').getContext('2d');
+      new Chart(ctxStock, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
+          datasets: [{
+            data: stock.values,
+            borderColor: '#004a99',
+            backgroundColor: 'rgba(0, 74, 153, 0.15)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 0,
+            borderWidth: 2,
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { display: false },
+            y: { display: false }
+          },
+          elements: {
+            line: { borderJoinStyle: 'round' }
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
