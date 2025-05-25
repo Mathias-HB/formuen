@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FormueGuiden</title>
-  <link rel="icon" href="FGlogo.png" type="image/png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="FGlogo.png" type="image/png" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -81,6 +81,102 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="script.js"></script>
+  <script>
+    const kapitalSlider = document.getElementById('kapitalSlider');
+    const indskudSlider = document.getElementById('indskudSlider');
+    const afkastSlider = document.getElementById('afkastSlider');
+    const aarSlider = document.getElementById('aarSlider');
+
+    const kapitalVal = document.getElementById('kapitalVal');
+    const indskudVal = document.getElementById('indskudVal');
+    const afkastVal = document.getElementById('afkastVal');
+    const aarVal = document.getElementById('aarVal');
+    const output = document.getElementById('output');
+
+    const ctx = document.getElementById('fremskriverGraf').getContext('2d');
+
+    let chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          data: [],
+          borderColor: '#0b1e3d',
+          backgroundColor: 'rgba(11, 30, 61, 0.2)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 3,
+          pointHoverRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) {
+                return value.toLocaleString('da-DK') + ' kr';
+              },
+              precision: 0
+            }
+          },
+          x: {
+            title: { display: true, text: 'År' },
+            ticks: { precision: 0 }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y.toLocaleString('da-DK') + ' kr'
+            }
+          }
+        }
+      }
+    });
+
+    function beregnFremskrivning() {
+      const kapital = parseInt(kapitalSlider.value);
+      const indskud = parseInt(indskudSlider.value);
+      const afkast = parseFloat(afkastSlider.value);
+      const aar = parseInt(aarSlider.value);
+
+      kapitalVal.textContent = kapital.toLocaleString('da-DK');
+      indskudVal.textContent = indskud.toLocaleString('da-DK');
+      afkastVal.textContent = afkast.toFixed(1);
+      aarVal.textContent = aar;
+
+      const r = afkast / 100 / 12;
+      const n = aar * 12;
+
+      let saldo = kapital;
+      let saldoArray = [saldo];
+      let labelsArray = [0];
+
+      for (let i = 1; i <= n; i++) {
+        saldo = saldo * (1 + r) + indskud;
+        if (i % 12 === 0) {
+          saldoArray.push(Math.round(saldo));
+          labelsArray.push(i / 12);
+        }
+      }
+
+      chart.data.labels = labelsArray;
+      chart.data.datasets[0].data = saldoArray;
+      chart.update();
+
+      const fremtidsvaerdi = saldoArray[saldoArray.length - 1];
+      output.textContent = `Fremtidige formue: ${fremtidsvaerdi.toLocaleString('da-DK')} kr`;
+    }
+
+    kapitalSlider.addEventListener('input', beregnFremskrivning);
+    indskudSlider.addEventListener('input', beregnFremskrivning);
+    afkastSlider.addEventListener('input', beregnFremskrivning);
+    aarSlider.addEventListener('input', beregnFremskrivning);
+
+    beregnFremskrivning();
+  </script>
 </body>
 </html>
