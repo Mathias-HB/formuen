@@ -156,6 +156,8 @@
     <p></p>
   </section>
 
+note: ""// Herunder skal alt indholdet på siden være, og så skal footer med mere til sidst.
+
 <footer>
     &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
   </footer>
