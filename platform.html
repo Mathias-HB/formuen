@@ -5,165 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Valg af platform – FormueGuiden</title>
   <link rel="icon" href="FGlogo.png" type="image/png">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f7f9fc;
-      color: #333;
-    }
-    header {
-      background-color: #0b1e3d;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-    }
-    .logo-img {
-      height: 88px;
-      width: auto;
-      display: block;
-    }
-    nav ul.menu {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-    nav ul.menu > li {
-      position: relative;
-    }
-    nav ul.menu > li > a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 0.5rem;
-      display: block;
-    }
-    nav ul.menu > li:hover > a {
-      color: #00ccff;
-    }
-    .dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: white;
-      padding: 1rem;
-      border-radius: 6px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      display: none;
-      flex-direction: column;
-      min-width: 200px;
-      z-index: 999;
-    }
-    .dropdown a {
-      color: #0b1e3d;
-      text-decoration: none;
-      padding: 0.4rem 0;
-    }
-    .dropdown a:hover {
-      color: #0077cc;
-    }
-    nav ul.menu > li:hover .dropdown {
-      display: flex;
-    }
-    .hero {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: linear-gradient(to right, #0b1e3d, #153c5d);
-      color: white;
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: auto;
-    }
-    .platform-section {
-      max-width: 1100px;
-      margin: 3rem auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 0 2rem;
-    }
-    .kort {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      padding: 2rem 1.5rem;
-      text-align: center;
-    }
-    .kort img.logo-kort {
-      height: 60px;
-      max-width: 160px;
-      object-fit: contain;
-      margin: 0 auto 1rem;
-      display: block;
-    }
-    .kort h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.8rem;
-      font-weight: 600;
-    }
-    .kort ul {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 1rem;
-    }
-    .kort ul li {
-      margin: 0.3rem 0;
-      font-size: 0.95rem;
-    }
-    .kort a {
-      text-decoration: none;
-      color: white;
-      background: #0b1e3d;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      display: inline-block;
-      transition: background 0.2s;
-    }
-    .kort a:hover {
-      background: #0077cc;
-    }
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      background-color: #0b1e3d;
-      color: white;
-      font-size: 0.9rem;
-      margin-top: 4rem;
-    }
-    @media(max-width: 768px) {
-      nav ul.menu {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .dropdown {
-        position: static;
-        box-shadow: none;
-        background: none;
-        padding: 0;
-      }
-      .dropdown a {
-        padding-left: 1rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <header>
     <div class="logo">
-      <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
+      <a href="index.html">
+        <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
+      </a>
     </div>
     <nav>
       <ul class="menu">
@@ -200,6 +50,7 @@
   </section>
 
   <section class="platform-section">
+    <!-- Platform cards her -->
     <div class="kort">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRhp9BmD4Sy_DkOHIYq8odRABTTY71FMT1c1xcqXToc0AhMVOZlvNKtLI83p9qMh1w4oU&usqp=CAU" alt="Saxo Bank logo" class="logo-kort" />
       <h3>Saxo Bank</h3>
@@ -211,8 +62,6 @@
       </ul>
       <a href="https://www.home.saxo" target="_blank" rel="noopener noreferrer">Besøg Saxo</a>
     </div>
-
-
     <div class="kort">
       <img src="https://taenk.dk/sites/default/files/styles/product_teaser/public/product/a6/12/endavu.png?itok=Geq01Fy9" alt="Endavu logo" class="logo-kort" />
       <h3>Endavu</h3>
@@ -224,7 +73,6 @@
       </ul>
       <a href="https://www.endavu.com" target="_blank" rel="noopener noreferrer">Besøg Endavu</a>
     </div>
-
     <div class="kort">
       <img src="https://image.pitchbook.com/ynN7U8KNsHZgPyAo5d3ZC7UegTS1730963991228_200x200" alt="Pluto Markets logo" class="logo-kort" />
       <h3>Pluto Markets</h3>
@@ -236,7 +84,6 @@
       </ul>
       <a href="https://www.plutomarkets.com" target="_blank" rel="noopener noreferrer">Besøg Pluto</a>
     </div>
-
     <div class="kort">
       <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Lunar_finance.png" alt="Lunar Bank logo" class="logo-kort" />
       <h3>Lunar Bank</h3>
@@ -248,7 +95,6 @@
       </ul>
       <a href="https://www.lunar.app" target="_blank" rel="noopener noreferrer">Besøg Lunar</a>
     </div>
-
     <div class="kort">
       <img src="https://cdn.sanity.io/images/6uvtz1ot/production/1f2878947fcce5a610b3ee3af56dd3336356c817-2000x817.jpg" alt="Nordnet logo" class="logo-kort" />
       <h3>Nordnet</h3>
