@@ -1,182 +1,185 @@
 <!DOCTYPE html>
 <html lang="da">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FormueGuiden</title>
-  <link rel="icon" href="FGlogo.png" type="image/png" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <div class="logo">
-      <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
-    </div>
-    <nav>
-      <ul class="menu">
-        <li>
-          <a href="#">Blog</a>
-          <div class="dropdown">
-            <a href="begynderguide.html">Begynderguide</a>
-            <a href="formuehistorier.html">Formuehistorier</a>
-            <a href="platform.html">Valg af platform</a>
-          </div>
-        </li>
-        <li>
-          <a href="#">Eksklusivt</a>
-          <div class="dropdown">
-            <a href="portefølje.html">Porteføljen</a>
-          </div>
-        </li>
-        <li>
-          <a href="#">Om os</a>
-          <div class="dropdown">
-            <a href="team.html">Teamet</a>
-            <a href="vision.html">Vores vision</a>
-          </div>
-        </li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="login.html">Log ind / Opret</a></li>
-      </ul>
-    </nav>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FormueGuiden</title>
+    <link rel="icon" href="FGlogo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
 
-  <section class="hero">
-    <h1>Få indblik i din vej til formuevækst</h1>
-    <p>Opnå kontrol, overblik og bliv komfortabel med dine investeringer</p>
-  </section>
+    <header>
+      <div class="logo">
+        <a href="index.html">
+          <img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" />
+        </a>
+      </div>
+      <nav>
+        <ul class="menu">
+          <li>
+            <a href="#">Blog</a>
+            <div class="dropdown">
+              <a href="begynderguide.html">Begynderguide</a>
+              <a href="formuehistorier.html">Formuehistorier</a>
+              <a href="platform.html">Valg af platform</a>
+            </div>
+          </li>
+          <li>
+            <a href="#">Eksklusivt</a>
+            <div class="dropdown">
+              <a href="portefølje.html">Porteføljen</a>
+            </div>
+          </li>
+          <li>
+            <a href="#">Om os</a>
+            <div class="dropdown">
+              <a href="team.html">Teamet</a>
+              <a href="vision.html">Vores vision</a>
+            </div>
+          </li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="login.html">Log ind / Opret</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <section class="fremskriver">
-    <h2>Fremskriv din formue</h2>
+    <section class="hero">
+      <h1>Få indblik i din vej til formuevækst</h1>
+      <p>Opnå kontrol, overblik og bliv komfortabel med dine investeringer</p>
+    </section>
 
-    <div>
-      <input type="range" id="kapitalSlider" min="0" max="1000000" step="1000" value="100000" />
-      <label for="kapitalSlider" class="slider-label">Startkapital: <span id="kapitalVal" class="slider-value"></span> DKK</label>
-    </div>
+    <section class="fremskriver">
+      <h2>Fremskriv din formue</h2>
 
-    <div>
-      <input type="range" id="indskudSlider" min="0" max="20000" step="500" value="1000" />
-      <label for="indskudSlider" class="slider-label">Månedligt indskud: <span id="indskudVal" class="slider-value"></span> DKK</label>
-    </div>
+      <div>
+        <input type="range" id="kapitalSlider" min="0" max="1000000" step="1000" value="100000" />
+        <label for="kapitalSlider" class="slider-label">Startkapital: <span id="kapitalVal" class="slider-value"></span> DKK</label>
+      </div>
 
-    <div>
-      <input type="range" id="afkastSlider" min="0" max="20" step="0.1" value="7" />
-      <label for="afkastSlider" class="slider-label">Årligt afkast: <span id="afkastVal" class="slider-value"></span> %</label>
-    </div>
+      <div>
+        <input type="range" id="indskudSlider" min="0" max="20000" step="500" value="1000" />
+        <label for="indskudSlider" class="slider-label">Månedligt indskud: <span id="indskudVal" class="slider-value"></span> DKK</label>
+      </div>
 
-    <div>
-      <input type="range" id="aarSlider" min="1" max="50" step="1" value="20" />
-      <label for="aarSlider" class="slider-label">Antal år: <span id="aarVal" class="slider-value"></span></label>
-    </div>
+      <div>
+        <input type="range" id="afkastSlider" min="0" max="20" step="0.1" value="7" />
+        <label for="afkastSlider" class="slider-label">Årligt afkast: <span id="afkastVal" class="slider-value"></span> %</label>
+      </div>
 
-    <div id="output" aria-live="polite" role="region">
-      Fremtidige formue: Beregnes...
-    </div>
+      <div>
+        <input type="range" id="aarSlider" min="1" max="50" step="1" value="20" />
+        <label for="aarSlider" class="slider-label">Antal år: <span id="aarVal" class="slider-value"></span></label>
+      </div>
 
-    <canvas id="fremskriverGraf" style="margin-top: 2rem; max-width: 100%; height: 300px;"></canvas>
-  </section>
+      <div id="output" aria-live="polite" role="region">
+        Fremtidige formue: Beregnes...
+      </div>
 
-  <footer>
-    &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
-  </footer>
+      <canvas id="fremskriverGraf" style="margin-top: 2rem; max-width: 100%; height: 300px;"></canvas>
+    </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const kapitalSlider = document.getElementById('kapitalSlider');
-    const indskudSlider = document.getElementById('indskudSlider');
-    const afkastSlider = document.getElementById('afkastSlider');
-    const aarSlider = document.getElementById('aarSlider');
+    <footer>
+      &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+    </footer>
 
-    const kapitalVal = document.getElementById('kapitalVal');
-    const indskudVal = document.getElementById('indskudVal');
-    const afkastVal = document.getElementById('afkastVal');
-    const aarVal = document.getElementById('aarVal');
-    const output = document.getElementById('output');
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const kapitalSlider = document.getElementById('kapitalSlider');
+      const indskudSlider = document.getElementById('indskudSlider');
+      const afkastSlider = document.getElementById('afkastSlider');
+      const aarSlider = document.getElementById('aarSlider');
 
-    const ctx = document.getElementById('fremskriverGraf').getContext('2d');
+      const kapitalVal = document.getElementById('kapitalVal');
+      const indskudVal = document.getElementById('indskudVal');
+      const afkastVal = document.getElementById('afkastVal');
+      const aarVal = document.getElementById('aarVal');
+      const output = document.getElementById('output');
 
-    let chart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: [],
-        datasets: [{
-          data: [],
-          borderColor: '#0b1e3d',
-          backgroundColor: 'rgba(11, 30, 61, 0.2)',
-          fill: true,
-          tension: 0.3,
-          pointRadius: 3,
-          pointHoverRadius: 6,
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              callback: function(value) {
-                return value.toLocaleString('da-DK') + ' kr';
-              },
-              precision: 0
+      const ctx = document.getElementById('fremskriverGraf').getContext('2d');
+
+      let chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [{
+            data: [],
+            borderColor: '#0b1e3d',
+            backgroundColor: 'rgba(11, 30, 61, 0.2)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 3,
+            pointHoverRadius: 6,
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return value.toLocaleString('da-DK') + ' kr';
+                },
+                precision: 0
+              }
+            },
+            x: {
+              title: { display: true, text: 'År' },
+              ticks: { precision: 0 }
             }
           },
-          x: {
-            title: { display: true, text: 'År' },
-            ticks: { precision: 0 }
-          }
-        },
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            callbacks: {
-              label: ctx => ctx.parsed.y.toLocaleString('da-DK') + ' kr'
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: ctx => ctx.parsed.y.toLocaleString('da-DK') + ' kr'
+              }
             }
           }
         }
-      }
-    });
+      });
 
-    function beregnFremskrivning() {
-      const kapital = parseInt(kapitalSlider.value);
-      const indskud = parseInt(indskudSlider.value);
-      const afkast = parseFloat(afkastSlider.value);
-      const aar = parseInt(aarSlider.value);
+      function beregnFremskrivning() {
+        const kapital = parseInt(kapitalSlider.value);
+        const indskud = parseInt(indskudSlider.value);
+        const afkast = parseFloat(afkastSlider.value);
+        const aar = parseInt(aarSlider.value);
 
-      kapitalVal.textContent = kapital.toLocaleString('da-DK');
-      indskudVal.textContent = indskud.toLocaleString('da-DK');
-      afkastVal.textContent = afkast.toFixed(1);
-      aarVal.textContent = aar;
+        kapitalVal.textContent = kapital.toLocaleString('da-DK');
+        indskudVal.textContent = indskud.toLocaleString('da-DK');
+        afkastVal.textContent = afkast.toFixed(1);
+        aarVal.textContent = aar;
 
-      const r = afkast / 100 / 12;
-      const n = aar * 12;
+        const r = afkast / 100 / 12;
+        const n = aar * 12;
 
-      let saldo = kapital;
-      let saldoArray = [saldo];
-      let labelsArray = [0];
+        let saldo = kapital;
+        let saldoArray = [saldo];
+        let labelsArray = [0];
 
-      for (let i = 1; i <= n; i++) {
-        saldo = saldo * (1 + r) + indskud;
-        if (i % 12 === 0) {
-          saldoArray.push(Math.round(saldo));
-          labelsArray.push(i / 12);
+        for (let i = 1; i <= n; i++) {
+          saldo = saldo * (1 + r) + indskud;
+          if (i % 12 === 0) {
+            saldoArray.push(Math.round(saldo));
+            labelsArray.push(i / 12);
+          }
         }
+
+        chart.data.labels = labelsArray;
+        chart.data.datasets[0].data = saldoArray;
+        chart.update();
+
+        const fremtidsvaerdi = saldoArray[saldoArray.length - 1];
+        output.textContent = `Fremtidige formue: ${fremtidsvaerdi.toLocaleString('da-DK')} kr`;
       }
 
-      chart.data.labels = labelsArray;
-      chart.data.datasets[0].data = saldoArray;
-      chart.update();
+      kapitalSlider.addEventListener('input', beregnFremskrivning);
+      indskudSlider.addEventListener('input', beregnFremskrivning);
+      afkastSlider.addEventListener('input', beregnFremskrivning);
+      aarSlider.addEventListener('input', beregnFremskrivning);
 
-      const fremtidsvaerdi = saldoArray[saldoArray.length - 1];
-      output.textContent = `Fremtidige formue: ${fremtidsvaerdi.toLocaleString('da-DK')} kr`;
-    }
-
-    kapitalSlider.addEventListener('input', beregnFremskrivning);
-    indskudSlider.addEventListener('input', beregnFremskrivning);
-    afkastSlider.addEventListener('input', beregnFremskrivning);
-    aarSlider.addEventListener('input', beregnFremskrivning);
-
-    beregnFremskrivning();
-  </script>
-</body>
+      beregnFremskrivning();
+    </script>
+  </body>
 </html>
