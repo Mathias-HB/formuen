@@ -1,3 +1,5 @@
+/* style.css */
+
 /* Reset og grundlæggende */
 * {
   margin: 0;
@@ -19,17 +21,6 @@ header {
   justify-content: space-between;
   align-items: center;
   color: white;
-  position: relative;
-  z-index: 1000;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo a {
-  display: block;
 }
 
 .logo-img {
@@ -39,30 +30,25 @@ header {
 }
 
 /* Navigation */
-nav {
-  position: relative;
-}
-
-ul.menu {
+nav ul.menu {
   list-style: none;
   display: flex;
   gap: 2rem;
 }
 
-ul.menu > li {
+nav ul.menu > li {
   position: relative;
 }
 
-ul.menu > li > a {
+nav ul.menu > li > a {
   color: white;
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem;
   display: block;
-  transition: color 0.2s ease;
 }
 
-ul.menu > li:hover > a {
+nav ul.menu > li:hover > a {
   color: #00ccff;
 }
 
@@ -85,14 +71,14 @@ ul.menu > li:hover > a {
   color: #0b1e3d;
   text-decoration: none;
   padding: 0.4rem 0;
-  transition: color 0.2s ease;
+  transition: color 0.2s;
 }
 
 .dropdown a:hover {
   color: #0077cc;
 }
 
-ul.menu > li:hover .dropdown {
+nav ul.menu > li:hover .dropdown {
   display: flex;
 }
 
@@ -180,55 +166,6 @@ ul.menu > li:hover .dropdown {
   background: #0077cc;
 }
 
-/* Fremskriver sektion (ekstra indhold du havde) */
-section.fremskriver {
-  max-width: 700px;
-  margin: 2rem auto;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  color: #153c5d;
-}
-
-section.fremskriver h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: #0b1e3d;
-}
-
-section.fremskriver > div {
-  margin-bottom: 2rem;
-}
-
-.slider-label {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #0b1e3d;
-  margin-bottom: 0.3rem;
-  text-align: left;
-  white-space: nowrap;
-}
-
-.slider-value {
-  font-weight: 700;
-  margin-left: 0.5rem;
-}
-
-section.fremskriver input[type=range] {
-  width: 100%;
-  accent-color: #0b1e3d;
-  margin-bottom: 0.25rem;
-}
-
-#output {
-  margin-top: 1.5rem;
-  text-align: center;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #0b1e3d;
-}
-
 /* Footer */
 footer {
   text-align: center;
@@ -239,9 +176,9 @@ footer {
   margin-top: 4rem;
 }
 
-/* Responsive */
+/* Responsivt */
 @media (max-width: 768px) {
-  ul.menu {
+  nav ul.menu {
     flex-direction: column;
     gap: 1rem;
   }
