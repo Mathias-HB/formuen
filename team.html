@@ -7,7 +7,7 @@
   <link rel="icon" href="FGlogo.png" type="image/png">
   <style>
     * {
-      margin: 0;
+     margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
@@ -15,7 +15,6 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #f7f9fc;
       color: #333;
-      line-height: 1.6;
     }
     header {
       background-color: #0b1e3d;
@@ -24,23 +23,39 @@
       justify-content: space-between;
       align-items: center;
       color: white;
+      position: relative;
+      z-index: 1000;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
     }
     .logo-img {
       height: 88px;
-      cursor: pointer;
+      width: auto;
+      display: block;
     }
-    nav ul.menu {
+    nav {
+      position: relative;
+    }
+    ul.menu {
       list-style: none;
       display: flex;
       gap: 2rem;
     }
-    nav ul.menu > li {
+    ul.menu > li {
       position: relative;
     }
-    nav ul.menu > li > a {
+    ul.menu > li > a {
       color: white;
       text-decoration: none;
       font-weight: 500;
+      padding: 0.5rem;
+      display: block;
+      transition: color 0.2s ease;
+    }
+    ul.menu > li:hover > a {
+      color: #00ccff;
     }
     .dropdown {
       position: absolute;
@@ -60,7 +75,10 @@
       text-decoration: none;
       padding: 0.4rem 0;
     }
-    nav ul.menu > li:hover .dropdown {
+    .dropdown a:hover {
+      color: #0077cc;
+    }
+    ul.menu > li:hover .dropdown {
       display: flex;
     }
     .hero {
@@ -74,25 +92,9 @@
       margin-bottom: 1rem;
     }
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       max-width: 600px;
       margin: auto;
-    }
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    section {
-      margin-bottom: 2rem;
-    }
-    section h2 {
-      font-size: 1.4rem;
-      color: #0b1e3d;
-      margin-bottom: 1rem;
     }
     .visitkort {
       margin-top: 2rem;
