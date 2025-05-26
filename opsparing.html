@@ -1,1 +1,315 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Opsparingskonti med høj rente – FormueGuiden</title>
+  <link rel="icon" href="FGlogo.png" type="image/png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+    }
+    header {
+      background-color: #0b1e3d;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+    .logo-img {
+      height: 88px;
+      width: auto;
+      display: block;
+    }
+    nav ul.menu {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul.menu > li {
+      position: relative;
+    }
+    nav ul.menu > li > a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem;
+      display: block;
+    }
+    nav ul.menu > li:hover > a {
+      color: #00ccff;
+    }
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      flex-direction: column;
+      min-width: 200px;
+      z-index: 999;
+    }
+    .dropdown a {
+      color: #0b1e3d;
+      text-decoration: none;
+      padding: 0.4rem 0;
+    }
+    .dropdown a:hover {
+      color: #0077cc;
+    }
+    nav ul.menu > li:hover .dropdown {
+      display: flex;
+    }
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(to right, #0b1e3d, #153c5d);
+      color: white;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    .platform-section {
+      max-width: 1100px;
+      margin: 3rem auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 0 2rem;
+    }
+    .kort {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .kort img.logo-kort {
+      height: 60px;
+      max-width: 160px;
+      object-fit: contain;
+      margin: 0 auto 1rem;
+      display: block;
+    }
+    .kort h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    .kort ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1rem;
+    }
+    .kort ul li {
+      margin: 0.3rem 0;
+      font-size: 0.95rem;
+    }
+    .kort a {
+      text-decoration: none;
+      color: white;
+      background: #0b1e3d;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .kort a:hover {
+      background: #0077cc;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #0b1e3d;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+    }
+    @media(max-width: 768px) {
+      nav ul.menu {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .dropdown {
+        position: static;
+        box-shadow: none;
+        background: none;
+        padding: 0;
+      }
+      .dropdown a {
+        padding-left: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
 
+<header>
+  <a href="index.html"><img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" /></a>
+  <nav>
+    <ul class="menu">
+      <li>
+        <a href="#">Blog</a>
+        <div class="dropdown">
+          <a href="begynderguide.html">Begynderguide</a>
+          <a href="formuehistorier.html">Formuehistorier</a>
+          <a href="platform.html">Valg af platform</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Eksklusivt</a>
+        <div class="dropdown">
+          <a href="portefølje.html">Porteføljen</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Om os</a>
+        <div class="dropdown">
+          <a href="team.html">Teamet</a>
+          <a href="vision.html">Vores vision</a>
+        </div>
+      </li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="login.html">Log ind / Opret</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Danske opsparingskonti med høj rente</h1>
+  <p>Find de bedste renter på sikre opsparingskonti – med fuld indskudsgaranti i Danmark</p>
+</section>
+
+<section class="platform-section">
+  <!-- Eksempelbanker -->
+  <div class="kort">
+    <img src="https://brand.danskebank.com/logo.png" alt="Danske Bank" class="logo-kort">
+    <h3>Danske Bank</h3>
+    <ul>
+      <li>Rente: 2,00% p.a.</li>
+      <li>Binding: 3 måneder</li>
+      <li>Indskud op til 750.000 kr. dækket</li>
+    </ul>
+    <a href="https://www.danskebank.dk" target="_blank">Besøg Danske Bank</a>
+  </div>
+
+  <div class="kort">
+    <img src="https://www.jyskebank.dk/-/media/jyskebank/images/logo/jyske-bank-logo.png" alt="Jyske Bank" class="logo-kort">
+    <h3>Jyske Bank</h3>
+    <ul>
+      <li>Rente: 2,10% p.a.</li>
+      <li>Binding: 6 måneder</li>
+      <li>Dansk garantiordning</li>
+    </ul>
+    <a href="https://www.jyskebank.dk" target="_blank">Besøg Jyske Bank</a>
+  </div>
+
+  <div class="kort">
+    <img src="https://www.sydbank.dk/-/media/sydbank/images/logo/sydbank-logo.png" alt="Sydbank" class="logo-kort">
+    <h3>Sydbank</h3>
+    <ul>
+      <li>Rente: 2,30% p.a.</li>
+      <li>Binding: 3 måneder</li>
+      <li>Ingen gebyrer</li>
+    </ul>
+    <a href="https://www.sydbank.dk" target="_blank">Besøg Sydbank</a>
+  </div>
+
+  <div class="kort">
+    <img src="https://www.nordea.com/logo.svg" alt="Nordea" class="logo-kort">
+    <h3>Nordea</h3>
+    <ul>
+      <li>Rente: 2,20% p.a.</li>
+      <li>Binding: 6 måneder</li>
+      <li>Dækket af Garantiformuen</li>
+    </ul>
+    <a href="https://www.nordea.dk" target="_blank">Besøg Nordea</a>
+  </div>
+
+  <div class="kort">
+    <img src="https://www.nykredit.dk/logo.png" alt="Nykredit Bank" class="logo-kort">
+    <h3>Nykredit Bank</h3>
+    <ul>
+      <li>Rente: 2,40% p.a.</li>
+      <li>Binding: 12 måneder</li>
+      <li>Under dansk tilsyn</li>
+    </ul>
+    <a href="https://www.nykredit.dk" target="_blank">Besøg Nykredit</a>
+  </div>
+
+  <!-- Tidligere banker -->
+  <div class="kort">
+    <img src="https://www.al-bank.dk/-/media/Images/Logos/AL.png" alt="Arbejdernes Landsbank logo" class="logo-kort" />
+    <h3>Arbejdernes Landsbank</h3>
+    <ul>
+      <li>Rente: 3,00% p.a.</li>
+      <li>Binding: 6 måneder</li>
+      <li>Indskud dækket op til 750.000 kr.</li>
+    </ul>
+    <a href="https://www.al-bank.dk" target="_blank">Besøg AL-Bank</a>
+  </div>
+
+  <div class="kort">
+    <img src="https://www.banknordik.dk/-/media/banknordik/images/logos/banknordik.png" alt="BankNordik logo" class="logo-kort" />
+    <h3>BankNordik</h3>
+    <ul>
+      <li>Rente: 2,85% p.a.</li>
+      <li>Binding: 6 måneder</li>
+    </ul>
+    <a href="https://www.banknordik.dk" target="_blank">Besøg BankNordik</a>
+  </div>
+
+  <div class="kort">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Lunar_finance.png" alt="Lunar" class="logo-kort" />
+    <h3>Lunar</h3>
+    <ul>
+      <li>Rente: 2,50% p.a.</li>
+      <li>Binding: 3 måneder</li>
+    </ul>
+    <a href="https://www.lunar.app" target="_blank">Besøg Lunar</a>
+  </div>
+
+  <div class="kort">
+    <img src="https://www.vestjyskbank.dk/media/q0eek5vh/logo-vb.png" alt="Vestjysk Bank" class="logo-kort" />
+    <h3>Vestjysk Bank</h3>
+    <ul>
+      <li>Rente: 2,75% p.a.</li>
+      <li>Binding: 12 måneder</li>
+    </ul>
+    <a href="https://www.vestjyskbank.dk" target="_blank">Besøg Vestjysk Bank</a>
+  </div>
+
+  <div class="kort">
+    <img src="https://www.nordfynsbank.dk/-/media/NordfynsBank/Images/logo-nfb.png" alt="Nordfyns Bank" class="logo-kort" />
+    <h3>Nordfyns Bank</h3>
+    <ul>
+      <li>Rente: 3,10% p.a.</li>
+      <li>Binding: 12 måneder</li>
+    </ul>
+    <a href="https://www.nordfynsbank.dk" target="_blank">Besøg Nordfyns Bank</a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
+</footer>
+
+</body>
+</html>
