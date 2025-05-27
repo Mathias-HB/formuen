@@ -323,6 +323,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+  window.addEventListener('DOMContentLoaded', () => {
   const ctx = document.getElementById('renteGraf').getContext('2d');
   const renteGraf = new Chart(ctx, {
     type: 'line',
