@@ -197,6 +197,10 @@
   <p>Find de bedste renter på sikre opsparingskonti – med fuld indskudsgaranti i Danmark</p>
 </section>
 
+  <div style="text-align:center; padding: 1rem; font-size: 1rem; background: #e6f0ff; color: #0b1e3d;" id="rente-info">
+  Henter markedsrente fra Nationalbanken...
+</div>
+
 <section class="platform-section">
   <!-- Eksempelbanker -->
   <div class="kort">
@@ -311,5 +315,31 @@
   &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
 </footer>
 
+<script>
+  async function hentMarkedsrente() {
+    const renteElement = document.getElementById('rente-info');
+
+    try {
+      const response = await fetch('https://data.nationalbanken.dk/api/data/SDR_DK?format=JSON&lang=da&$filter=VARIABLE%20eq%20%27DNIR%27&$orderby=PERIOD%20desc&$top=1');
+      const data = await response.json();
+
+      const rente = data?.dataset?.value?.[0]?.value;
+      const dato = data?.dataset?.value?.[0]?.period;
+
+      if (rente && dato) {
+        renteElement.textContent = `Aktuel markedsrente (Indskudsbevisrente): ${rente.toFixed(2)}% p.a. (senest opdateret: ${dato})`;
+      } else {
+        renteElement.textContent = "Kunne ikke hente markedsrenten.";
+      }
+    } catch (error) {
+      renteElement.textContent = "Fejl ved hentning af rente fra Nationalbanken.";
+      console.error(error);
+    }
+  }
+
+  hentMarkedsrente();
+</script>
+
+  
 </body>
 </html>
