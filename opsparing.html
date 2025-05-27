@@ -197,7 +197,7 @@
   <p>Find de opsparingskonti med højeste rente, der passer dig bedst</p>
 </section>
 
-  <div id="rente-info" style="
+<div id="rente-info" style="
   text-align: center;
   padding: 1rem 2rem 3rem 2rem;
   font-size: 1rem;
@@ -212,12 +212,13 @@
   flex-direction: column;
   align-items: center;
 ">
-  <div style="font-size: 1.2rem; margin-bottom: 1.5rem;">
-    Dette er renten bankerne kan få i Nationalbanken:
+  <div style="margin-bottom: 1.5rem;">
+    <div id="rente-tekst" style="font-size: 1.2rem;">
+      Dette er renten bankerne kan få i Nationalbanken:
+    </div>
   </div>
   <canvas id="renteGraf" height="200" style="max-width: 100%; background: white; border-radius: 6px;"></canvas>
 </div>
-
 
 <section class="platform-section">
   <!-- Eksempelbanker -->
@@ -391,12 +392,12 @@
       const dato = data?.dataset?.value?.[0]?.period;
 
       if (rente && dato) {
-        renteElement.textContent = `Aktuel markedsrente (Indskudsbevisrente): ${rente.toFixed(2)}% p.a. (senest opdateret: ${dato})`;
+        renteTekst.textContent = `Aktuel markedsrente (Indskudsbevisrente): ${rente.toFixed(2)}% p.a. (senest opdateret: ${dato})`;
       } else {
-        renteElement.textContent = "Kunne ikke hente markedsrenten.";
+        renteTekst.textContent = "Kunne ikke hente markedsrenten.";
       }
     } catch (error) {
-      renteElement.textContent = "Denne rente kan din bank få af Nationalbanken: 1,85%";
+      renteTekst.textContent = "Denne rente kan din bank få af Nationalbanken: 1,85%";
       console.error(error);
     }
   }
