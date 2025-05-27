@@ -312,6 +312,65 @@
   </div>
 </section>
 
+<!-- Container til grafen -->
+<div style="max-width: 600px; margin: 0 auto 3rem;">
+  <canvas id="renteGraf" height="200"></canvas>
+</div>
+
+<!-- Chart.js bibliotek -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('renteGraf').getContext('2d');
+  const renteGraf = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [
+        '2022-05', '2022-09', '2023-01', '2023-05', '2023-09',
+        '2024-01', '2024-05', '2024-09', '2025-01', '2025-04'
+      ],
+      datasets: [{
+        data: [0.0, 0.65, 1.35, 1.75, 2.10, 2.35, 2.35, 2.35, 2.35, 1.85],
+        borderColor: '#0b1e3d',
+        backgroundColor: 'rgba(11, 30, 61, 0.1)',
+        tension: 0.3,
+        pointRadius: 3,
+        pointBackgroundColor: '#0b1e3d',
+        fill: true
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.parsed.y.toFixed(2) + '%';
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Rente (%)',
+            color: '#0b1e3d'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Dato',
+            color: '#0b1e3d'
+          }
+        }
+      }
+    }
+  });
+</script>
+
 <footer>
   &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
 </footer>
