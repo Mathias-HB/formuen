@@ -199,7 +199,7 @@
 
   <div id="rente-info" style="
   text-align: center;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem 3rem 2rem;
   font-size: 1rem;
   background-color: #0b1e3d;
   color: white;
@@ -208,9 +208,16 @@
   margin: 2rem auto;
   font-weight: 600;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 ">
-  Dette er renten bankerne kan få i Nationalbanken:
+  <div style="font-size: 1.2rem; margin-bottom: 1.5rem;">
+    Dette er renten bankerne kan få i Nationalbanken:
+  </div>
+  <canvas id="renteGraf" height="200" style="max-width: 100%; background: white; border-radius: 6px;"></canvas>
 </div>
+
 
 <section class="platform-section">
   <!-- Eksempelbanker -->
@@ -311,11 +318,6 @@
     <a href="https://www.nordfynsbank.dk" target="_blank">Besøg Nordfyns Bank</a>
   </div>
 </section>
-
-<!-- Container til grafen -->
-<div style="max-width: 600px; margin: 0 auto 3rem;">
-  <canvas id="renteGraf" height="200"></canvas>
-</div>
 
 <!-- Chart.js bibliotek -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
