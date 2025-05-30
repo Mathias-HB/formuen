@@ -137,7 +137,6 @@ footer {
   font-size: 0.9rem;
   margin-top: 4rem;
 }
-/* Responsive styles */
 @media(max-width: 768px) {
   ul.menu {
     flex-direction: column;
