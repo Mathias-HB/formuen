@@ -5,47 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FormueGuiden</title>
   <link rel="icon" href="FGlogo.png" type="image/png">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    section.fremskriver {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      color: #153c5d;
+    }
+    section.fremskriver h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #0b1e3d;
+    }
+    section.fremskriver > div {
+      margin-bottom: 2rem;
+    }
+    .slider-label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #0b1e3d;
+      margin-bottom: 0.3rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .slider-value {
+      font-weight: 700;
+      margin-left: 0.5rem;
+    }
+    section.fremskriver input[type=range] {
+      width: 100%;
+      accent-color: #0b1e3d;
+      margin-bottom: 0.25rem;
+    }
+    #output {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0b1e3d;
+    }
+    /* ---- GRAFENS CSS ---- */
+    #fremskriverGraf {
+      margin-top: 2rem;
+      max-width: 100%;
+      height: 300px;
+      background: #f7f9fc;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(11,30,61,0.07);
+      display: block;
+    }
+  </style>
 </head>
 <body>
-
-  <header>
-    <a href="index.html"><img src="FGlogo.png" alt="FormueGuiden logo" class="logo-img" /></a>
-     <nav>
-      <ul class="menu">
-        <li>
-          <a href="#">Blog</a>
-          <div class="dropdown">
-            <a href="begynderguide.html">Begynderguide</a>
-            <a href="formuehistorier.html">Formuehistorier</a>
-            <a href="platform.html">Investeringsplatforme</a>
-            <a href="opsparing.html">Opsparingskonti</a>
-          </div>
-        </li>
-        <li>
-          <a href="#">Eksklusivt</a>
-          <div class="dropdown">
-            <a href="portefølje.html">Porteføljen</a>
-          </div>
-        </li>
-        <li>
-          <a href="#">Om os</a>
-          <div class="dropdown">
-            <a href="team.html">Teamet</a>
-            <a href="vision.html">Vores vision</a>
-          </div>
-        </li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="login.html">Log ind / Opret</a></li>
-      </ul>
-    </nav>
-  </header>
-  
-  <section class="hero">
-    <h1>Få indblik i din vej til formuevækst</h1>
-    <p>Opnå kontrol, overblik og bliv komfortabel med dine investeringer</p>
-  </section>
-
   <section class="fremskriver">
     <h2>Fremskriv din formue</h2>
 
@@ -73,13 +87,8 @@
       Fremtidige formue: Beregnes...
     </div>
 
-    <canvas id="fremskriverGraf" style="margin-top: 2rem; max-width: 100%; height: 300px;"></canvas>
+    <canvas id="fremskriverGraf"></canvas>
   </section>
-
-  <footer>
-    &copy; 2025 FormueGuiden ApS. Alle rettigheder forbeholdes.
-  </footer>
-
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     const kapitalSlider = document.getElementById('kapitalSlider');
