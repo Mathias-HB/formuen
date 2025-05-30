@@ -88,47 +88,6 @@ ul.menu > li:hover .dropdown {
   max-width: 600px;
   margin: auto;
 }
-section.fremskriver {
-  max-width: 700px;
-  margin: 2rem auto;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  color: #153c5d;
-}
-section.fremskriver h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: #0b1e3d;
-}
-section.fremskriver > div {
-  margin-bottom: 2rem;
-}
-.slider-label {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #0b1e3d;
-  margin-bottom: 0.3rem;
-  text-align: left;
-  white-space: nowrap;
-}
-.slider-value {
-  font-weight: 700;
-  margin-left: 0.5rem;
-}
-section.fremskriver input[type=range] {
-  width: 100%;
-  accent-color: #0b1e3d;
-  margin-bottom: 0.25rem;
-}
-#output {
-  margin-top: 1.5rem;
-  text-align: center;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #0b1e3d;
-}
 footer {
   text-align: center;
   padding: 1.5rem;
